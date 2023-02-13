@@ -25,19 +25,7 @@ export const headerData = {
           text: 'Contact',
           href: '#',
         },
-        {
-          text: 'Terms',
-          href: getPermalink('/terms'),
-        },
-        {
-          text: 'Privacy policy',
-          href: getPermalink('/privacy'),
-        },
       ],
-    },
-    {
-      text: 'Widgets',
-      href: '#',
     },
     {
       text: 'Blog',
@@ -108,8 +96,8 @@ export const footerData = {
     // { ariaLabel: 'Twitter', icon: 'tabler:brand-twitter', href: '#' },
     { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/company/ieee-student-branch-of-university-of-ruse' },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/sbieee.uniruse' },
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
     { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/IEEE-Student-Branch-of-Uni-Ruse/' },
+    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
   ],
   footNote: `
     All rights reserved.
