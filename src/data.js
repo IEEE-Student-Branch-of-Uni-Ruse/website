@@ -21,10 +21,6 @@ export const headerData = {
           text: 'About us',
           href: '#',
         },
-        {
-          text: 'Contact',
-          href: '#',
-        },
       ],
     },
     {
@@ -33,11 +29,11 @@ export const headerData = {
     },
     {
       text: 'Contact',
-      href: getBlogPermalink(),
+      href: getPermalink('/contact')
     },
   ],
   actions: [
-    { type: 'button', text: 'Download', href: 'https://github.com/onwidget/astrowind' }
+    { type: 'button', text: 'Download', href: '#' }
   ],
 };
   
