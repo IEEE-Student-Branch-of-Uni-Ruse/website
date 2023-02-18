@@ -7,21 +7,34 @@ export const headerData = {
       href: getPermalink('/'),
     },
     {
-      text: 'Pages',
+      text: 'About',
       links: [
         {
-          text: 'Features',
-          href: '#',
+          text: 'Team',
+          href: getPermalink('/about/team'),
         },
         {
-          text: 'Pricing',
-          href: '#',
+          text: 'Timeline',
+          href: getPermalink('/about/timeline'),
         },
         {
-          text: 'About us',
+          text: 'FAQ',
+          href: getPermalink('/about/faq'),
+        },
+      ],
+    },
+    {
+      text: 'Chapters',
+      links: [
+        {
+          text: 'Computer Sociality',
           href: '#',
         },
       ],
+    },
+    {
+      text: 'Events',
+      href: getPermalink('/events'),
     },
     {
       text: 'Blog',
@@ -29,26 +42,26 @@ export const headerData = {
     },
     {
       text: 'Contact',
-      href: getPermalink('/contact')
+      href: getPermalink('/contact'),
     },
   ],
   actions: [
-    { type: 'button', text: 'Download', href: '#' }
+    { type: 'button', text: 'Join IEEE', href: 'https://www.ieee.org/membership/join/index.html' }
   ],
 };
   
 export const footerData = {
   links: [
     {
-      title: 'Product',
+      title: 'IEEE Organization',
       links: [
-        { text: 'Features', href: '#' },
-        { text: 'Security', href: '#' },
-        { text: 'Team', href: '#' },
-        { text: 'Enterprise', href: '#' },
-        { text: 'Customer stories', href: '#' },
-        { text: 'Pricing', href: '#' },
-        { text: 'Resources', href: '#' },
+        { text: 'IEEE website', href: 'https://www.ieee.org/' },
+        { text: 'IEEE Xplore Digital Library', href: 'https://ieeexplore.ieee.org/Xplore/home.jsp' },
+        { text: 'IEEE Standards', href: 'https://standards.ieee.org/' },
+        { text: 'IEEE Spectrum', href: 'https://spectrum.ieee.org/' },
+        { text: 'IEEE Kerala Section', href: 'https://ieeekerala.org/' },
+        { text: 'IEEE Region 10', href: 'https://www.ieeer10.org/' },
+        { text: 'More sites', href: 'https://www.ieee.org/sitemap.html' },
       ],
     },
     {
@@ -96,6 +109,6 @@ export const footerData = {
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
   ],
   footNote: `
-    All rights reserved.
+    Copyright © 2021-2023 IEEE Student Branch of Uni Ruse.
   `,
 };

@@ -21,7 +21,7 @@ const CONFIG = {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
-    timeZone: 'UTC',
+    timeZone: 'EET',
   }),
 
   googleAnalyticsId: '', // or "G-XXXXXXXXXX",
@@ -45,7 +45,7 @@ const CONFIG = {
 
     category: {
       pathname: 'category', // Category main path /category/some-category
-      noindex: true,
+      noindex: false,
       disabled: false,
     },
 
