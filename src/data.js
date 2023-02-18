@@ -28,7 +28,11 @@ export const headerData = {
       links: [
         {
           text: 'Computer Sociality',
-          href: '#',
+          href: getPermalink('/chapters/computer-society'),
+        },
+        {
+          text: 'Electronics Packaging Society',
+          href: getPermalink('/chapters/electronics-packaging-society'),
         },
       ],
     },
