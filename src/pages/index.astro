@@ -22,22 +22,10 @@ const meta = {
   <!-- Hero Widget ******************* -->
 
   <Hero
-    callToAction={{ text: 'Get template', href: 'https://github.com/onwidget/astrowind', icon: 'tabler:download' }}
-    callToAction2={{ text: 'Learn more', href: '#features' }}
     image={{ src: import('~/assets/images/hero.png'), alt: 'AstroWind Hero Image' }}
   >
     <Fragment slot="title">
-      Free template for <span class="hidden lg:inline">create your website <br class="2xl:hidden"/> with</span>
-      <span class="text-accent dark:text-white highlight"> Astro 2.0</span> + Tailwind CSS
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      <span class="hidden sm:inline">
-        <span class="font-semibold">AstroWind</span> is a free, customizable and production-ready template for Astro 2.0 +
-        Tailwind CSS.</span
-      >
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">AstroWind: Production-ready.</span> Suitable for Startups,
-      Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs.
+      IEEE Student Branch of Uni Ruse
     </Fragment>
   </Hero>
 
@@ -48,48 +36,41 @@ const meta = {
   <!-- Features Widget *************** -->
 
   <Features
-    highlight="Features"
-    title="What you get with AstroWind"
-    subtitle="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam, eaque ipsa quae."
+    highlight=""
+    title="What are the benefits?"
     items={[
       [
         {
-          title: 'Astro + Tailwind CSS Integration',
+          title: 'Network with other technology professionals',
           description:
-            'A seamless integration between two great frameworks that offer high productivity, performance and versatility.',
+            '',
           icon: 'tabler:brand-tailwind',
         },
         {
-          title: 'Ready-to-use Components',
+          title: 'Establish a professional profile highlighting your accomplishments',
           description:
-            'Widgets made with Tailwind CSS ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...',
+            '',
           icon: 'tabler:components',
         },
         {
-          title: 'Best Practices',
+          title: 'Join and participate in discussions on various technical interests',
           description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla.',
+            '',
           icon: 'tabler:list-check',
         },
       ],
       [
         {
-          title: 'Excellent Page Speed',
+          title: 'Create a group to share and collaborate on projects',
           description:
-            'Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.',
+            '',
           icon: 'tabler:rocket',
         },
         {
-          title: 'Search Engine Optimization (SEO)',
+          title: 'Discover IEEE events and activities throughout the world',
           description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla.',
+            '',
           icon: 'tabler:arrows-right-left',
-        },
-        {
-          title: 'Open to new ideas and contributions',
-          description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla.',
-          icon: 'tabler:bulb',
         },
       ],
     ]}
@@ -129,37 +110,6 @@ const meta = {
     </Fragment>
   </Content>
 
-  <!-- Content Widget **************** -->
-
-  <Content
-    isReversed
-    isAfterContent
-    items={[
-      {
-        title: 'Per ei quaeque sensibus',
-      },
-      {
-        title: 'Cu imperdiet posidonium sed',
-      },
-      {
-        title: 'Nulla omittam sadipscing mel ne',
-      },
-      {
-        title: 'Per ei quaeque sensibus',
-      },
-      {
-        title: 'Cu imperdiet posidonium sed',
-      },
-      {
-        title: 'Nulla omittam sadipscing mel ne',
-      },
-    ]}
-    image={{
-      src: import('~/assets/images/vintage.jpg'),
-      alt: 'Vintage Image',
-    }}
-  />
-
   <!-- Steps Widget ****************** -->
 
   <Steps
@@ -196,7 +146,7 @@ const meta = {
 
   <!-- Features2 Widget ************** -->
 
-  <Features2
+  <!-- <Features2
     title="Most used widgets"
     subtitle="Provides frequently used components for building websites using Tailwind CSS"
     highlight="Components"
@@ -256,16 +206,13 @@ const meta = {
         icon: 'icon-park:page-template',
       },
     ]}
-  />
+  /> -->
 
   <!-- HighlightedPosts Widget ******* -->
 
   <LatestPosts
     title="Find out more content in our Blog"
-    information={`The blog is used to display AstroWind documentation.
-			Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
-			Astro is a very interesting technology. Thanks.
-		`}
+    information={``}
     postIds={[
       '',
     ]}
@@ -275,10 +222,10 @@ const meta = {
 
   <Stats
     items={[
-      { name: 'Problems solved', value: '5' },
-      { name: 'Followers', value: '1K' },
-      { name: 'Ducks quaked', value: '25.5K' },
-      { name: 'Project mantained', value: '2' },
+      { name: 'IEEE Members Worldwided', value: '400k +' },
+      { name: 'Geographical Regions', value: '10' },
+      { name: 'Societies & Technical Councils', value: '46' },
+      { name: 'Student Branches & Chapters', value: '3000+' },
     ]}
   />
 </Layout>

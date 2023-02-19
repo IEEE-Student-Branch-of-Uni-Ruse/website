@@ -118,7 +118,8 @@ That would be very useful for all of us and we would be happy to listen and take
 ## Acknowledgements
 
 * Astro is a website build tool for the modern web - [astro](https://github.com/withastro/astro)
-* Design - initially created by [onWidget](https://onwidget.com) 
+
+- Design - initially created by [onWidget](https://onwidget.com). Last signed commit "9c7218e".
 
 
 ## License
