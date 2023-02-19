@@ -103,7 +103,7 @@ export const footerData = {
   ],
   secondaryLinks: [
     { text: 'Terms', href: getPermalink('/terms') },
-    { text: 'Privacy Policy', href: getPermalink('/privacy') },
+    { text: 'Branch Constitution', href: getPermalink('/branch-constitution') },
   ],
   socialLinks: [
     // { ariaLabel: 'Twitter', icon: 'tabler:brand-twitter', href: '#' },
