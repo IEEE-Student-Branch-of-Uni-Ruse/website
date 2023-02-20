@@ -69,13 +69,15 @@ export const footerData = {
       ],
     },
     {
-      title: 'Platform',
+      title: 'Administrative links',
       links: [
-        { text: 'Developer API', href: '#' },
-        { text: 'Partners', href: '#' },
-        { text: 'Atom', href: '#' },
-        { text: 'Electron', href: '#' },
-        { text: 'AstroWind Desktop', href: '#' },
+        { text: 'Home', href: '/' },
+        { text: 'Contact', href: '/contact/' },
+        { text: 'Accessibility', href: 'https://www.ieee.org/accessibility_statement.html' },
+        { text: 'Nondiscrimination Policy', href: 'https://www.ieee.org/about/corporate/governance/p9-26.html' },
+        { text: 'IEEE Ethics Reporting', href: 'http://www.ieee-ethics-reporting.org/' },
+        { text: 'IEEE Terms', href: 'https://www.ieee.org/about/help/site_terms_conditions.html' },
+        { text: 'IEEE Privacy Policy', href: 'https://www.ieee.org/about/help/security_privacy.html' },
       ],
     },
     {
@@ -113,6 +115,6 @@ export const footerData = {
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
   ],
   footNote: `
-    Copyright © 2021-2023 IEEE Student Branch of Uni Ruse.
+    Copyright © 2021-2023 IEEE Student Branch of Uni Ruse. A not-for-profit organization, IEEE is the world's largest technical professional organization dedicated to advancing technology for the benefit of humanity.
   `,
 };
