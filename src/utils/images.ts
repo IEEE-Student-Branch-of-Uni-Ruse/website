@@ -22,8 +22,7 @@ export const findImage = async (imagePath?: string) => {
     return null;
   }
 
-  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-    return imagePath;
+  if (imagePath.startsWith('http://') || imagePath.startsWith('https://') || imagePath.startsWith('/')) {
   }
 
   if (!imagePath.startsWith('~/assets')) {
