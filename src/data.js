@@ -115,6 +115,6 @@ export const footerData = {
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
   ],
   footNote: `
-    Copyright © 2021-2023 IEEE Student Branch of Uni Ruse. A not-for-profit organization, IEEE is the world's largest technical professional organization dedicated to advancing technology for the benefit of humanity.
+    Copyright © 2021-2023 
   `,
 };

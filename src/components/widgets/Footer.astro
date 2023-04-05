@@ -34,7 +34,7 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
         <div class="mb-2">
           <a class="inline-block font-bold text-xl" href={getHomePermalink()}>{SITE?.name}</a>
         </div>
-        <div class="text-sm text-muted">
+        <div class="text-sm text-muted pb-4">
           {
             secondaryLinks.map(({ text, href }) => (
               <a
@@ -45,6 +45,7 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
             ))
           }
         </div>
+        <p class="text-sm text-muted ">IEEE Student Branch of Uni Ruse. A not-for-profit organization, IEEE is the world's largest technical professional organization dedicated to advancing technology for the benefit of humanity.</p>
       </div>
       {
         links.map(({ title, links }) => (
