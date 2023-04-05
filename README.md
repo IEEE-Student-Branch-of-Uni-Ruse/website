@@ -1,4 +1,4 @@
-# IEEE Student Branch of Uni Ruse
+# IEEE Student Branch of Uni Ruse's website
 
 <details open>
 <summary>Table of Contents</summary>
@@ -25,7 +25,6 @@
 
 ### Project structure
 
-Inside AstroWind template, you'll see the following folders and files:
 
 ```
 /
