@@ -1,5 +1,7 @@
 # IEEE Student Branch of Uni Ruse's website
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/81cdd051-c674-436a-90f2-8ee747eb633c/deploy-status)](https://app.netlify.com/sites/sb-ieee-uni-ruse/deploys)
+
 <details open>
 <summary>Table of Contents</summary>
 
