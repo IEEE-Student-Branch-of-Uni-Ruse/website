@@ -1,0 +1,196 @@
+---
+import { SITE } from '~/config.mjs';
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Content from '~/components/widgets/Content.astro';
+import LatestPosts from '~/components/blog/LatestPosts.astro';
+import Stats from '~/components/widgets/Stats.astro';
+
+const meta = {
+  title: SITE.title,
+  description: SITE.description,
+  dontUseTitleTemplate: true,
+};
+---
+
+<Layout {meta}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    image={{ src: import('~/assets/images/hero.png'), alt: 'Hero Image' }}
+  >
+    <Fragment slot="title">
+      IEEE Student Branch of Uni Ruse
+    </Fragment>
+  </Hero>
+
+  <!-- Note Widget ******************* -->
+
+  <Note />
+
+  <!-- Features Widget *************** -->
+
+  <Features
+    highlight=""
+    title="What are the benefits?"
+    items={[
+      [
+        {
+          title: 'Network with other technology professionals',
+          description:
+            '',
+          icon: 'tabler:friends',
+        },
+        {
+          title: 'Establish a professional profile highlighting your accomplishments',
+          description:
+            '',
+          icon: 'tabler:components',
+        },
+        {
+          title: 'Join and participate in discussions on various technical interests',
+          description:
+            '',
+          icon: 'tabler:list-check',
+        },
+      ],
+      [
+        {
+          title: 'Create a group to share and collaborate on projects',
+          description:
+            '',
+          icon: 'tabler:rocket',
+        },
+        {
+          title: 'Discover IEEE events and activities throughout the world',
+          description:
+            '',
+          icon: 'tabler:arrows-right-left',
+        },
+      ],
+    ]}
+  />
+
+  <!-- Content Widget **************** -->
+
+  <!-- <Content
+    highlight="Inside template"
+    title="And what's inside? ..."
+    items={[
+      {
+        title: 'Per ei quaeque sensibus',
+        description:
+          'Ex usu illum iudico molestie. Pro ne agam facete mediocritatem, ridens labore facete mea ei. Pro id apeirian dignissim.',
+      },
+      {
+        title: 'Cu imperdiet posidonium sed',
+        description:
+          'Amet utinam aliquando ut mea, malis admodum ocurreret nec et, elit tibique cu nec. Nec ex maluisset inciderint, ex quis.',
+      },
+      {
+        title: 'Nulla omittam sadipscing mel ne',
+        description:
+          'At sed possim oporteat probatus, justo graece ne nec, minim commodo legimus ut vix. Ut eos iudico quando soleat, nam modus.',
+      },
+    ]}
+    image={{
+      src: import('~/assets/images/caos.jpg'),
+      alt: 'Colorful Image',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Ad vix debet docendi</h3>
+      Ne dicta praesent ocurreret has, diam theophrastus at pro. Eos etiam regione ut, persius eripuit quo id. Sit te euismod
+      tacimates.
+    </Fragment>
+  </Content> -->
+
+  <!-- Features2 Widget ************** -->
+
+  <!-- <Features2
+    title="Most used widgets"
+    subtitle="Provides frequently used components for building websites using Tailwind CSS"
+    highlight="Components"
+    items={[
+      {
+        title: 'Headers',
+        description:
+          'In general, Headers contain information that makes it easier for visitors to interact with the website.',
+        icon: 'flat-color-icons:template',
+      },
+      {
+        title: 'Heros',
+        description:
+          'If you want your website to get more than its fair share of visitors, the Hero section needs to be stellar.',
+        icon: 'flat-color-icons:gallery',
+      },
+      {
+        title: 'Features',
+        description:
+          'Display your product in action and how the Features actually create a solution for your target customer.',
+        icon: 'flat-color-icons:todo-list',
+      },
+      {
+        title: 'Content',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
+        icon: 'flat-color-icons:document',
+      },
+      {
+        title: 'Call-to-Action',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
+        icon: 'flat-color-icons:advertising',
+      },
+      {
+        title: 'Pricing',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
+        icon: 'flat-color-icons:currency-exchange',
+      },
+      {
+        title: 'Testimonial',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
+        icon: 'flat-color-icons:voice-presentation',
+      },
+      {
+        title: 'Contact',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
+        icon: 'flat-color-icons:business-contact',
+      },
+      {
+        title: 'Footers',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
+        icon: 'icon-park:page-template',
+      },
+    ]}
+  /> -->
+
+  <!-- HighlightedPosts Widget ******* -->
+
+  <LatestPosts
+    title="Find out more content in our Blog"
+    information={``}
+    postIds={[
+      '',
+    ]}
+  />
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    items={[
+      { name: 'IEEE Members Worldwided', value: '400k +' },
+      { name: 'Geographical Regions', value: '10' },
+      { name: 'Societies & Technical Councils', value: '46' },
+      { name: 'Student Branches & Chapters', value: '3000+' },
+    ]}
+  />
+</Layout>
