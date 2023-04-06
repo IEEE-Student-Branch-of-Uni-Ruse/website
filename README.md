@@ -19,7 +19,8 @@
 
 ## Demo
 
-[https://sb-ieee.uni-ruse.bg/](https://sb-ieee.uni-ruse.bg/)
+[Official domain](https://sb-ieee.uni-ruse.bg/) or [Netlify url](https://sb-ieee-uni-ruse.netlify.app/)
+
 
 <br>
 
