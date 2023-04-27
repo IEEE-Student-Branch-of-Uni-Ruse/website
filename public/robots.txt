@@ -1,2 +1,4 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://sb-ieee-uni-ruse.netlify.app/sitemap-index.xml
