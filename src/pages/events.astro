@@ -1,0 +1,73 @@
+---
+import { SITE } from '~/config.mjs';
+import Layout from '~/layouts/PageLayout.astro';
+
+const meta = {
+  title: SITE.title,
+  description: SITE.description,
+  dontUseTitleTemplate: true,
+};
+---
+
+<Layout {meta}>
+<section class="relative w-full py-12 overflow-hidden bg-white md:py-20 xl:pt-32 xl:pb-40">
+    <div class="container relative flex flex-col justify-between h-full max-w-6xl px-10 mx-auto xl:px-0">
+        <h2 class="mb-1 text-3xl font-extrabold leading-tight text-gray-900">Events</h2>
+        <p class="mb-12 text-lg text-gray-500">Cool events all year round.</p>
+
+        <div class="flex w-full h-full">
+
+            <div class="w-full lg:w-2/3">
+
+                <!-- Feature blocks first column -->
+                <div class="flex flex-col w-full mb-10 sm:flex-row">
+                    <div class="w-full mb-10 sm:mb-0">
+                        <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                            <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-indigo-500 rounded-lg" data-primary="indigo-500" data-rounded="rounded-lg" data-rounded-max="rounded-full"></span>
+                            <div class="relative h-full p-5 bg-white border-2 border-indigo-500 rounded-lg" data-primary="indigo-500" data-rounded="rounded-lg" data-rounded-max="rounded-full">
+                                <div class="flex items-center -mt-1">
+                                    <svg class="w-8 h-8 text-indigo-500 fill-current" data-primary="indigo-500" viewBox="0 0 20 20"><polygon points="18.198,7.95 3.168,7.95 3.168,8.634 9.317,9.727 9.317,19.564 12.05,19.564 12.05,9.727 18.198,8.634 "></polygon><path d="M2.485,10.057v-3.41H2.473l0.012-4.845h1.366c0.378,0,0.683-0.306,0.683-0.683c0-0.378-0.306-0.683-0.683-0.683H1.119c-0.378,0-0.683,0.306-0.683,0.683c0,0.378,0.306,0.683,0.683,0.683h0.683v4.845C1.406,6.788,1.119,7.163,1.119,7.609v2.733c0,0.566,0.459,1.025,1.025,1.025c0.053,0,0.105-0.008,0.157-0.016l-0.499,5.481l5.9,2.733h0.931C8.634,13.266,5.234,10.458,2.485,10.057z"></path><path d="M18.169,6.584c-0.303-3.896-3.202-6.149-7.486-6.149c-4.282,0-7.183,2.252-7.484,6.149H18.169z M15.463,3.187c0.024,0.351-0.103,0.709-0.394,0.977c-0.535,0.495-1.405,0.495-1.94,0c-0.29-0.268-0.418-0.626-0.394-0.977C13.513,3.827,14.683,3.827,15.463,3.187z"></path><path d="M18.887,10.056c-2.749,0.398-6.154,3.206-6.154,9.508h0.933l5.899-2.733L18.887,10.056z"></path></svg>
+                                    <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Game night</h3>
+                                </div>
+                                <p class="mt-3 mb-1 text-xs font-medium text-indigo-500 uppercase" data-primary="indigo-500">Date: tbd</p>
+                                <p class="mb-2 text-gray-600">Show off your computer skills.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature blocks second column -->
+                <div class="flex flex-col w-full mb-5 sm:flex-row">
+                    <div class="w-full mb-10 sm:mb-0">
+                        <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                            <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-blue-400 rounded-lg" data-primary="blue-400" data-rounded="rounded-lg" data-rounded-max="rounded-full"></span>
+                            <div class="relative h-full p-5 bg-white border-2 border-blue-400 rounded-lg" data-primary="blue-400" data-rounded="rounded-lg" data-rounded-max="rounded-full">
+                                <div class="flex items-center -mt-1">
+                                    <svg class="w-8 h-8 text-blue-400 fill-current" data-primary="blue-400" viewBox="0 0 20 20"><path d="M18.21,16.157v-8.21c0-0.756-0.613-1.368-1.368-1.368h-1.368v1.368v1.368v6.841l-1.368,3.421h5.473L18.21,16.157z"></path><path d="M4.527,9.316V7.948V6.579H3.159c-0.756,0-1.368,0.613-1.368,1.368v8.21l-1.368,3.421h5.473l-1.368-3.421V9.316z"></path><path d="M14.766,5.895h0.023V5.21c0-2.644-2.145-4.788-4.789-4.788S5.211,2.566,5.211,5.21v0.685h0.023H14.766zM12.737,3.843c0.378,0,0.684,0.307,0.684,0.684s-0.306,0.684-0.684,0.684c-0.378,0-0.684-0.307-0.684-0.684S12.358,3.843,12.737,3.843z M10,1.448c0.755,0,1.368,0.613,1.368,1.368S10.755,4.185,10,4.185c-0.756,0-1.368-0.613-1.368-1.368S9.244,1.448,10,1.448z"></path><path d="M14.789,6.579H5.211v9.578l1.368,1.368h6.841l1.368-1.368V6.579z M12.052,12.052H7.948c-0.378,0-0.684-0.306-0.684-0.684c0-0.378,0.306-0.684,0.684-0.684h4.105c0.378,0,0.684,0.306,0.684,0.684C12.737,11.746,12.431,12.052,12.052,12.052z M12.052,9.316H7.948c-0.378,0-0.684-0.307-0.684-0.684s0.306-0.684,0.684-0.684h4.105c0.378,0,0.684,0.307,0.684,0.684S12.431,9.316,12.052,9.316z"></path></svg>
+                                    <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Nasa Space Apps Challenge</h3>
+                                </div>
+                                <p class="mt-3 mb-1 text-xs font-medium text-blue-400 uppercase" data-primary="blue-400">Date: tbd</p>
+                                <p class="mb-2 text-gray-600">NASA Space Apps Challenge is an international hackathon-style event where teams of students, scientists, and entrepreneurs collaborate to solve real-world problems related to space exploration and Earth.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="hidden w-1/3 lg:block">
+                <div class="absolute w-full max-w-4xl pl-12 -mt-20 xl:-mt-32">
+                    <div class="absolute top-0 left-0 w-full h-full mt-2 ml-10 bg-gray-900 rounded-2xl" data-rounded="rounded-2xl" data-rounded-max="rounded-full"></div>
+                    <div class="relative overflow-hidden border-2 border-black rounded-2xl" data-rounded="rounded-2xl" data-rounded-max="rounded-full">
+                        <img src="src/assets/images/events.png" class="object-cover w-full h-full transform">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+</Layout>

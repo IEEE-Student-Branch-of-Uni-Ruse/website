@@ -112,6 +112,7 @@ export const footerData = {
     { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/company/ieee-student-branch-of-university-of-ruse' },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/sbieee.uniruse' },
     { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/IEEE-Student-Branch-of-Uni-Ruse/' },
+    { ariaLabel: 'Discord', icon: 'tabler:brand-discord', href: 'https://discord.gg/Q3Bxtrg9wW' },
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
   ],
   footNote: `
