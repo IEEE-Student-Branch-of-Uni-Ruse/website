@@ -83,23 +83,15 @@ export const footerData = {
     {
       title: 'Support',
       links: [
-        { text: 'Docs', href: '#' },
-        { text: 'Community Forum', href: '#' },
-        { text: 'Professional Services', href: '#' },
-        { text: 'Skills', href: '#' },
-        { text: 'Status', href: '#' },
+        { text: 'Community Forum', href: 'https://discord.gg/Q3Bxtrg9wW' },
       ],
     },
     {
-      title: 'Company',
+      title: 'Our branch',
       links: [
-        { text: 'About', href: '#' },
-        { text: 'Blog', href: '#' },
-        { text: 'Careers', href: '#' },
-        { text: 'Press', href: '#' },
-        { text: 'Inclusion', href: '#' },
-        { text: 'Social Impact', href: '#' },
-        { text: 'Shop', href: '#' },
+        { text: 'Team', href: '/about/team' },
+        { text: 'Blog', href: '/blog' },
+        { text: 'Contact', href: '/contact' },
       ],
     },
   ],
