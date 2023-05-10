@@ -2,6 +2,8 @@
 import { SITE } from '~/config.mjs';
 import Layout from '~/layouts/PageLayout.astro';
 
+import { getCanonical, getAsset } from '~/utils/permalinks';
+
 const meta = {
   title: SITE.title,
   description: SITE.description,
@@ -61,7 +63,7 @@ const meta = {
                 <div class="absolute w-full max-w-4xl pl-12 -mt-20 xl:-mt-32">
                     <div class="absolute top-0 left-0 w-full h-full mt-2 ml-10 bg-gray-900 rounded-2xl" data-rounded="rounded-2xl" data-rounded-max="rounded-full"></div>
                     <div class="relative overflow-hidden border-2 border-black rounded-2xl" data-rounded="rounded-2xl" data-rounded-max="rounded-full">
-                        <img src="src/assets/images/events.png" class="object-cover w-full h-full transform">
+                        <img src={getAsset('/src/assets/images/calendar.jpg')} class="object-cover w-full h-full transform">
                     </div>
                 </div>
             </div>
