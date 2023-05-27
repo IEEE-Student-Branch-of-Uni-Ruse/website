@@ -1,5 +1,5 @@
 ---
-publishDate: 2023-02-15T00:00:00Z
+publishDate: 2023-05-29T10:00:00Z
 title: Second Place in Uni Ruse's May "Innovative Website Contest"
 excerpt: We celebrate and congratulate our member for securing the second place in the Uni Ruse's "Innovative Website Contest."
 image: ~/assets/images/blogposts/may-2023.jpg
