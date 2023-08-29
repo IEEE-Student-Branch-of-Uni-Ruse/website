@@ -8,7 +8,8 @@ module.exports = {
         primary: 'var(--aw-color-primary)',
         secondary: 'var(--aw-color-secondary)',
         accent: 'var(--aw-color-accent)',
-        'ieeecolor': '#0A70A3'
+        default: 'var(--aw-color-text-default)',
+        muted: 'var(--aw-color-text-muted)',
       },
       fontFamily: {
         sans: ['var(--aw-font-sans)', ...defaultTheme.fontFamily.sans],
