@@ -3,9 +3,11 @@ import { Icon } from "astro-icon/components";
 import Logo from "~/components/Logo.astro";
 import ToggleTheme from "~/components/common/ToggleTheme.astro";
 import ToggleMenu from "~/components/common/ToggleMenu.astro";
+import Button from "~/components/ui/Button.astro"
 
 import { getHomePermalink } from "~/utils/permalinks";
 import { trimSlash, getAsset } from "~/utils/permalinks";
+import type { CallToAction } from "~/types";
 
 interface Link {
   text?: string;
@@ -14,10 +16,7 @@ interface Link {
   icon?: string;
 }
 
-interface ActionLink extends Link {
-  class?: string;
-  type?: string;
-}
+interface ActionLink extends CallToAction {}
 
 interface MenuLink extends Link {
   links?: Array<MenuLink>;
@@ -53,7 +52,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`
 <header
   class:list={[
     { sticky: isSticky, relative: !isSticky, dark: isDark },
-    "top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out bg-page",
+    "top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out",
   ]}
   {...id ? { id } : {}}
 >
@@ -71,7 +70,6 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`
         <Logo />
       </a>
       <div class="flex items-center md:hidden">
-        {/* <ToggleTheme /> */}
         <ToggleMenu />
       </div>
     </div>
@@ -146,10 +144,8 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`
         {
           actions?.length ? (
             <span class="ml-4 rtl:ml-0 rtl:mr-4">
-              {actions.map(({ text, href, class: className }) => (
-                <a class:list={["btn ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm", className]} href={href}>
-                  <Fragment set:html={text} />
-                </a>
+              {actions.map((btnProps) => (
+                <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto"/>
               ))}
             </span>
           ) : (
