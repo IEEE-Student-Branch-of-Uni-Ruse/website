@@ -1,6 +1,6 @@
 site:
   name: IEEE Student Branch of Uni Ruse
-  site: 'https://astrowind.vercel.app'
+  site: 'https://sb-ieee-uni-ruse.netlify.app'
   base: '/'
   trailingSlash: false
 
@@ -10,7 +10,7 @@ site:
 metadata:
   title:
     default: IEEE Student Branch of Uni Ruse
-    template: '%s — AstroWind'
+    template: '%s — IEEE'
   description: "🚀 IEEE Student Branch University of Ruse  encourages a global community to innovate for a better tomorrow by offering a wide range of learning and career enhancement to ensure skill and knowledge growth through our conferences, workshops, competitions, and educational activities"
   robots:
     index: true
