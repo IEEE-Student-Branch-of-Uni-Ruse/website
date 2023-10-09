@@ -6,7 +6,7 @@ export const headerData = {
       text: 'Homes',
       links: [
         {
-          text: 'Sass',
+          text: 'SaaS',
           href: getPermalink('/homes/saas'),
         },
         {
@@ -115,7 +115,7 @@ export const headerData = {
       href: '#',
     },
   ],
-  actions: [{ type: 'button', text: 'Download', href: 'https://github.com/onwidget/astrowind' }],
+  actions: [{ text: 'Download', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],
 };
 
 export const footerData = {
