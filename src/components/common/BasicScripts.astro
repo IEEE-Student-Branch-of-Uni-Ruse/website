@@ -1,8 +1,8 @@
 ---
-import { UI_CONFIG } from '~/utils/config';
+import { UI } from '~/utils/config';
 ---
 
-<script is:inline define:vars={{ defaultTheme: UI_CONFIG.theme }}>
+<script is:inline define:vars={{ defaultTheme: UI.theme }}>
   function applyTheme(theme) {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -45,7 +45,8 @@ import { UI_CONFIG } from '~/utils/config';
       document.querySelector("#header > div > div:last-child")?.classList.add("hidden");
     });
 
-    attachEvent('[data-aw-toggle-menu]', 'click', function () {
+    attachEvent('[data-aw-toggle-menu]', 'click', function (_, elem) {
+      elem.classList.toggle("expanded");
       document.body.classList.toggle("overflow-hidden");
       document.getElementById("header")?.classList.toggle("h-screen");
       document.getElementById("header")?.classList.toggle("expanded");
