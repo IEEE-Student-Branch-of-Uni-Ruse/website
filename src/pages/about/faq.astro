@@ -1,59 +1,51 @@
 ---
-import { SITE } from '~/config.mjs';
 import Layout from '~/layouts/PageLayout.astro';
 
 import FAQs from '~/components/widgets/FAQs.astro';
 
 const meta = {
-  title: SITE.title,
-  description: SITE.description,
-  dontUseTitleTemplate: true,
+  title: 'FAQ',
 };
 ---
 
 <Layout {meta}>
-<FAQs
+  <FAQs
     title="Frequently Asked Questions"
     subtitle="If there is something else, just contact us."
-    highlight="FAQs"
+    tagline="FAQs"
+    classes={{ container: 'max-w-6xl' }}
     items={[
-      [
-        {
-          question: 'What is IEEE Student Branch?',
-          answer:
-            'IEEE Student Branch is a student-run organization that operates under the umbrella of the Institute of Electrical and Electronics Engineers (IEEE). Its purpose is to provide resources, support, and opportunities to students who are interested in electrical and computer engineering, computer science, and related fields.',
-        },
-        {
-          question: 'How can I become a member of the IEEE Student Branch?',
-          answer:
-            "You can become a member of the IEEE Student Branch by visiting the IEEE website and following the steps to join as a student member. You can then select your us as your affiliation.",
-        },
-        {
-          question: "What are the benefits of being a member of the IEEE Student Branch?",
-          answer:
-            "Being a member of the IEEE Student Branch provides many benefits, including access to networking opportunities, career development resources, technical publications, and discounts on conferences and workshops.",
-        },
-      ],
-      [
-        {
-          question: "What are the events and activities organized by the IEEE Student Branch?",
-          answer:
-            "We organize a variety of events and activities, such as guest lectures, workshops, hackathons, competitions, and social events. These events provide opportunities for members to learn, network, and develop their skills.",
-        },
-        {
-          question: 'How can I volunteer for the IEEE Student Branch events and activities?',
-          answer:
-            "By contacting us on our Discord group. There we will provide you with the necessary information.",
-        },
-        {
-          question: 'How can I contribute to IEEE as a student member and beyond?',
-          answer:
-            "As a student member of IEEE, you can contribute by volunteering for IEEE events and activities, participating in IEEE technical societies, and submitting research papers and articles to IEEE publications. Beyond graduation, you can continue to contribute to IEEE as a professional member by mentoring students, serving on committees, and contributing to technical publications.",
-        },
-      ],
+      {
+        title: ' What is IEEE Student Branch?',
+        description:
+          "IEEE Student Branch is a student-run organization that operates under the umbrella of the Institute of Electrical and Electronics Engineers (IEEE). Its purpose is to provide resources, support, and opportunities to students who are interested in electrical and computer engineering, computer science, and related fields.",
+      },
+      {
+        title: ' How can I become a member of the IEEE Student Branch?',
+        description:
+          'You can become a member of the IEEE Student Branch by visiting the IEEE website and following the steps to join as a student member. You can then select your us as your affiliation.',
+      },
+      {
+        title: ' What are the benefits of being a member of the IEEE Student Branch?',
+        description:
+          "Being a member of the IEEE Student Branch provides many benefits, including access to networking opportunities, career development resources, technical publications, and discounts on conferences and workshops.",
+      },
+      { title: 'What are the events and activities organized by the IEEE Student Branch? What is something that you dont understand?',
+        description:
+          "We organize a variety of events and activities, such as guest lectures, workshops, hackathons, competitions, and social events. These events provide opportunities for members to learn, network, and develop their skills.",
+      },
+      {
+        title: ' How can I volunteer for the IEEE Student Branch events and activities?',
+        description:
+          "By contacting us on our Discord group. There we will provide you with the necessary information.",
+      },
+      {
+        title: ' How can I contribute to IEEE as a student member and beyond?',
+        description:
+          "As a student member of IEEE, you can contribute by volunteering for IEEE events and activities, participating in IEEE technical societies, and submitting research papers and articles to IEEE publications. Beyond graduation, you can continue to contribute to IEEE as a professional member by mentoring students, serving on committees, and contributing to technical publications.",
+      },
     ]}
   />
-
 </Layout>
 
 <!-- FAQs Widget ******************* -->

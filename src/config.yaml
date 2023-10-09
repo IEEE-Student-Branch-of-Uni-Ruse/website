@@ -1,5 +1,5 @@
 site:
-  name: AstroWind
+  name: IEEE Student Branch of Uni Ruse
   site: 'https://astrowind.vercel.app'
   base: '/'
   trailingSlash: false
@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
+    default: IEEE Student Branch of Uni Ruse
     template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+  description: "🚀 IEEE Student Branch University of Ruse  encourages a global community to innovate for a better tomorrow by offering a wide range of learning and career enhancement to ensure skill and knowledge growth through our conferences, workshops, competitions, and educational activities"
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: IEEE Student Branch of Uni Ruse
     images:
       - url: '~/assets/images/default.png'
         width: 1200

@@ -13,7 +13,7 @@ import FAQs from '~/components/widgets/FAQs.astro';
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 
 const metadata = {
-  title: 'Saas Landing Page',
+  title: 'SaaS Landing Page',
 };
 ---
 
@@ -23,12 +23,12 @@ const metadata = {
       {...headerData}
       actions={[
         {
-          type: 'ghost',
+          variant: 'secondary',
           text: 'Login',
           href: '#',
         },
         {
-          type: 'primary',
+          variant: 'primary',
           text: 'Sign Up',
           href: '#',
         },
@@ -41,8 +41,10 @@ const metadata = {
 
   <Hero2
     tagline="SaaS Web Demo"
-    callToAction={{ text: 'Get Started', href: 'https://github.com/onwidget/astrowind' }}
-    callToAction2={{ text: 'Learn more', href: '#features' }}
+    actions={[
+      { variant: 'primary', target: '_blank', text: 'Get Started', href: 'https://github.com/onwidget/astrowind' },
+      { text: 'Learn more', href: '#features' },
+    ]}
     image={{
       src: 'https://images.unsplash.com/photo-1580481072645-022f9a6dbf27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       alt: 'AstroWind Hero Image',
@@ -58,7 +60,7 @@ const metadata = {
       <span class="hidden sm:inline">
         Elevate your website creation process with <span class="font-semibold">AstroWind</span>'s SaaS solutions.</span
       >
-       Seamlessly blend the power of Astro 2.0 and Tailwind CSS to craft websites that resonate with your brand and
+       Seamlessly blend the power of Astro 3.0 and Tailwind CSS to craft websites that resonate with your brand and
       audience.
     </Fragment>
   </Hero2>
@@ -72,7 +74,7 @@ const metadata = {
     columns={2}
     items={[
       {
-        title: 'Integration of Astro 2.0 and Tailwind CSS',
+        title: 'Integration of Astro 3.0 and Tailwind CSS',
         description:
           'Offers a powerful combination that enhances both the development process and the end-user experience. Also, allows to build dynamic and visually stunning websites with optimized performance.',
         icon: 'tabler:layers-union',
@@ -95,7 +97,7 @@ const metadata = {
       },
       {
         title: 'Fast loading times and production-ready code',
-        description: `Using Astro 2.0 ensures fast loading and seamless rendering, enhancing browsing. The code follows best practices, improving user experience, SEO, and reducing bounce rates.`,
+        description: `Using Astro 3.0 ensures fast loading and seamless rendering, enhancing browsing. The code follows best practices, improving user experience, SEO, and reducing bounce rates.`,
         icon: 'tabler:rocket',
       },
       {
@@ -116,7 +118,7 @@ const metadata = {
       {
         title: 'Description:',
         description:
-          'Are you a startup with big dreams? AstroWind propels your success. Our template forges a seamless online presence, attracting investors and customers from day one. Astro 2.0 and Tailwind CSS ensure striking, responsive sites, leaving lasting impressions. Countless startups leverage AstroWind to kickstart their journey and resonate with audiences.',
+          'Are you a startup with big dreams? AstroWind propels your success. Our template forges a seamless online presence, attracting investors and customers from day one. Astro 3.0 and Tailwind CSS ensure striking, responsive sites, leaving lasting impressions. Countless startups leverage AstroWind to kickstart their journey and resonate with audiences.',
       },
       {
         title: 'Benefits:',
@@ -146,7 +148,7 @@ const metadata = {
     items={[
       {
         title: 'Description:',
-        description: `For SaaS businesses, user experience is key. AstroWind enhances showcasing SaaS solutions intuitively. The template's Astro 2.0 and Tailwind CSS integration guarantees user-friendly experience, mirroring your software's efficiency. Customize pages to communicate SaaS value and solutions for your audience.`,
+        description: `For SaaS businesses, user experience is key. AstroWind enhances showcasing SaaS solutions intuitively. The template's Astro 3.0 and Tailwind CSS integration guarantees user-friendly experience, mirroring your software's efficiency. Customize pages to communicate SaaS value and solutions for your audience.`,
       },
       {
         title: 'Benefits:',
@@ -240,7 +242,7 @@ const metadata = {
         price: '0',
         period: '/ month',
         callToAction: {
-          targetBlank: true,
+          target: '_blank',
           text: 'Get Started for Free',
           href: '#',
         },
@@ -251,7 +253,7 @@ const metadata = {
         price: 15,
         period: '/ Month',
         callToAction: {
-          targetBlank: true,
+          target: '_blank',
           text: 'Upgrade to Pro',
           href: '#',
         },
@@ -264,7 +266,7 @@ const metadata = {
         price: 45,
         period: '/ Month',
         callToAction: {
-          targetBlank: true,
+          target: '_blank',
           text: 'Unlock Enterprise Features',
           href: '#',
         },

@@ -2,7 +2,7 @@
 publishDate: 2023-02-15T00:00:00Z
 title: Our new website
 excerpt: Our new website
-image: ~/assets/images/tools.jpg
+image: ~/assets/images/blogposts/new-website.jpg
 tags:
   - website
   - tools
