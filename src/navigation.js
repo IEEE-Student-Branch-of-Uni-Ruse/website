@@ -24,7 +24,7 @@ export const headerData = {
       ],
     },
     {
-      text: 'Chapters',
+     text: 'Chapters',
       links: [
         {
           text: 'Computer Sociality',
@@ -36,7 +36,7 @@ export const headerData = {
         },
       ],
     },
-    {
+   {
       text: 'Events',
       href: getPermalink('/events'),
     },
@@ -49,11 +49,9 @@ export const headerData = {
       href: getPermalink('/contact'),
     },
   ],
-  actions: [
-    { type: 'button', text: 'Join IEEE', href: 'https://www.ieee.org/membership/join/index.html' }
-  ],
+  // actions: [{ text: 'Download', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],
 };
-  
+
 export const footerData = {
   links: [
     {
