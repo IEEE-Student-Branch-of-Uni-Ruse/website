@@ -1,5 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import TeamMember from '~/components/TeamMember.astro';
 
 const meta = {
   title: 'Team',
@@ -14,129 +15,127 @@ const meta = {
                 <p class="inline max-w-lg  text-3xl font-bold leading-none tracking-tight  sm:text-4xl md:mx-auto">Our Awesome Team</p>
             </div>
         </div>
-        <div class="grid gap-10 row-gap-8 ml-auto mr-auto sm:row-gap-10 lg:max-w-screen-lg sm:grid-cols-2 lg:grid-cols-3">
-            
-            <a href="https://mrgkanev.eu" title="Gabriel Kanev">
-                <div class="flex items-center">
-                    <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow" alt="A starry night sky.">
-                    <div class="relative">
-                        <p class="text-lg font-bold ">Gabriel Kanev</p>
-                        <p class="text-sm text-gray-600">Chair</p>
-                    </div>
-                </div>
-             </a>
-            <div class="flex items-center">
-                <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow">
-                <div class="relative">
-                    <p class="text-lg font-bold ">Martin Nedelchev</p>
-                    <p class="text-sm text-gray-600">Vice-Chair</p>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow">
-                <div class="relative">
-                    <p class="text-lg font-bold ">Tsvetelina Stefanova</p>
-                    <p class="text-sm text-gray-600">Treasurer</p>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow">
-                <div class="relative">
-                    <p class="text-lg font-bold ">Metin Ibrqmov</p>
-                    <p class="text-sm text-gray-600">Secretary</p>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow">
-                <div class="relative">
-                    <p class="text-lg font-bold ">Tsvetelina Mladenova</p>
-                    <p class="text-sm text-gray-600">Counsellor</p>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow">
-                <div class="relative">
-                    <p class="text-lg font-bold ">Atila Pandzhar</p>
-                    <p class="text-sm text-gray-600">Member</p>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow">
-                <div class="relative">
-                    <p class="text-lg font-bold ">Dimitar Dimitrov</p>
-                    <p class="text-sm text-gray-600">Member</p>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow">
-                <div class="relative">
-                    <p class="text-lg font-bold ">Denis Sami</p>
-                    <p class="text-sm text-gray-600">Member</p>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow">
-                <div class="relative">
-                    <p class="text-lg font-bold ">Preslav Stoyanov</p>
-                    <p class="text-sm text-gray-600">Member</p>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow">
-                <div class="relative">
-                    <p class="text-lg font-bold ">Deyan Dzhumaliyski</p>
-                    <p class="text-sm text-gray-600">Member</p>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow">
-                <div class="relative">
-                    <p class="text-lg font-bold ">Konstantin Tokov</p>
-                    <p class="text-sm text-gray-600">Member</p>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow">
-                <div class="relative">
-                    <p class="text-lg font-bold ">Aleksandar Ivanov</p>
-                    <p class="text-sm text-gray-600">Member</p>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow">
-                <div class="relative">
-                    <p class="text-lg font-bold ">Atanas Kabakchiev</p>
-                    <p class="text-sm text-gray-600">Member</p>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow">
-                <div class="relative">
-                    <p class="text-lg font-bold ">Reni Kabakchieva</p>
-                    <p class="text-sm text-gray-600">Member</p>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow">
-                <div class="relative">
-                    <p class="text-lg font-bold ">Todor Yordanov</p>
-                    <p class="text-sm text-gray-600">Member</p>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow">
-                <div class="relative">
-                    <p class="text-lg font-bold ">Plamena Dinolova</p>
-                    <p class="text-sm text-gray-600">Member</p>
-                </div>
-            </div>
-            <div class="flex items-center">
-                <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow">
-                <div class="relative">
-                    <p class="text-lg font-bold ">Teodor Nenov</p>
-                    <p class="text-sm text-gray-600">Member</p>
-                </div>
-            </div>
+        <div class="grid gap-10 row-gap-8 ml-auto mr-auto sm:row-gap-10 lg:max-w-screen-lg sm:grid-cols-2 lg:grid-cols-3"> 
+            <a href="https://mrgkanev.eu">
+                <TeamMember
+                Name="Gabriel Kanev"
+                Title="Chair"
+                Image="/no-avatar.jpg"
+                Url="https://mrgkanev.eu"
+            />
+            </a>
+
+            <TeamMember
+                Name="Martin Nedelchev"
+                Title="Vice-Chair"
+                Image="/no-avatar.jpg"
+                Url="#"
+            />
+
+            <TeamMember
+                Name="Tsvetelina Stefanova"
+                Title="Treasurer"
+                Image="/no-avatar.jpg"
+                Url="#"
+            />
+
+            <TeamMember
+                Name="Metin Ibrqmov"
+                Title="Secretary"
+                Image="/no-avatar.jpg"
+                Url="#"
+            />
+
+            <TeamMember
+                Name="Tsvetelina Mladenova"
+                Title="Counsellor"
+                Image="/no-avatar.jpg"
+                Url="#"
+            />
+
+            <TeamMember
+                Name="Atila Pandzhar"
+                Title="Member"
+                Image="/no-avatar.jpg"
+                Url="#"
+            />
+
+            <TeamMember
+                Name="Dimitar Dimitrov"
+                Title="Member"
+                Image="/no-avatar.jpg"
+                Url="#"
+            />
+
+            <TeamMember
+                Name="Denis Sami"
+                Title="Member"
+                Image="/no-avatar.jpg"
+                Url="#"
+            />
+
+            <TeamMember
+                Name="Preslav Stoyanov"
+                Title="Member"
+                Image="/no-avatar.jpg"
+                Url="#"
+            />
+
+            <TeamMember
+                Name="Deyan Dzhumaliyski"
+                Title="Member"
+                Image="/no-avatar.jpg"
+                Url="#"
+            />
+
+            <TeamMember
+                Name="Konstantin Tokov"
+                Title="Member"
+                Image="/no-avatar.jpg"
+                Url="#"
+            />
+
+            <TeamMember
+                Name="Aleksandar Ivanov"
+                Title="Member"
+                Image="/no-avatar.jpg"
+                Url="#"
+            />
+
+            <TeamMember
+                Name="Atanas Kabakchiev"
+                Title="Member"
+                Image="/no-avatar.jpg"
+                Url="#"
+            />
+
+            <TeamMember
+                Name="Reni Kabakchieva"
+                Title="Member"
+                Image="/no-avatar.jpg"
+                Url="#"
+            />
+
+            <TeamMember
+                Name="Todor Yordanov"
+                Title="Member"
+                Image="/no-avatar.jpg"
+                Url="#"
+            />
+
+            <TeamMember
+                Name="Plamena Dinolova"
+                Title="Member"
+                Image="/no-avatar.jpg"
+                Url="#"
+            />
+
+            <TeamMember
+                Name="Teodor Nenov"
+                Title="Member"
+                Image="/no-avatar.jpg"
+                Url="#"
+            />
         </div>
     </div>
 </section>

@@ -1,0 +1,19 @@
+---
+export interface Props {
+    Name: string;
+    Title: string;
+    Image: string;
+    Url: string;
+}
+const { Name, Title, Image, Url } = Astro.props;
+---
+
+<!-- <a href="{Url}"> -->
+    <div class="flex items-center">
+        <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow" alt="{Name}" />
+        <div class="relative">
+            <p class="text-lg font-bold">{Name}</p>
+            <p class="text-sm text-gray-600">{Title}</p>
+        </div>
+    </div>
+<!-- </a> -->
