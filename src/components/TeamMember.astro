@@ -3,12 +3,12 @@ export interface Props {
     Name: string;
     Title: string;
     Image: string;
-    Url: string;
+    Href: string;
 }
-const { Name, Title, Image, Url } = Astro.props;
+const { Name, Title } = Astro.props;
 ---
 
-<!-- <a href="{Url}"> -->
+<a href="#">
     <div class="flex items-center">
         <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow" alt="{Name}" />
         <div class="relative">
@@ -16,4 +16,4 @@ const { Name, Title, Image, Url } = Astro.props;
             <p class="text-sm text-gray-600">{Title}</p>
         </div>
     </div>
-<!-- </a> -->
+</a>

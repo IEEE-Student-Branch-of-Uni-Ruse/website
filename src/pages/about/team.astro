@@ -2,12 +2,39 @@
 import Layout from '~/layouts/PageLayout.astro';
 import TeamMember from '~/components/TeamMember.astro';
 
+const team = [
+    { Name: "Gabriel Kanev", Title: "Chair", Image: "/no-avatar.jpg", Href:"https://mrgkanev.eu"},
+    { Name: "Martin Nedelchev", Title: "Vice-Chair", Image: "/no-avatar.jpg", Href:"#"},
+    { Name: "Tsvetelina Stefanova", Title: "Treasurer", Image: "/no-avatar.jpg", Href:"#"},
+    { Name: "Metin Ibrqmov", Title: "Secretary", Image: "/no-avatar.jpg", Href:"#"},
+    { Name: "Atila Pandzhar", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
+    { Name: "Dimitar Dimitrov", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
+    { Name: "Denis Sami", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
+    { Name: "Preslav Stoyanov", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
+    { Name: "Deyan Dzhumaliyski", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
+    { Name: "Konstantin Tokov", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
+    { Name: "Aleksandar Ivanov", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
+    { Name: "Atanas Kabakchiev", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
+    { Name: "Reni Kabakchieva", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
+    { Name: "Todor Yordanov", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
+    { Name: "Plamena Dinolova", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
+    { Name: "Teodor Nenov", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
+    { Name: "Tsvetelina Mladenova", Title: "Counsellor", Image: "/no-avatar.jpg", Href:"#"}
+];
+
+export interface Props {
+    Name: string;
+    Title: string;
+    Image: string;
+    Href: string;
+}
+
 const meta = {
   title: 'Team',
 };
 ---
 
-<Layout {meta}>
+<Layout meta={meta}>
   <section class="relative w-full">
     <div class="relative w-full px-8 pt-16 pb-16 ml-auto mr-auto bg-top bg-cover sm:max-w-xl md:max-w-full md:px-24 lg:px-8 lg:py-24 lg:pb-32">
         <div class="max-w-xl mb-10 ml-auto mr-auto bg-top bg-cover md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
@@ -16,126 +43,14 @@ const meta = {
             </div>
         </div>
         <div class="grid gap-10 row-gap-8 ml-auto mr-auto sm:row-gap-10 lg:max-w-screen-lg sm:grid-cols-2 lg:grid-cols-3"> 
-            <a href="https://mrgkanev.eu">
+            {team.map((member) => (
                 <TeamMember
-                Name="Gabriel Kanev"
-                Title="Chair"
-                Image="/no-avatar.jpg"
-                Url="https://mrgkanev.eu"
-            />
-            </a>
-
-            <TeamMember
-                Name="Martin Nedelchev"
-                Title="Vice-Chair"
-                Image="/no-avatar.jpg"
-                Url="#"
-            />
-
-            <TeamMember
-                Name="Tsvetelina Stefanova"
-                Title="Treasurer"
-                Image="/no-avatar.jpg"
-                Url="#"
-            />
-
-            <TeamMember
-                Name="Metin Ibrqmov"
-                Title="Secretary"
-                Image="/no-avatar.jpg"
-                Url="#"
-            />
-
-            <TeamMember
-                Name="Tsvetelina Mladenova"
-                Title="Counsellor"
-                Image="/no-avatar.jpg"
-                Url="#"
-            />
-
-            <TeamMember
-                Name="Atila Pandzhar"
-                Title="Member"
-                Image="/no-avatar.jpg"
-                Url="#"
-            />
-
-            <TeamMember
-                Name="Dimitar Dimitrov"
-                Title="Member"
-                Image="/no-avatar.jpg"
-                Url="#"
-            />
-
-            <TeamMember
-                Name="Denis Sami"
-                Title="Member"
-                Image="/no-avatar.jpg"
-                Url="#"
-            />
-
-            <TeamMember
-                Name="Preslav Stoyanov"
-                Title="Member"
-                Image="/no-avatar.jpg"
-                Url="#"
-            />
-
-            <TeamMember
-                Name="Deyan Dzhumaliyski"
-                Title="Member"
-                Image="/no-avatar.jpg"
-                Url="#"
-            />
-
-            <TeamMember
-                Name="Konstantin Tokov"
-                Title="Member"
-                Image="/no-avatar.jpg"
-                Url="#"
-            />
-
-            <TeamMember
-                Name="Aleksandar Ivanov"
-                Title="Member"
-                Image="/no-avatar.jpg"
-                Url="#"
-            />
-
-            <TeamMember
-                Name="Atanas Kabakchiev"
-                Title="Member"
-                Image="/no-avatar.jpg"
-                Url="#"
-            />
-
-            <TeamMember
-                Name="Reni Kabakchieva"
-                Title="Member"
-                Image="/no-avatar.jpg"
-                Url="#"
-            />
-
-            <TeamMember
-                Name="Todor Yordanov"
-                Title="Member"
-                Image="/no-avatar.jpg"
-                Url="#"
-            />
-
-            <TeamMember
-                Name="Plamena Dinolova"
-                Title="Member"
-                Image="/no-avatar.jpg"
-                Url="#"
-            />
-
-            <TeamMember
-                Name="Teodor Nenov"
-                Title="Member"
-                Image="/no-avatar.jpg"
-                Url="#"
-            />
+                    Name={member.Name}
+                    Title={member.Title}
+                    Image={member.Image}
+                    Href={member.Href}
+                />
+            ))}
         </div>
     </div>
 </section>
