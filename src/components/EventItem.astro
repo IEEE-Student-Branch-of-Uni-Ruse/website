@@ -1,0 +1,26 @@
+---
+export interface Props {
+    Name: string;
+    Date: string;
+    Href: string;
+}
+const { Name, Date } = Astro.props;
+
+---
+
+<div class="flex flex-col w-full mb-5 sm:flex-row">
+    <div class="w-full mb-10 sm:mb-0">
+        <div class="relative h-full ml-0 mr-0 sm:mr-10">
+            <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-blue-400 rounded-lg" data-primary="blue-400" data-rounded="rounded-lg" data-rounded-max="rounded-full"></span>
+            <div class="relative h-full p-5 bg-white border-2 border-blue-400 rounded-lg" data-primary="blue-400" data-rounded="rounded-lg" data-rounded-max="rounded-full">
+                <div class="flex items-center -mt-1">
+                    <svg class="w-8 h-8 text-blue-400 fill-current" data-primary="blue-400" viewBox="0 0 20 20"><path d="M18.21,16.157v-8.21c0-0.756-0.613-1.368-1.368-1.368h-1.368v1.368v1.368v6.841l-1.368,3.421h5.473L18.21,16.157z"></path><path d="M4.527,9.316V7.948V6.579H3.159c-0.756,0-1.368,0.613-1.368,1.368v8.21l-1.368,3.421h5.473l-1.368-3.421V9.316z"></path><path d="M14.766,5.895h0.023V5.21c0-2.644-2.145-4.788-4.789-4.788S5.211,2.566,5.211,5.21v0.685h0.023H14.766zM12.737,3.843c0.378,0,0.684,0.307,0.684,0.684s-0.306,0.684-0.684,0.684c-0.378,0-0.684-0.307-0.684-0.684S12.358,3.843,12.737,3.843z M10,1.448c0.755,0,1.368,0.613,1.368,1.368S10.755,4.185,10,4.185c-0.756,0-1.368-0.613-1.368-1.368S9.244,1.448,10,1.448z"></path><path d="M14.789,6.579H5.211v9.578l1.368,1.368h6.841l1.368-1.368V6.579z M12.052,12.052H7.948c-0.378,0-0.684-0.306-0.684-0.684c0-0.378,0.306-0.684,0.684-0.684h4.105c0.378,0,0.684,0.306,0.684,0.684C12.737,11.746,12.431,12.052,12.052,12.052z M12.052,9.316H7.948c-0.378,0-0.684-0.307-0.684-0.684s0.306-0.684,0.684-0.684h4.105c0.378,0,0.684,0.307,0.684,0.684S12.431,9.316,12.052,9.316z"></path></svg>
+                    <h3 class="my-2 ml-3 text-lg font-bold text-gray-800">Nasa Space Apps Challenge</h3>
+                </div>
+                <p class="mt-3 mb-1 text-xs font-medium text-blue-400 uppercase" data-primary="blue-400">Date: tbd</p>
+                <p class="mb-2 text-gray-600">NASA Space Apps Challenge is an international hackathon-style event where teams of students, scientists, and entrepreneurs collaborate to solve real-world problems related to space exploration and Earth.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
