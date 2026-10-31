@@ -1,0 +1,6 @@
+{
+  "repository": "https://github.com/onwidget/astrowind",
+  "version": "1.0.0-beta.66",
+  "commit": "14e1a691f80548dcc36370847b1a02c0d0b12821",
+  "scope": "Shared common/blog/UI/widget components, blog routes, layouts, utilities, types and Tailwind 4 styles. IEEE Logo/Footer/Note/TeamMember, content, configuration adapter and locally bundled fonts remain local; demo routes and integrations are not copied."
+}

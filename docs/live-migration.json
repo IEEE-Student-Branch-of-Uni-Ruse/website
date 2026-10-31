@@ -1,0 +1,65 @@
+{
+  "source": "https://sb-ieee.uni-ruse.bg/",
+  "retrieved": "2026-10-31",
+  "pages": [
+    {
+      "url": "https://sb-ieee.uni-ruse.bg/bip-big-data-and-ai-for-res/",
+      "id": 80,
+      "modified": "2026-02-23T11:40:07"
+    },
+    {
+      "url": "https://sb-ieee.uni-ruse.bg/",
+      "id": 36,
+      "modified": "2026-01-09T14:09:07"
+    },
+    {
+      "url": "https://sb-ieee.uni-ruse.bg/contact-us/",
+      "id": 33,
+      "modified": "2024-11-28T06:57:19"
+    },
+    {
+      "url": "https://sb-ieee.uni-ruse.bg/blog/",
+      "id": 30,
+      "modified": "2024-11-28T06:57:09"
+    },
+    {
+      "url": "https://sb-ieee.uni-ruse.bg/events/",
+      "id": 27,
+      "modified": "2024-11-28T06:56:55"
+    },
+    {
+      "url": "https://sb-ieee.uni-ruse.bg/electronics-packaging-society/",
+      "id": 24,
+      "modified": "2024-11-28T06:56:20"
+    },
+    {
+      "url": "https://sb-ieee.uni-ruse.bg/computer-society/",
+      "id": 21,
+      "modified": "2024-11-28T06:56:01"
+    },
+    {
+      "url": "https://sb-ieee.uni-ruse.bg/faq/",
+      "id": 17,
+      "modified": "2024-11-28T06:55:28"
+    },
+    {
+      "url": "https://sb-ieee.uni-ruse.bg/second-place-in-uni-ruses-may-innovative-website-contest/",
+      "id": 12,
+      "modified": "2024-11-28T06:54:19"
+    },
+    {
+      "url": "https://sb-ieee.uni-ruse.bg/our-new-website/",
+      "id": 8,
+      "modified": "2024-11-28T06:53:17"
+    }
+  ],
+  "additionalRoutes": [
+    "/category/uncategorized/",
+    "/feed/"
+  ],
+  "notes": [
+    "Existing local team, timeline and constitution are retained alongside live content.",
+    "BIP source dates are preserved verbatim; programme dates are March/April 2026, nomination deadline in source is 20.02.2025.",
+    "Migration concerns public content, not WordPress admin, accounts or plugins."
+  ]
+}

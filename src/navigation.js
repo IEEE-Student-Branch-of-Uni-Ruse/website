@@ -1,111 +1,27 @@
+import site from './data/site.json';
 import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 
+const resolveHref = (href) => {
+  if (href === '/blog') return getBlogPermalink();
+  if (href === '/rss.xml') return getAsset(href);
+  return href?.startsWith('/') ? getPermalink(href) : href;
+};
+
+const resolveLinks = (links) =>
+  links.map((link) => ({
+    ...link,
+    ...(link.href ? { href: resolveHref(link.href) } : {}),
+    ...(link.links ? { links: resolveLinks(link.links) } : {}),
+  }));
+
 export const headerData = {
-  links: [
-    {
-      text: 'Home',
-      href: getPermalink('/'),
-    },
-    {
-      text: 'About',
-      links: [
-        {
-          text: 'Team',
-          href: getPermalink('/about/team'),
-        },
-        {
-          text: 'Timeline',
-          href: getPermalink('/about/timeline'),
-        },
-        {
-          text: 'FAQ',
-          href: getPermalink('/about/faq'),
-        },
-      ],
-    },
-    {
-     text: 'Chapters',
-      links: [
-        {
-          text: 'Computer Sociality',
-          href: getPermalink('/chapters/computer-society'),
-        },
-        {
-          text: 'Electronics Packaging Society',
-          href: getPermalink('/chapters/electronics-packaging-society'),
-        },
-      ],
-    },
-   {
-      text: 'Events',
-      href: getPermalink('/events'),
-    },
-    {
-      text: 'Blog',
-      href: getBlogPermalink(),
-    },
-    {
-      text: 'Contact',
-      href: getPermalink('/contact'),
-    },
-  ],
-  // actions: [{ text: 'Download', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],
+  links: resolveLinks(site.header.links),
 };
 
 export const footerData = {
-  links: [
-    {
-      title: 'IEEE Organization',
-      links: [
-        { text: 'IEEE website', href: 'https://www.ieee.org/' },
-        { text: 'IEEE Xplore Digital Library', href: 'https://ieeexplore.ieee.org/Xplore/home.jsp' },
-        { text: 'IEEE Standards', href: 'https://standards.ieee.org/' },
-        { text: 'IEEE Spectrum', href: 'https://spectrum.ieee.org/' },
-        { text: 'IEEE Kerala Section', href: 'https://ieeekerala.org/' },
-        { text: 'IEEE Region 10', href: 'https://www.ieeer10.org/' },
-        { text: 'More sites', href: 'https://www.ieee.org/sitemap.html' },
-      ],
-    },
-    {
-      title: 'Administrative links',
-      links: [
-        { text: 'Home', href: '/' },
-        { text: 'Contact', href: '/contact/' },
-        { text: 'Accessibility', href: 'https://www.ieee.org/accessibility_statement.html' },
-        { text: 'Nondiscrimination Policy', href: 'https://www.ieee.org/about/corporate/governance/p9-26.html' },
-        { text: 'IEEE Ethics Reporting', href: 'http://www.ieee-ethics-reporting.org/' },
-        { text: 'IEEE Terms', href: 'https://www.ieee.org/about/help/site_terms_conditions.html' },
-        { text: 'IEEE Privacy Policy', href: 'https://www.ieee.org/about/help/security_privacy.html' },
-      ],
-    },
-    {
-      title: 'Support',
-      links: [
-        { text: 'Community Forum', href: 'https://discord.gg/Q3Bxtrg9wW' },
-      ],
-    },
-    {
-      title: 'Our branch',
-      links: [
-        { text: 'Team', href: '/about/team' },
-        { text: 'Blog', href: '/blog' },
-        { text: 'Contact', href: '/contact' },
-      ],
-    },
-  ],
-  secondaryLinks: [
-    { text: 'Terms', href: getPermalink('/terms') },
-    { text: 'Branch Constitution', href: getPermalink('/branch-constitution') },
-  ],
-  socialLinks: [
-    // { ariaLabel: 'Twitter', icon: 'tabler:brand-twitter', href: '#' },
-    { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/company/ieee-student-branch-of-university-of-ruse' },
-    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/sbieee.uniruse' },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/IEEE-Student-Branch-of-Uni-Ruse/' },
-    { ariaLabel: 'Discord', icon: 'tabler:brand-discord', href: 'https://discord.gg/Q3Bxtrg9wW' },
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-  ],
-  footNote: `
-    Copyright © 2021-2023 
-  `,
+  description: site.footer.description,
+  links: resolveLinks(site.footer.links),
+  secondaryLinks: resolveLinks(site.footer.secondaryLinks),
+  socialLinks: resolveLinks(site.footer.socialLinks),
+  footNote: `Copyright © ${site.footer.copyrightStartYear}–${new Date().getFullYear()}`,
 };

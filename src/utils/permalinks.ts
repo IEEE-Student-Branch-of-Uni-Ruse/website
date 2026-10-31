@@ -42,7 +42,29 @@ export const getCanonical = (path = ''): string | URL => {
 export const getPermalink = (slug = '', type = 'page'): string => {
   let permalink: string;
 
+  if (
+    slug.startsWith('https://') ||
+    slug.startsWith('http://') ||
+    slug.startsWith('://') ||
+    slug.startsWith('#') ||
+    slug.startsWith('javascript:')
+  ) {
+    return slug;
+  }
+
   switch (type) {
+    case 'home':
+      permalink = getHomePermalink();
+      break;
+
+    case 'blog':
+      permalink = getBlogPermalink();
+      break;
+
+    case 'asset':
+      permalink = getAsset(slug);
+      break;
+
     case 'category':
       permalink = createPath(CATEGORY_BASE, trimSlash(slug));
       break;

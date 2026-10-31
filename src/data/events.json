@@ -1,0 +1,23 @@
+{
+  "title": "Events",
+  "subtitle": "Cool events all year round.",
+  "dateLabel": "Date:",
+  "image": {
+    "src": "/calendar.jpg",
+    "alt": "Calendar"
+  },
+  "items": [
+    {
+      "title": "Game night",
+      "date": "tbd",
+      "description": "Show off your computer skills.",
+      "icon": "tabler:device-gamepad"
+    },
+    {
+      "title": "Nasa Space Apps Challenge",
+      "date": "tbd",
+      "description": "NASA Space Apps Challenge is an international hackathon-style event where teams of students, scientists, and entrepreneurs collaborate to solve real-world problems related to space exploration and Earth.",
+      "icon": "tabler:rocket"
+    }
+  ]
+}

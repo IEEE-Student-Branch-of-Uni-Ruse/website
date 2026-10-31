@@ -1,55 +1,20 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import TeamMember from '~/components/TeamMember.astro';
-
-const team = [
-    { Name: "Gabriel Kanev", Title: "Chair", Image: "/no-avatar.jpg", Href:"https://mrgkanev.eu"},
-    { Name: "Martin Nedelchev", Title: "Vice-Chair", Image: "/no-avatar.jpg", Href:"#"},
-    { Name: "Tsvetelina Stefanova", Title: "Treasurer", Image: "/no-avatar.jpg", Href:"#"},
-    { Name: "Metin Ibrqmov", Title: "Secretary", Image: "/no-avatar.jpg", Href:"#"},
-    { Name: "Atila Pandzhar", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
-    { Name: "Dimitar Dimitrov", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
-    { Name: "Denis Sami", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
-    { Name: "Preslav Stoyanov", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
-    { Name: "Deyan Dzhumaliyski", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
-    { Name: "Konstantin Tokov", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
-    { Name: "Aleksandar Ivanov", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
-    { Name: "Atanas Kabakchiev", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
-    { Name: "Reni Kabakchieva", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
-    { Name: "Todor Yordanov", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
-    { Name: "Plamena Dinolova", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
-    { Name: "Teodor Nenov", Title: "Member", Image: "/no-avatar.jpg", Href:"#"},
-    { Name: "Tsvetelina Mladenova", Title: "Counsellor", Image: "/no-avatar.jpg", Href:"#"}
-];
-
-export interface Props {
-    Name: string;
-    Title: string;
-    Image: string;
-    Href: string;
-}
-
-const meta = {
-  title: 'Team',
-};
+import team from '~/data/team.json';
 ---
 
-<Layout meta={meta}>
+<Layout metadata={{ title: team.title }}>
   <section class="relative w-full">
     <div class="relative w-full px-8 pt-16 pb-16 ml-auto mr-auto bg-top bg-cover sm:max-w-xl md:max-w-full md:px-24 lg:px-8 lg:py-24 lg:pb-32">
         <div class="max-w-xl mb-10 ml-auto mr-auto bg-top bg-cover md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
           <div class="max-w-2xl mb-6 ml-auto mr-auto  tracking-tight  bg-top bg-cover sm:text-4xl md:mx-auto">
-                <p class="inline max-w-lg  text-3xl font-bold leading-none tracking-tight  sm:text-4xl md:mx-auto">Our Awesome Team</p>
+                <h1 class="inline max-w-lg  text-3xl font-bold leading-none tracking-tight  sm:text-4xl md:mx-auto">{team.heading}</h1>
             </div>
         </div>
         <div class="grid gap-10 row-gap-8 ml-auto mr-auto sm:row-gap-10 lg:max-w-screen-lg sm:grid-cols-2 lg:grid-cols-3"> 
-            {team.map((member) => (
-                <TeamMember
-                    Name={member.Name}
-                    Title={member.Title}
-                    Image={member.Image}
-                    Href={member.Href}
-                />
+            {team.members.map((member) => (
+                <TeamMember {...member} />
             ))}
         </div>
     </div>

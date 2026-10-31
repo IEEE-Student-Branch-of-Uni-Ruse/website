@@ -1,19 +1,18 @@
 ---
 export interface Props {
-    Name: string;
-    Title: string;
-    Image: string;
-    Href: string;
+  name: string;
+  role: string;
+  image: string;
+  href?: string;
 }
-const { Name, Title } = Astro.props;
+const { name, role, image, href } = Astro.props;
+const Tag = href ? 'a' : 'div';
 ---
 
-<a href="#">
-    <div class="flex items-center">
-        <img src="/no-avatar.jpg" class="object-cover w-20 h-20 mr-4 rounded-full shadow" alt="{Name}" />
-        <div class="relative">
-            <p class="text-lg font-bold">{Name}</p>
-            <p class="text-sm text-gray-600">{Title}</p>
-        </div>
-    </div>
-</a>
+<Tag href={href || undefined} class="flex items-center">
+  <img src={image} class="object-cover w-20 h-20 mr-4 rounded-full shadow" alt={name} width="80" height="80" loading="lazy" />
+  <div class="relative">
+    <p class="text-lg font-bold">{name}</p>
+    <p class="text-sm text-muted">{role}</p>
+  </div>
+</Tag>

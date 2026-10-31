@@ -1,29 +1,709 @@
-backend:
-  name: git-gateway
-  branch: main
-
-media_folder: 'src/assets/images'
-public_folder: '/_astro'
-
-collections:
-  - name: 'post'
-    label: 'Post'
-    folder: 'src/content/post'
-    create: true
-    fields:
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Excerpt', name: 'excerpt', widget: 'string' }
-      - { label: 'Category', name: 'category', widget: 'string' }
-      - {
-          label: 'Tags',
-          name: 'tags',
-          widget: 'list',
-          allow_add: true,
-          allow_delete: true,
-          collapsed: false,
-          field: { label: 'Tag', name: 'tag', widget: 'string' },
+{
+  "backend": {
+    "name": "git-gateway",
+    "branch": "main"
+  },
+  "media_folder": "public/uploads",
+  "public_folder": "/uploads",
+  "collections": [
+    {
+      "name": "post",
+      "label": "Posts",
+      "folder": "src/content/post",
+      "create": true,
+      "fields": [
+        {
+          "label": "Title",
+          "name": "title",
+          "widget": "string"
+        },
+        {
+          "label": "Excerpt",
+          "name": "excerpt",
+          "widget": "text",
+          "required": false
+        },
+        {
+          "label": "Category",
+          "name": "category",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "label": "Tags",
+          "name": "tags",
+          "widget": "list",
+          "required": false
+        },
+        {
+          "label": "Image",
+          "name": "image",
+          "widget": "image",
+          "required": false
+        },
+        {
+          "label": "Publish date",
+          "name": "publishDate",
+          "widget": "datetime",
+          "required": false
+        },
+        {
+          "label": "Author",
+          "name": "author",
+          "widget": "string",
+          "required": false
+        },
+        {
+          "label": "Draft",
+          "name": "draft",
+          "widget": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "label": "Content",
+          "name": "body",
+          "widget": "markdown"
         }
-      - { label: 'Image', name: 'image', widget: 'string' }
-      - { label: 'Publish Date', name: 'publishDate', widget: 'datetime', required: false }
-      - { label: 'Author', name: 'author', widget: 'string' }
-      - { label: 'Content', name: 'body', widget: 'markdown' }
+      ]
+    },
+    {
+      "name": "pages",
+      "label": "Site content",
+      "files": [
+        {
+          "name": "home",
+          "label": "Home",
+          "file": "src/data/home.json",
+          "format": "json",
+          "fields": [
+            {
+              "label": "Title",
+              "name": "title",
+              "widget": "string"
+            },
+            {
+              "label": "Hero",
+              "name": "hero",
+              "widget": "object",
+              "fields": [
+                {
+                  "label": "Image path",
+                  "name": "src",
+                  "widget": "image"
+                },
+                {
+                  "label": "Alternative text",
+                  "name": "alt",
+                  "widget": "string"
+                }
+              ]
+            },
+            {
+              "label": "Mission",
+              "name": "mission",
+              "widget": "object",
+              "fields": [
+                {
+                  "label": "Label",
+                  "name": "label",
+                  "widget": "string"
+                },
+                {
+                  "label": "Text",
+                  "name": "text",
+                  "widget": "text"
+                }
+              ]
+            },
+            {
+              "label": "Benefits heading",
+              "name": "benefitsTitle",
+              "widget": "string"
+            },
+            {
+              "label": "Benefits",
+              "name": "benefits",
+              "widget": "list",
+              "summary": "{{fields.title}}",
+              "fields": [
+                {
+                  "label": "Title",
+                  "name": "title",
+                  "widget": "string"
+                },
+                {
+                  "label": "Icon",
+                  "name": "icon",
+                  "widget": "string"
+                }
+              ]
+            },
+            {
+              "label": "Blog heading",
+              "name": "blogTitle",
+              "widget": "string"
+            },
+            {
+              "label": "Stats",
+              "name": "stats",
+              "widget": "list",
+              "summary": "{{fields.title}}",
+              "fields": [
+                {
+                  "label": "Title",
+                  "name": "title",
+                  "widget": "string"
+                },
+                {
+                  "label": "Amount",
+                  "name": "amount",
+                  "widget": "string"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "team",
+          "label": "Team",
+          "file": "src/data/team.json",
+          "format": "json",
+          "fields": [
+            {
+              "label": "Title",
+              "name": "title",
+              "widget": "string"
+            },
+            {
+              "label": "Heading",
+              "name": "heading",
+              "widget": "string"
+            },
+            {
+              "label": "Members",
+              "name": "members",
+              "widget": "list",
+              "summary": "{{fields.name}} \u2014 {{fields.role}}",
+              "fields": [
+                {
+                  "label": "Name",
+                  "name": "name",
+                  "widget": "string"
+                },
+                {
+                  "label": "Role",
+                  "name": "role",
+                  "widget": "string"
+                },
+                {
+                  "label": "Portrait",
+                  "name": "image",
+                  "widget": "image"
+                },
+                {
+                  "label": "Profile URL",
+                  "name": "href",
+                  "widget": "string",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "faq",
+          "label": "Faq",
+          "file": "src/data/faq.json",
+          "format": "json",
+          "fields": [
+            {
+              "label": "Title",
+              "name": "title",
+              "widget": "string"
+            },
+            {
+              "label": "Heading",
+              "name": "heading",
+              "widget": "string"
+            },
+            {
+              "label": "Subtitle",
+              "name": "subtitle",
+              "widget": "string"
+            },
+            {
+              "label": "Tagline",
+              "name": "tagline",
+              "widget": "string"
+            },
+            {
+              "label": "Questions",
+              "name": "items",
+              "widget": "list",
+              "summary": "{{fields.title}}",
+              "fields": [
+                {
+                  "label": "Question",
+                  "name": "title",
+                  "widget": "string"
+                },
+                {
+                  "label": "Answer",
+                  "name": "description",
+                  "widget": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "timeline",
+          "label": "Timeline",
+          "file": "src/data/timeline.json",
+          "format": "json",
+          "fields": [
+            {
+              "label": "Title",
+              "name": "title",
+              "widget": "string"
+            },
+            {
+              "label": "Link label",
+              "name": "linkLabel",
+              "widget": "string"
+            },
+            {
+              "label": "Milestones",
+              "name": "items",
+              "widget": "list",
+              "summary": "{{fields.title}}",
+              "fields": [
+                {
+                  "label": "Display date",
+                  "name": "date",
+                  "widget": "string"
+                },
+                {
+                  "label": "Title",
+                  "name": "title",
+                  "widget": "string"
+                },
+                {
+                  "label": "Description",
+                  "name": "description",
+                  "widget": "text"
+                },
+                {
+                  "label": "Link",
+                  "name": "href",
+                  "widget": "string",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "events",
+          "label": "Events",
+          "file": "src/data/events.json",
+          "format": "json",
+          "fields": [
+            {
+              "label": "Title",
+              "name": "title",
+              "widget": "string"
+            },
+            {
+              "label": "Subtitle",
+              "name": "subtitle",
+              "widget": "string"
+            },
+            {
+              "label": "Date label",
+              "name": "dateLabel",
+              "widget": "string"
+            },
+            {
+              "label": "Image",
+              "name": "image",
+              "widget": "object",
+              "fields": [
+                {
+                  "label": "Image path",
+                  "name": "src",
+                  "widget": "image"
+                },
+                {
+                  "label": "Alternative text",
+                  "name": "alt",
+                  "widget": "string"
+                }
+              ]
+            },
+            {
+              "label": "Events",
+              "name": "items",
+              "widget": "list",
+              "summary": "{{fields.title}}",
+              "fields": [
+                {
+                  "label": "Title",
+                  "name": "title",
+                  "widget": "string"
+                },
+                {
+                  "label": "Date or status",
+                  "name": "date",
+                  "widget": "string"
+                },
+                {
+                  "label": "Description",
+                  "name": "description",
+                  "widget": "text"
+                },
+                {
+                  "label": "Tabler icon",
+                  "name": "icon",
+                  "widget": "string"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "site",
+          "label": "Navigation, footer, about and contact",
+          "file": "src/data/site.json",
+          "format": "json",
+          "fields": [
+            {
+              "name": "header",
+              "label": "header",
+              "widget": "object",
+              "fields": [
+                {
+                  "name": "links",
+                  "label": "links",
+                  "widget": "list",
+                  "fields": [
+                    {
+                      "name": "text",
+                      "label": "text",
+                      "widget": "string"
+                    },
+                    {
+                      "name": "href",
+                      "label": "href",
+                      "widget": "string",
+                      "required": false
+                    },
+                    {
+                      "name": "links",
+                      "label": "links",
+                      "widget": "list",
+                      "fields": [
+                        {
+                          "name": "text",
+                          "label": "text",
+                          "widget": "string"
+                        },
+                        {
+                          "name": "href",
+                          "label": "href",
+                          "widget": "string"
+                        }
+                      ],
+                      "required": false
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "footer",
+              "label": "footer",
+              "widget": "object",
+              "fields": [
+                {
+                  "name": "links",
+                  "label": "links",
+                  "widget": "list",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "title",
+                      "widget": "string"
+                    },
+                    {
+                      "name": "links",
+                      "label": "links",
+                      "widget": "list",
+                      "fields": [
+                        {
+                          "name": "text",
+                          "label": "text",
+                          "widget": "string"
+                        },
+                        {
+                          "name": "href",
+                          "label": "href",
+                          "widget": "string"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "secondaryLinks",
+                  "label": "secondaryLinks",
+                  "widget": "list",
+                  "fields": [
+                    {
+                      "name": "text",
+                      "label": "text",
+                      "widget": "string"
+                    },
+                    {
+                      "name": "href",
+                      "label": "href",
+                      "widget": "string"
+                    }
+                  ]
+                },
+                {
+                  "name": "socialLinks",
+                  "label": "socialLinks",
+                  "widget": "list",
+                  "fields": [
+                    {
+                      "name": "ariaLabel",
+                      "label": "ariaLabel",
+                      "widget": "string"
+                    },
+                    {
+                      "name": "icon",
+                      "label": "icon",
+                      "widget": "string"
+                    },
+                    {
+                      "name": "href",
+                      "label": "href",
+                      "widget": "string"
+                    }
+                  ]
+                },
+                {
+                  "name": "description",
+                  "label": "description",
+                  "widget": "text"
+                },
+                {
+                  "name": "copyrightStartYear",
+                  "label": "copyrightStartYear",
+                  "widget": "number",
+                  "value_type": "int",
+                  "min": 1900
+                }
+              ]
+            },
+            {
+              "name": "about",
+              "label": "about",
+              "widget": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "title",
+                  "widget": "string"
+                },
+                {
+                  "name": "subtitle",
+                  "label": "subtitle",
+                  "widget": "string"
+                },
+                {
+                  "name": "description",
+                  "label": "description",
+                  "widget": "text"
+                },
+                {
+                  "name": "sectionsTitle",
+                  "label": "sectionsTitle",
+                  "widget": "string"
+                },
+                {
+                  "name": "sections",
+                  "label": "sections",
+                  "widget": "list",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "title",
+                      "widget": "string"
+                    },
+                    {
+                      "name": "description",
+                      "label": "description",
+                      "widget": "text"
+                    },
+                    {
+                      "name": "href",
+                      "label": "href",
+                      "widget": "string"
+                    },
+                    {
+                      "name": "linkText",
+                      "label": "linkText",
+                      "widget": "string"
+                    },
+                    {
+                      "name": "icon",
+                      "label": "icon",
+                      "widget": "string"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "contact",
+              "label": "contact",
+              "widget": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "title",
+                  "widget": "string"
+                },
+                {
+                  "name": "tagline",
+                  "label": "tagline",
+                  "widget": "string"
+                },
+                {
+                  "name": "description",
+                  "label": "description",
+                  "widget": "text"
+                },
+                {
+                  "name": "channelsTitle",
+                  "label": "channelsTitle",
+                  "widget": "string"
+                },
+                {
+                  "name": "faqText",
+                  "label": "faqText",
+                  "widget": "string"
+                },
+                {
+                  "name": "channels",
+                  "label": "channels",
+                  "widget": "list",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "label": "title",
+                      "widget": "string"
+                    },
+                    {
+                      "name": "icon",
+                      "label": "icon",
+                      "widget": "string"
+                    },
+                    {
+                      "name": "href",
+                      "label": "href",
+                      "widget": "string"
+                    },
+                    {
+                      "name": "linkText",
+                      "label": "linkText",
+                      "widget": "string"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "documents",
+      "label": "Chapters and constitution",
+      "files": [
+        {
+          "name": "computer-society",
+          "label": "Computer Society",
+          "file": "src/pages/chapters/computer-society.md",
+          "fields": [
+            {
+              "name": "title",
+              "label": "title",
+              "widget": "string"
+            },
+            {
+              "name": "layout",
+              "label": "layout",
+              "widget": "hidden",
+              "default": "~/layouts/MarkdownLayout.astro"
+            },
+            {
+              "name": "body",
+              "label": "body",
+              "widget": "markdown"
+            }
+          ]
+        },
+        {
+          "name": "electronics-packaging-society",
+          "label": "Electronics Packaging Society",
+          "file": "src/pages/chapters/electronics-packaging-society.md",
+          "fields": [
+            {
+              "name": "title",
+              "label": "title",
+              "widget": "string"
+            },
+            {
+              "name": "layout",
+              "label": "layout",
+              "widget": "hidden",
+              "default": "~/layouts/MarkdownLayout.astro"
+            },
+            {
+              "name": "body",
+              "label": "body",
+              "widget": "markdown"
+            }
+          ]
+        },
+        {
+          "name": "constitution",
+          "label": "Branch Constitution",
+          "file": "src/pages/branch-constitution.md",
+          "fields": [
+            {
+              "name": "title",
+              "label": "title",
+              "widget": "string"
+            },
+            {
+              "name": "layout",
+              "label": "layout",
+              "widget": "hidden",
+              "default": "~/layouts/MarkdownLayout.astro"
+            },
+            {
+              "name": "body",
+              "label": "body",
+              "widget": "markdown"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

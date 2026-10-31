@@ -1,0 +1,264 @@
+{
+  "header": {
+    "links": [
+      {
+        "text": "Home",
+        "href": "/"
+      },
+      {
+        "text": "About",
+        "links": [
+          {
+            "text": "About the branch",
+            "href": "/about"
+          },
+          {
+            "text": "Team",
+            "href": "/about/team"
+          },
+          {
+            "text": "Timeline",
+            "href": "/about/timeline"
+          },
+          {
+            "text": "FAQ",
+            "href": "/about/faq"
+          }
+        ]
+      },
+      {
+        "text": "Chapters",
+        "links": [
+          {
+            "text": "Computer Society",
+            "href": "/chapters/computer-society"
+          },
+          {
+            "text": "Electronics Packaging Society",
+            "href": "/chapters/electronics-packaging-society"
+          }
+        ]
+      },
+      {
+        "text": "Events",
+        "href": "/events"
+      },
+      {
+        "text": "Blog",
+        "href": "/blog"
+      },
+      {
+        "text": "Contact",
+        "href": "/contact"
+      }
+    ]
+  },
+  "footer": {
+    "links": [
+      {
+        "title": "IEEE Organization",
+        "links": [
+          {
+            "text": "IEEE website",
+            "href": "https://www.ieee.org/"
+          },
+          {
+            "text": "IEEE Xplore Digital Library",
+            "href": "https://ieeexplore.ieee.org/Xplore/home.jsp"
+          },
+          {
+            "text": "IEEE Standards",
+            "href": "https://standards.ieee.org/"
+          },
+          {
+            "text": "IEEE Spectrum",
+            "href": "https://spectrum.ieee.org/"
+          },
+          {
+            "text": "IEEE Kerala Section",
+            "href": "https://ieeekerala.org/"
+          },
+          {
+            "text": "IEEE Region 10",
+            "href": "https://www.ieeer10.org/"
+          },
+          {
+            "text": "More sites",
+            "href": "https://www.ieee.org/sitemap.html"
+          }
+        ]
+      },
+      {
+        "title": "Administrative links",
+        "links": [
+          {
+            "text": "Home",
+            "href": "/"
+          },
+          {
+            "text": "Contact",
+            "href": "/contact/"
+          },
+          {
+            "text": "Accessibility",
+            "href": "https://www.ieee.org/accessibility_statement.html"
+          },
+          {
+            "text": "Nondiscrimination Policy",
+            "href": "https://www.ieee.org/about/corporate/governance/p9-26.html"
+          },
+          {
+            "text": "IEEE Ethics Reporting",
+            "href": "http://www.ieee-ethics-reporting.org/"
+          },
+          {
+            "text": "IEEE Terms",
+            "href": "https://www.ieee.org/about/help/site_terms_conditions.html"
+          },
+          {
+            "text": "IEEE Privacy Policy",
+            "href": "https://www.ieee.org/about/help/security_privacy.html"
+          }
+        ]
+      },
+      {
+        "title": "Support",
+        "links": [
+          {
+            "text": "Community Forum",
+            "href": "https://discord.gg/Q3Bxtrg9wW"
+          }
+        ]
+      },
+      {
+        "title": "Our branch",
+        "links": [
+          {
+            "text": "Team",
+            "href": "/about/team"
+          },
+          {
+            "text": "Blog",
+            "href": "/blog"
+          },
+          {
+            "text": "Contact",
+            "href": "/contact"
+          }
+        ]
+      }
+    ],
+    "secondaryLinks": [
+      {
+        "text": "Terms",
+        "href": "/terms"
+      },
+      {
+        "text": "Privacy",
+        "href": "/privacy"
+      },
+      {
+        "text": "Branch Constitution",
+        "href": "/branch-constitution"
+      }
+    ],
+    "socialLinks": [
+      {
+        "ariaLabel": "LinkedIn",
+        "icon": "tabler:brand-linkedin",
+        "href": "https://www.linkedin.com/company/ieee-student-branch-of-university-of-ruse"
+      },
+      {
+        "ariaLabel": "Facebook",
+        "icon": "tabler:brand-facebook",
+        "href": "https://www.facebook.com/sbieee.uniruse"
+      },
+      {
+        "ariaLabel": "Github",
+        "icon": "tabler:brand-github",
+        "href": "https://github.com/IEEE-Student-Branch-of-Uni-Ruse/"
+      },
+      {
+        "ariaLabel": "Discord",
+        "icon": "tabler:brand-discord",
+        "href": "https://discord.gg/Q3Bxtrg9wW"
+      },
+      {
+        "ariaLabel": "RSS",
+        "icon": "tabler:rss",
+        "href": "/rss.xml"
+      }
+    ],
+    "description": "IEEE Student Branch of Uni Ruse. A not-for-profit organization, IEEE is the world's largest technical professional organization dedicated to advancing technology for the benefit of humanity.",
+    "copyrightStartYear": 2021
+  },
+  "about": {
+    "title": "About the branch",
+    "subtitle": "IEEE Student Branch of Uni Ruse",
+    "description": "IEEE Student Branch is a student-run organization that operates under the umbrella of the Institute of Electrical and Electronics Engineers (IEEE). Its purpose is to provide resources, support, and opportunities to students who are interested in electrical and computer engineering, computer science, and related fields.",
+    "sectionsTitle": "Explore our branch",
+    "sections": [
+      {
+        "title": "Our team",
+        "description": "Meet the students and counsellor behind our branch.",
+        "href": "/about/team",
+        "linkText": "Meet the team",
+        "icon": "tabler:users"
+      },
+      {
+        "title": "Our history",
+        "description": "Explore the milestones of our branch at the University of Ruse.",
+        "href": "/about/timeline",
+        "linkText": "View the timeline",
+        "icon": "tabler:history"
+      },
+      {
+        "title": "Events and activities",
+        "description": "We organize guest lectures, workshops, hackathons, competitions, and social events.",
+        "href": "/events",
+        "linkText": "Explore events",
+        "icon": "tabler:calendar"
+      },
+      {
+        "title": "Frequently asked questions",
+        "description": "Learn about membership, volunteering, and taking part in IEEE.",
+        "href": "/about/faq",
+        "linkText": "Read our FAQ",
+        "icon": "tabler:help"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Let's connect!",
+    "tagline": "Contact",
+    "description": "Connect with the IEEE Student Branch of Uni Ruse through our community channels. For membership and volunteering questions, start with our Discord community.",
+    "channelsTitle": "Find our community",
+    "faqText": "Read our FAQ",
+    "channels": [
+      {
+        "title": "LinkedIn",
+        "icon": "tabler:brand-linkedin",
+        "href": "https://www.linkedin.com/company/ieee-student-branch-of-university-of-ruse",
+        "linkText": "Visit LinkedIn"
+      },
+      {
+        "title": "Facebook",
+        "icon": "tabler:brand-facebook",
+        "href": "https://www.facebook.com/sbieee.uniruse",
+        "linkText": "Visit Facebook"
+      },
+      {
+        "title": "GitHub",
+        "icon": "tabler:brand-github",
+        "href": "https://github.com/IEEE-Student-Branch-of-Uni-Ruse/",
+        "linkText": "Visit GitHub"
+      },
+      {
+        "title": "Discord",
+        "icon": "tabler:brand-discord",
+        "href": "https://discord.gg/Q3Bxtrg9wW",
+        "linkText": "Visit Discord"
+      }
+    ]
+  }
+}

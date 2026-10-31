@@ -1,0 +1,24 @@
+{
+  "title": "History",
+  "linkLabel": "Learn more",
+  "items": [
+    {
+      "date": "March 2023",
+      "title": "A website has been made",
+      "description": "Open sources and developed our Official website.",
+      "href": "/our-new-website"
+    },
+    {
+      "date": "July 2022",
+      "title": "Meetup with another chapter - Sibiu Romania",
+      "description": "Did some ducks, nobody knows.",
+      "href": ""
+    },
+    {
+      "date": "January 2022",
+      "title": "Opening the branch",
+      "description": "Officialy opening the branch in Uni Ruse.",
+      "href": ""
+    }
+  ]
+}

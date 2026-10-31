@@ -1,6 +1,6 @@
 site:
   name: IEEE Student Branch of Uni Ruse
-  site: 'https://sb-ieee-uni-ruse.netlify.app'
+  site: 'https://sb-ieee.uni-ruse.bg'
   base: '/'
   trailingSlash: false
 
@@ -11,20 +11,18 @@ metadata:
   title:
     default: IEEE Student Branch of Uni Ruse
     template: '%s — IEEE'
-  description: "🚀 IEEE Student Branch University of Ruse  encourages a global community to innovate for a better tomorrow by offering a wide range of learning and career enhancement to ensure skill and knowledge growth through our conferences, workshops, competitions, and educational activities"
+  description: '🚀 IEEE Student Branch University of Ruse  encourages a global community to innovate for a better tomorrow by offering a wide range of learning and career enhancement to ensure skill and knowledge growth through our conferences, workshops, competitions, and educational activities'
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: IEEE Student Branch of Uni Ruse
+    siteName: IEEE Student Branch of Uni Ruse
     images:
       - url: '~/assets/images/default.png'
         width: 1200
         height: 628
     type: website
   twitter:
-    handle: '@onwidget'
-    site: '@onwidget'
     cardType: summary_large_image
 
 i18n:
@@ -97,7 +95,7 @@ ui:
         bgPage: rgb(3 6 32)
         primary: rgb(29 78 216)
         secondary: rgb(30 58 138)
-        accent: rgb(135 77 2267)
+        accent: rgb(135 77 226)
         info: rgb(58 191 248)
         success: rgb(54 211 153)
         warning: rgb(251 189 35)

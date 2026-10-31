@@ -1,129 +1,63 @@
-# IEEE Student Branch of Uni Ruse's website
+# IEEE Student Branch of Uni Ruse
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/81cdd051-c674-436a-90f2-8ee747eb633c/deploy-status)](https://app.netlify.com/sites/sb-ieee-uni-ruse/deploys)
+Static Astro website for https://sb-ieee.uni-ruse.bg, with Tailwind CSS and file-based content.
 
-<details open>
-<summary>Table of Contents</summary>
+## Development
 
-- [Demo](#demo)
-- [Getting started](#getting-started)
-  - [Project structure](#project-structure)
-  - [Commands](#commands)
-- [Contributing](#contributing)
-- [Acknowledgements](#acknowledgements)
-- [License](#license)
+Use Node 24 LTS (24.16 or newer; see `.node-version`) and the pnpm version pinned in `package.json`.
 
-</details>
-
-<br>
-
-## Demo
-
-[Official domain](https://sb-ieee.uni-ruse.bg/) or [Netlify url](https://sb-ieee-uni-ruse.netlify.app/)
-
-
-<br>
-
-## Getting started
-
-### Project structure
-
-
-```
-/
-├── public/
-│   ├── robots.txt
-│   └── favicon.ico
-├── src/
-│   ├── assets/
-│   │   ├── images/
-│   │   └── styles/
-│   │       └── base.css
-│   ├── components/
-│   │   ├── blog/
-│   │   ├── common/
-│   │   ├── widgets/
-│   │   │   ├── Header.astro
-│   │   │   └── ...
-│   │   ├── CustomStyles.astro
-│   │   └── Logo.astro
-│   ├── content/
-│   │   ├── post/
-│   │   │   ├── post-slug-1.md
-│   │   │   ├── post-slug-2.mdx
-│   │   │   └── ...
-│   │   └-- config.ts
-│   ├── layouts/
-│   │   ├── BaseLayout.astro
-│   │   └── ...
-│   ├── pages/
-│   │   ├── [...blog]/
-│   │   │   ├── [category]/
-│   │   │   ├── [tag]/
-│   │   │   ├── [...page].astro
-│   │   │   └── index.astro
-│   │   ├── index.astro
-│   │   ├── 404.astro
-│   │   ├-- rss.xml.ts
-│   │   └── ...
-│   ├── utils/
-│   ├── config.mjs
-│   └── data.js
-├── package.json
-├── astro.config.mjs
-└── ...
+```sh
+npm install --global pnpm@12.16.1
+pnpm install --frozen-lockfile
+pnpm dev
 ```
 
-It looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+The development server runs at http://localhost:4321.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory if they do not require any transformation or in the `assets/` directory if they are imported directly.
-
-
-### Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command               | Action                                             |
-| :-------------------- | :------------------------------------------------- |
-| `npm install`         | Installs dependencies                              |
-| `npm run dev`         | Starts local dev server at `localhost:3000`        |
-| `npm run build`       | Build your production site to `./dist/`            |
-| `npm run preview`     | Preview your build locally, before deploying       |
-| `npm run format`      | Format codes with Prettier                         |
-| `npm run lint:eslint` | Run Eslint                                         |
-| `npm run astro ...`   | Run CLI commands like `astro add`, `astro preview` |
-
-
-### Deploy
-
-#### Deploy to production (manual)
-
-You can create an optimized production build with:
-
-```shell
-npm run build
+```sh
+pnpm check       # Astro and TypeScript diagnostics
+pnpm lint        # ESLint
+pnpm build       # Static output in dist/
+pnpm check:site  # Check preserved routes and local links in dist/
+pnpm preview     # Preview production output
 ```
 
-Now, your website is ready to be deployed. All generated files are located at
-`dist` folder, which you can deploy the folder to any hosting service you
-prefer.
+Commit `pnpm-lock.yaml` when changing dependencies. Do not generate an npm lockfile.
 
-<br>
+## Editing content
 
-## Contributing
+| Content | Location |
+| --- | --- |
+| Home page, benefits, mission, statistics | `src/data/home.json` |
+| Team | `src/data/team.json` |
+| Events | `src/data/events.json` |
+| FAQ | `src/data/faq.json` |
+| Timeline | `src/data/timeline.json` |
+| Navigation, footer, about, contact channels | `src/data/site.json` |
+| Blog posts | `src/content/post/*.md` |
+| Chapters and branch constitution | `src/pages/chapters/*.md`, `src/pages/branch-constitution.md` |
+| Site URL, SEO, blog routing, theme mode | `src/config.yaml` |
+| Shared visual components | `src/components/`, `src/layouts/` |
+| Colors, typography, styles | `src/components/CustomStyles.astro`, `src/assets/styles/tailwind.css` |
 
-If you have any idea, suggestions or find any bugs, feel free to open a discussion, an issue or create a pull request.
-That would be very useful for all of us and we would be happy to listen and take action.
+The existing post URLs stay at `/<slug>`, while the post listing is `/blog`.
 
-## Acknowledgements
+Decap CMS is available at `/decapcms/`. Its configuration exposes site content as editor forms and saves changes to Git. Uploaded images live in `public/uploads` and use `/uploads/...` URLs. Existing imported images remain in `src/assets/images`.
 
-* Astro is a website build tool for the modern web - [astro](https://github.com/withastro/astro)
+CMS authentication still uses the existing Git Gateway configuration. Access depends on the hosting account's Identity/Git Gateway setup; it is not enabled by a local build. If moving away from that service, configure another Decap backend before relying on the editor. Files can always be edited directly in Git. See [maintenance notes](docs/maintenance.md).
 
-- Design - initially created by [onWidget](https://onwidget.com). Last synced commit "f5a452e".
+## Hosting
 
+Build command: `pnpm build`; publish directory: `dist`. Install with `pnpm install --frozen-lockfile` and use Node 24.16+.
+
+The canonical site URL is set in `src/config.yaml`; preview deployments should not change it. A Vercel configuration is included. Hosting credentials and deployments are managed separately.
+
+## Maintenance
+
+GitHub Actions checks pull requests and builds the website. Dependabot is configured for weekly dependency updates and monthly GitHub Actions updates. Compatible dependency updates are grouped; major upgrades remain separate for review. These workflows become active when committed and pushed to GitHub with Actions/Dependabot available.
+
+The design originated from [AstroWind](https://github.com/onwidget/astrowind), under MIT. It is a local, reduced set of components, not an installed AstroWind package. See [maintenance notes](docs/maintenance.md) for the distinction between dependency updates and upstream template changes.
 
 ## License
 
-Under the MIT license — see the [LICENSE](./LICENSE.md) file for details.
+MIT; see [LICENSE.md](LICENSE.md). Preserve the original template attribution when reusing its code.

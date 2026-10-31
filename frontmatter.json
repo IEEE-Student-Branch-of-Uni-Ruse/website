@@ -13,19 +13,19 @@
         },
         {
           "title": "Description",
-          "name": "description",
+          "name": "excerpt",
           "type": "string"
         },
         {
           "title": "Publishing date",
-          "name": "date",
+          "name": "publishDate",
           "type": "datetime",
           "default": "{{now}}",
           "isPublishDate": true
         },
         {
           "title": "Content preview",
-          "name": "preview",
+          "name": "image",
           "type": "image"
         },
         {
@@ -39,9 +39,9 @@
           "type": "tags"
         },
         {
-          "title": "Categories",
-          "name": "categories",
-          "type": "categories"
+          "title": "Category",
+          "name": "category",
+          "type": "string"
         }
       ]
     }

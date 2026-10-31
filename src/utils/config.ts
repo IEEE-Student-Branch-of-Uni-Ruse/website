@@ -1,5 +1,5 @@
 import fs from 'fs';
-import yaml from 'js-yaml';
+import { load } from 'js-yaml';
 import merge from 'lodash.merge';
 
 import type { MetaData } from '~/types';
@@ -23,6 +23,8 @@ export interface I18NConfig {
   dateFormatter?: Intl.DateTimeFormat;
 }
 export interface AppBlogConfig {
+  isRelatedPostsEnabled: boolean;
+  relatedPostsCount: number;
   isEnabled: boolean;
   postsPerPage: number;
   post: {
@@ -67,7 +69,7 @@ export interface AnalyticsConfig {
   };
 }
 
-const config = yaml.load(fs.readFileSync('src/config.yaml', 'utf8')) as {
+const config = load(fs.readFileSync('src/config.yaml', 'utf8')) as {
   site?: SiteConfig;
   metadata?: MetaDataConfig;
   i18n?: I18NConfig;
@@ -136,6 +138,8 @@ const getAppBlog = () => {
   const _default = {
     isEnabled: false,
     postsPerPage: 6,
+    isRelatedPostsEnabled: true,
+    relatedPostsCount: 4,
     post: {
       isEnabled: true,
       permalink: '/blog/%slug%',

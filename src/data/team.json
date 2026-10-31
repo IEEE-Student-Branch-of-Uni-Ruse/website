@@ -1,0 +1,108 @@
+{
+  "title": "Team",
+  "heading": "Our Awesome Team",
+  "members": [
+    {
+      "name": "Gabriel Kanev",
+      "role": "Chair",
+      "image": "/no-avatar.jpg",
+      "href": "https://mrgkanev.eu"
+    },
+    {
+      "name": "Martin Nedelchev",
+      "role": "Vice-Chair",
+      "image": "/no-avatar.jpg",
+      "href": ""
+    },
+    {
+      "name": "Tsvetelina Stefanova",
+      "role": "Treasurer",
+      "image": "/no-avatar.jpg",
+      "href": ""
+    },
+    {
+      "name": "Metin Ibrqmov",
+      "role": "Secretary",
+      "image": "/no-avatar.jpg",
+      "href": ""
+    },
+    {
+      "name": "Atila Pandzhar",
+      "role": "Member",
+      "image": "/no-avatar.jpg",
+      "href": ""
+    },
+    {
+      "name": "Dimitar Dimitrov",
+      "role": "Member",
+      "image": "/no-avatar.jpg",
+      "href": ""
+    },
+    {
+      "name": "Denis Sami",
+      "role": "Member",
+      "image": "/no-avatar.jpg",
+      "href": ""
+    },
+    {
+      "name": "Preslav Stoyanov",
+      "role": "Member",
+      "image": "/no-avatar.jpg",
+      "href": ""
+    },
+    {
+      "name": "Deyan Dzhumaliyski",
+      "role": "Member",
+      "image": "/no-avatar.jpg",
+      "href": ""
+    },
+    {
+      "name": "Konstantin Tokov",
+      "role": "Member",
+      "image": "/no-avatar.jpg",
+      "href": ""
+    },
+    {
+      "name": "Aleksandar Ivanov",
+      "role": "Member",
+      "image": "/no-avatar.jpg",
+      "href": ""
+    },
+    {
+      "name": "Atanas Kabakchiev",
+      "role": "Member",
+      "image": "/no-avatar.jpg",
+      "href": ""
+    },
+    {
+      "name": "Reni Kabakchieva",
+      "role": "Member",
+      "image": "/no-avatar.jpg",
+      "href": ""
+    },
+    {
+      "name": "Todor Yordanov",
+      "role": "Member",
+      "image": "/no-avatar.jpg",
+      "href": ""
+    },
+    {
+      "name": "Plamena Dinolova",
+      "role": "Member",
+      "image": "/no-avatar.jpg",
+      "href": ""
+    },
+    {
+      "name": "Teodor Nenov",
+      "role": "Member",
+      "image": "/no-avatar.jpg",
+      "href": ""
+    },
+    {
+      "name": "Tsvetelina Mladenova",
+      "role": "Counsellor",
+      "image": "/no-avatar.jpg",
+      "href": ""
+    }
+  ]
+}

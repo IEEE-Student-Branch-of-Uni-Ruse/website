@@ -4,12 +4,12 @@ import { fileURLToPath } from 'url';
 import { defineConfig } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
-import tailwind from '@astrojs/tailwind';
+import tailwind from '@tailwindcss/vite';
+import { unified } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
-import compress from 'astro-compress';
 import icon from 'astro-icon';
-import tasks from './src/utils/tasks';
+import tasks from './src/utils/tasks.mjs';
 
 import { readingTimeRemarkPlugin } from './src/utils/frontmatter.mjs';
 
@@ -29,12 +29,11 @@ export default defineConfig({
   base: SITE.base,
   trailingSlash: SITE.trailingSlash ? 'always' : 'never',
 
+  image: { responsiveStyles: true },
   output: 'static',
+  compressHTML: true,
 
   integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
     sitemap(),
     mdx(),
     icon({
@@ -61,24 +60,14 @@ export default defineConfig({
     ),
 
     tasks(),
-
-    compress({
-      CSS: true,
-      HTML: {
-        removeAttributeQuotes: false,
-      },
-      Image: false,
-      JavaScript: true,
-      SVG: true,
-      Logger: 1,
-    }),
   ],
 
   markdown: {
-    remarkPlugins: [readingTimeRemarkPlugin],
+    processor: unified({ remarkPlugins: [readingTimeRemarkPlugin] }),
   },
 
   vite: {
+    plugins: [tailwind()],
     resolve: {
       alias: {
         '~': path.resolve(__dirname, './src'),
