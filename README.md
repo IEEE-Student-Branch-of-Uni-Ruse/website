@@ -29,6 +29,7 @@ Commit `pnpm-lock.yaml` when changing dependencies. Do not generate an npm lockf
 | Content | Location |
 | --- | --- |
 | Home page, benefits, mission, statistics | `src/data/home.json` |
+| BIP programme | `src/data/bip.md` |
 | Team | `src/data/team.json` |
 | Events | `src/data/events.json` |
 | FAQ | `src/data/faq.json` |

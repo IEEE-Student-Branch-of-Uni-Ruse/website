@@ -1,14 +1,17 @@
 {
   "title": "IEEE Student Branch of Uni Ruse",
   "hero": {
-    "src": "~/assets/images/hero.png",
-    "alt": "IEEE Student Branch of Uni Ruse"
+    "src": "/images/brand/ieee-uni-ruse.png",
+    "alt": "IEEE Student Branch of Uni Ruse",
+    "width": 1200,
+    "height": 166,
+    "aspect": "auto"
   },
   "mission": {
     "label": "Mission statement:",
     "text": "IEEE's core purpose is to foster technological innovation and excellence for the benefit of humanity."
   },
-  "benefitsTitle": "What are the benefits?",
+  "benefitsTitle": "Why join the IEEE Student Branch of Uni Ruse?",
   "benefits": [
     {
       "title": "Network with other technology professionals",

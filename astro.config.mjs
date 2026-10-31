@@ -31,6 +31,15 @@ export default defineConfig({
 
   image: { responsiveStyles: true },
   output: 'static',
+  redirects: {
+    "/contact-us": "/contact",
+    "/faq": "/about/faq",
+    "/computer-society": "/chapters/computer-society",
+    "/electronics-packaging-society": "/chapters/electronics-packaging-society",
+    "/second-place-in-uni-ruses-may-innovative-website-contest": "/innovative-website",
+    "/category/uncategorized": "/blog",
+    "/feed": "/rss.xml"
+},
   compressHTML: true,
 
   integrations: [

@@ -1,0 +1,103 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { createMarkdownProcessor } from '@astrojs/markdown-remark';
+import source from '~/data/bip.md?raw';
+import { frontmatter } from '~/data/bip.md';
+
+const processor = await createMarkdownProcessor();
+const render = async (text: string) => (await processor.render(text)).code;
+const body = source.replace(/^---[\s\S]*?---\s*/, '').replace(/^[-]{5,}\s*$/gm, '');
+const blocks = body.split(/^## /m);
+const firstImage = blocks.shift()?.match(/!\[([^\]]*)\]\(([^)]+)\)/);
+const sections = await Promise.all(blocks.map(async (block) => {
+  const [heading, ...lines] = block.split('\n');
+  const text = lines.join('\n');
+  const picture = text.match(/!\[([^\]]*)\]\(([^)]+)\)/);
+  const clean = text.replace(/!\[[^\]]*\]\([^)]+\)/g, '').trim();
+  const [intro, ...columns] = clean.split(/^### /m);
+  return {
+    title: heading.replaceAll('**', ''),
+    intro: await render(intro),
+    columns: await Promise.all(columns.map((column) => render(`### ${column}`))),
+    picture: picture ? { src: picture[2], alt: picture[1] } : undefined,
+  };
+}));
+const [hero, objectives, outcomes, organizer, partners, ...remaining] = sections;
+---
+
+<Layout metadata={{ title: frontmatter.title, description: frontmatter.description }}>
+  <article class="bip">
+    <section class="bip-hero">
+      {firstImage && <img class="hero-photo" src={firstImage[2]} alt="Renewable energy landscape" width="1707" height="2560" fetchpriority="high" />}
+      <div class="hero-copy">
+        <h1>{hero.title}</h1>
+        <div class="copy" set:html={hero.intro} />
+      </div>
+    </section>
+
+    <section class="section objectives two-columns">
+      <div>
+        <h2>{objectives.title}</h2>
+        <div class="copy" set:html={objectives.intro} />
+      </div>
+      {objectives.picture && <img class="square-photo" src={objectives.picture.src} alt="Renewable energy installation" width="1707" height="2560" loading="lazy" />}
+    </section>
+
+    <section class="section ruled">
+      <h2>{outcomes.title}</h2>
+      <div class="copy" set:html={outcomes.intro} />
+      <div class="two-columns outcomes">
+        {outcomes.columns.map((column, index) => <div class:list={['copy', { 'full-width': index === 2 }]} set:html={column} />)}
+      </div>
+    </section>
+
+    <section class="section organizer ruled">
+      <div><h2>{organizer.title}</h2><div class="copy" set:html={organizer.intro} /></div>
+      <div>
+        <h2>{partners.title}</h2><div class="copy" set:html={partners.intro} />
+        <div class="partner-grid">{partners.columns.map((column) => <div class="copy" set:html={column} />)}</div>
+      </div>
+    </section>
+
+    {remaining.map((section) => (
+      <section class:list={['section ruled', { application: section.title === 'How to apply' }]}>
+        <h2>{section.title}</h2>
+        <div class="copy" set:html={section.intro} />
+        {section.columns.length > 0 && <div class="two-columns"><Fragment>{section.columns.map((column) => <div class="copy" set:html={column} />)}</Fragment></div>}
+      </section>
+    ))}
+  </article>
+</Layout>
+
+<style>
+  .bip { --line: color-mix(in srgb, currentColor 18%, transparent); padding-bottom: 4rem; }
+  .bip-hero { display: grid; grid-template-columns: 55fr 45fr; align-items: center; }
+  .hero-photo { width: 100%; aspect-ratio: 1; height: auto; object-fit: cover; }
+  .hero-copy { padding: clamp(1.5rem, 4vw, 4.5rem); }
+  h1 { font-size: clamp(2rem, 3.2vw, 3.5rem); line-height: 1.12; font-weight: 650; letter-spacing: -.035em; margin-bottom: 1.6rem; }
+  h2 { font-size: clamp(1.8rem, 2.8vw, 2.75rem); line-height: 1.2; font-weight: 600; letter-spacing: -.025em; margin-bottom: 1.6rem; }
+  .section { max-width: 1200px; margin: auto; padding: clamp(2.5rem, 5vw, 5rem) 1.5rem; }
+  .two-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem 4rem; }
+  .objectives { align-items: center; }
+  .square-photo { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+  .ruled { border-top: 1px solid var(--line); }
+  .organizer { display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; }
+  .partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2rem; }
+  .full-width { grid-column: 1 / -1; }
+  .application { background: color-mix(in srgb, var(--aw-color-primary) 5%, transparent); }
+  .copy { font-size: 1.08rem; line-height: 1.75; overflow-wrap: anywhere; }
+  .copy :global(p) { margin: 0 0 1.1rem; }
+  .copy :global(h3) { font-size: 1.35rem; font-weight: 600; line-height: 1.4; margin-bottom: 1rem; }
+  .copy :global(ul), .copy :global(ol) { padding-left: 1.35rem; margin-bottom: 1.5rem; }
+  .copy :global(ul) { list-style: disc; }
+  .copy :global(ol) { list-style: decimal; }
+  .copy :global(li) { padding-left: .2rem; margin-bottom: .65rem; }
+  .copy :global(a) { color: var(--aw-color-primary); text-decoration: underline; text-underline-offset: 3px; }
+  @media(max-width: 767px) {
+    .bip-hero, .two-columns, .organizer { grid-template-columns: 1fr; }
+    .hero-photo { aspect-ratio: 4/3; }
+    .hero-copy { padding: 2rem 1.5rem; }
+    .two-columns, .organizer { gap: 2rem; }
+    .full-width { grid-column: auto; }
+  }
+</style>

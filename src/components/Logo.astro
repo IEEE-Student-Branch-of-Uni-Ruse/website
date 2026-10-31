@@ -1,9 +1,4 @@
 ---
 import { SITE } from '~/utils/config';
-import { getAsset } from '~/utils/permalinks';
 ---
-
-<span class="flex items-center gap-2 text-sm sm:text-lg font-bold leading-tight text-ieeecolor dark:text-white">
-  <img src={getAsset('/favicon.svg')} width="24" height="24" class="w-6 h-6 shrink-0" alt="" />
-  <span class="max-w-[13rem] sm:max-w-none">{SITE.name}</span>
-</span>
+<img src="/images/brand/ieee-uni-ruse.png" width="1200" height="166" alt={SITE.name} class="w-48 sm:w-64 h-auto dark:brightness-0 dark:invert" />
