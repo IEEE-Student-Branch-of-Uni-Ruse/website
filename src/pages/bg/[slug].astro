@@ -1,0 +1,23 @@
+---
+import { createMarkdownProcessor } from '@astrojs/markdown-remark';
+import Layout from '~/layouts/PageLayout.astro';
+import SinglePost from '~/components/blog/SinglePost.astro';
+import { fetchPosts } from '~/utils/blog';
+import { findImage } from '~/utils/images';
+import translations from '~/data/posts-bg.json';
+export async function getStaticPaths() {
+  const posts = await fetchPosts();
+  return posts.filter((post) => post.slug in translations).map((post) => ({ params: { slug: post.slug }, props: { post, translation: translations[post.slug as keyof typeof translations] } }));
+}
+const { post, translation } = Astro.props;
+const image = await findImage(post.image);
+const processor = await createMarkdownProcessor();
+const content = (await processor.render(translation.body)).code;
+const url = new URL(Astro.url.pathname, Astro.site);
+---
+<Layout metadata={{ title: translation.title, description: translation.excerpt, openGraph: { type: 'article', ...(post.image && typeof post.image === 'string' ? { images: [{ url: post.image }] } : {}) } }}>
+  <SinglePost post={{ ...post, title: translation.title, excerpt: translation.excerpt, image: image || undefined }} {url}>
+    <Fragment set:html={content} />
+  </SinglePost>
+  <div class="max-w-3xl mx-auto px-6 pb-16"><a href="/bg/blog" class="text-primary font-semibold">← Към новините</a></div>
+</Layout>

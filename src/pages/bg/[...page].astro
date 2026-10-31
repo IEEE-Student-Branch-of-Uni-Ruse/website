@@ -1,0 +1,35 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import translations from '~/data/bg.json';
+import team from '~/data/team.json';
+import timeline from '~/data/timeline.json';
+import Gallery from '~/components/Gallery.astro';
+
+import { extra } from '~/data/bg-extra';
+export function getStaticPaths() { return Object.entries({ ...translations, ...extra }).filter(([page]) => page !== "" && page !== "bip-big-data-and-ai-for-res" && page !== "blog").map(([page, data]) => ({ params: { page: page || undefined }, props: { data, page } })); }
+const { data, page } = Astro.props;
+const timelineBg = [
+ ['ноември 2025 г.', 'Лекция по микро- и наноелектроника', 'Проф. Рикардо Рейс беше поканен да изнесе лекция в Русенския университет.'],
+ ['юни 2024 г.', 'Иновативна седмица на технологиите', 'Програмата включваше Електрониада и първа балканска среща на студентски клонове на IEEE и EPS.'],
+ ['юни 2024 г.', 'Международна Електрониада', 'В международното издание участваха 13 отбора от България и Румъния.'],
+ ['май 2023 г.', 'Признание за студентски уебсайт', 'Член на клона спечели второ място в университетския конкурс.'],
+ ['февруари 2023 г.', 'Начало на нашия сайт', 'Студентският клон представи своя уебсайт.'],
+ ['септември 2022 г.', 'Среща на студентски клонове в Сибиу', 'Представители от България, Румъния и Унгария се срещнаха по време на конференция по електроника.'],
+ ['март 2022 г.', 'Международна студентска секция на Електрониада', 'Студентският клон на EPS беше съорганизатор на секцията.'],
+ ['януари 2022 г.', 'Откриване на клона', 'Студентският клон отвори врати в Русенския университет.']
+];
+const roles: Record<string,string> = { Chair:'Председател', 'Vice-Chair':'Заместник-председател', Treasurer:'Касиер', Secretary:'Секретар', Member:'Член', Counsellor:'Консултант' };
+---
+<Layout metadata={{ title: data.title, description: data.intro }}>
+  <section class="max-w-6xl mx-auto px-6 pt-16 pb-16 md:pt-24">
+    <p class="text-primary text-sm font-bold uppercase tracking-widest">IEEE · Русенски университет</p>
+    <h1 class="mt-5 text-4xl md:text-6xl font-bold tracking-tight text-heading max-w-4xl">{data.title}</h1>
+    <p class="mt-6 text-xl leading-relaxed text-muted max-w-3xl">{data.intro}</p>
+  </section>
+  <section class="max-w-6xl mx-auto px-6 pb-24 space-y-8">
+    {data.sections.map((section) => <article class="rounded-3xl bg-blue-50 dark:bg-slate-800 p-8 md:p-12"><h2 class="text-2xl md:text-3xl font-bold text-heading">{section.heading}</h2><p class="mt-4 text-lg leading-relaxed text-muted">{section.text}</p>{'links' in section && section.links && <div class="flex flex-wrap gap-5 mt-6">{section.links.map(([text,href]) => <a class="font-semibold text-primary underline underline-offset-4" href={href}>{text} →</a>)}</div>}</article>)}
+    {page === 'about/team' && <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">{team.members.map((member) => <div class="rounded-2xl border border-blue-100 dark:border-slate-700 p-5 flex items-center gap-4"><img src={member.image} alt="" class="w-16 h-16 rounded-full object-cover" /><div><p class="font-bold">{member.name}</p><p class="text-muted">{roles[member.role] || member.role}</p></div></div>)}</div>}
+    {page === 'about/timeline' && <ol class="border-l border-blue-200 dark:border-slate-700 pl-7 space-y-10">{timeline.items.map((item, index) => <li><p class="text-sm text-primary font-semibold">{timelineBg[index]?.[0] || item.date}</p><h2 class="text-xl font-bold mt-1">{timelineBg[index]?.[1] || item.title}</h2><p class="text-muted mt-2">{timelineBg[index]?.[2] || item.description}</p>{item.href && <a class="text-primary underline" href={item.href}>Прочети на английски →</a>}</li>)}</ol>}
+    {page === 'about/gallery' && <Gallery bg />}
+  </section>
+</Layout>

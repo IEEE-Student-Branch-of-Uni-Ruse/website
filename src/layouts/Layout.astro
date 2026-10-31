@@ -4,6 +4,7 @@ import '~/assets/styles/tailwind.css';
 import '@fontsource-variable/inter';
 
 import { I18N } from '~/utils/config';
+import { localePaths } from '~/utils/locales';
 
 import CommonMeta from '~/components/common/CommonMeta.astro';
 import Favicons from '~/components/Favicons.astro';
@@ -12,7 +13,6 @@ import ApplyColorMode from '~/components/common/ApplyColorMode.astro';
 import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
-import Intersect from '~/components/common/Intersect.astro';
 
 // Comment the line below to disable View Transitions
 import { ClientRouter } from 'astro:transitions';
@@ -25,12 +25,18 @@ export interface Props {
 
 const { metadata = {} } = Astro.props;
 const { language, textDirection } = I18N;
+const locale = localePaths(Astro.url.pathname);
 ---
 
 <!doctype html>
-<html lang={language} dir={textDirection} class="2xl:text-[20px]">
+<html lang={locale.isBg ? 'bg' : language} dir={textDirection} class="2xl:text-[20px]">
   <head>
     <CommonMeta />
+    {locale.bg && <>
+      <link rel="alternate" hreflang="en" href={new URL(locale.english, Astro.site)} />
+      <link rel="alternate" hreflang="bg" href={new URL(locale.bg, Astro.site)} />
+      <link rel="alternate" hreflang="x-default" href={new URL(locale.english, Astro.site)} />
+    </>}
     <Favicons />
     <CustomStyles />
     <ApplyColorMode />
@@ -48,6 +54,16 @@ const { language, textDirection } = I18N;
   <body class="antialiased text-default bg-page tracking-tight min-h-screen flex flex-col">
     <slot />
 
-    <Intersect />
   </body>
 </html>
+
+<script>
+  import { getBrowserLanguage } from '~/utils/language';
+  // The language preference only selects the landing page; explicit deep links remain intact.
+  if (window.location.pathname === '/') {
+    let chosen: string | null = null;
+    try { chosen = localStorage.getItem('site-language'); } catch { /* Storage may be unavailable in private browsing. */ }
+    const language = chosen === 'bg' || chosen === 'en' ? chosen : getBrowserLanguage(['en', 'bg'], 'en');
+    if (language === 'bg') window.location.replace('/bg');
+  }
+</script>

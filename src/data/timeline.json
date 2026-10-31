@@ -3,21 +3,51 @@
   "linkLabel": "Learn more",
   "items": [
     {
-      "date": "March 2023",
-      "title": "A website has been made",
-      "description": "Open sources and developed our Official website.",
+      "date": "November 2025",
+      "title": "Distinguished Lecture on micro- and nanoelectronics",
+      "description": "Professor Ricardo Reis was invited to speak at the University of Ruse.",
+      "href": "/ieee-distinguished-lecture-2025"
+    },
+    {
+      "date": "June 2024",
+      "title": "Innovative Week of Technology",
+      "description": "Electroniad and the first Balkan Summit of IEEE Student Branches and EPS Student Branch Chapters were part of the programme in Ruse.",
+      "href": "/innovative-week-technology-2024"
+    },
+    {
+      "date": "June 2024",
+      "title": "International Electroniad competition",
+      "description": "Thirteen teams from Bulgaria and Romania took part in the international edition.",
+      "href": "/electroniad-2024"
+    },
+    {
+      "date": "May 2023",
+      "title": "Recognition for a student website",
+      "description": "A branch member won second place in the University of Ruse innovative website competition.",
+      "href": "/innovative-website"
+    },
+    {
+      "date": "February 2023",
+      "title": "Our website launched",
+      "description": "The student branch introduced its website.",
       "href": "/our-new-website"
     },
     {
-      "date": "July 2022",
-      "title": "Meetup with another chapter - Sibiu Romania",
-      "description": "Did some ducks, nobody knows.",
-      "href": ""
+      "date": "September 2022",
+      "title": "Student chapters meet in Sibiu",
+      "description": "Representatives from Bulgaria, Romania and Hungary met during an electronics conference in Sibiu.",
+      "href": "/eps-student-chapters-sibiu-2022"
+    },
+    {
+      "date": "March 2022",
+      "title": "Electroniad international student section",
+      "description": "The EPS student chapter co-organized the international student section of Electroniad.",
+      "href": "/electroniad-2022-results"
     },
     {
       "date": "January 2022",
       "title": "Opening the branch",
-      "description": "Officialy opening the branch in Uni Ruse.",
+      "description": "The student branch opened at the University of Ruse.",
       "href": ""
     }
   ]

@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { localePaths } from '~/utils/locales';
 import Logo from '~/components/Logo.astro';
 import ToggleTheme from '~/components/common/ToggleTheme.astro';
 import ToggleMenu from '~/components/common/ToggleMenu.astro';
@@ -44,6 +45,7 @@ const {
   position = 'center',
 } = Astro.props;
 
+const locale = localePaths(Astro.url.pathname);
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 
 // Compare paths without trailing slashes so the active link is detected
@@ -57,7 +59,7 @@ const isActive = (href?: string) => typeof href === 'string' && `/${trimSlash(hr
 // with its own menu (the demo homes, the landing pages) would keep showing the
 // header of the page the visitor came from. Hash the props that shape the markup.
 const persistKey = `header-${Array.from(
-  JSON.stringify({ links, actions, isSticky, isDark, isFullWidth, showToggleTheme, showRssFeed, position })
+  JSON.stringify({ links, actions, isSticky, isDark, isFullWidth, showToggleTheme, showRssFeed, position, locale: locale.isBg, path: locale.english })
 )
   .reduce((hash, char) => (hash * 31 + char.charCodeAt(0)) >>> 0, 7)
   .toString(36)}`;
@@ -88,14 +90,16 @@ const persistKey = `header-${Array.from(
       ]}
     >
       <div class:list={[{ 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }, 'flex justify-between']}>
-        <a class="flex items-center" href={getHomePermalink()}>
+        <a class="flex items-center" href={locale.isBg ? "/bg" : getHomePermalink()}>
           <Logo />
         </a>
         <div class="flex items-center lg:hidden">
+          <a href={locale.isBg ? locale.english : (locale.bg || '/bg')} hreflang={locale.isBg ? 'en' : 'bg'} class="px-3 py-2 text-sm font-bold language-switch">{locale.isBg ? 'EN' : 'BG'}</a>
           <ToggleMenu />
         </div>
       </div>
       <nav
+        id="primary-navigation"
         class="items-center w-full lg:w-auto hidden lg:flex lg:mx-5 text-default overflow-y-auto overflow-x-hidden lg:overflow-visible lg:justify-self-center"
         aria-label="Main navigation"
       >
@@ -150,6 +154,7 @@ const persistKey = `header-${Array.from(
       >
         <div class="items-center flex justify-between w-full lg:w-auto">
           <div class="flex">
+            <a href={locale.isBg ? locale.english : (locale.bg || '/bg')} hreflang={locale.isBg ? 'en' : 'bg'} class="px-3 py-2 text-sm font-bold language-switch">{locale.isBg ? 'EN' : 'BG'}</a>
             {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 lg:w-5 lg:h-5 lg:inline-block" />}
             {showRssFeed && (
               <a
@@ -177,14 +182,23 @@ const persistKey = `header-${Array.from(
 </aw-header>
 
 <style>
-  aw-header {
-    display: contents;
+  aw-header { display: contents; }
+  @media (max-width: 1023px) {
+    #header.expanded { height: 100dvh; background: var(--aw-color-bg-page); }
+    #header.expanded nav { position: fixed; top: 5rem; left: 0; right: 0; bottom: 5rem !important; padding: 0 1.25rem 2rem; overflow-y: auto; align-items: flex-start; }
+    #header.expanded nav > ul { padding: 0.5rem 0; gap: 0.25rem; }
+    #header.expanded nav > ul > li { border-bottom: 1px solid color-mix(in srgb, currentColor 10%, transparent); }
+    #header.expanded nav > ul > li > a, #header.expanded nav > ul > li > button { padding: 0.9rem 0.75rem; font-size: 1.125rem; font-weight: 700; }
+    #header.expanded .dropdown-menu { display: block; position: static; padding: 0 0 0.75rem 0.75rem; filter: none; }
+    #header.expanded .dropdown-menu a { padding: 0.5rem 1rem; font-size: 0.95rem; color: var(--aw-color-text-muted); white-space: normal; }
+    #header.expanded > div:last-child > div:last-child { background: var(--aw-color-bg-page); border-top: 1px solid color-mix(in srgb, currentColor 10%, transparent); }
   }
 </style>
 
 <script>
   class AwHeader extends HTMLElement {
     private onScroll?: () => void;
+    private onEscape?: (event: KeyboardEvent) => void;
     private mql?: MediaQueryList;
     private onMqlChange?: () => void;
     private onPageLoad = () => {
@@ -226,7 +240,16 @@ const persistKey = `header-${Array.from(
       });
 
       // Close the mobile menu when a nav link is clicked.
-      nav?.addEventListener('click', closeMenu);
+      nav?.addEventListener('click', (event) => {
+        if ((event.target as HTMLElement).closest('a')) closeMenu();
+      });
+      this.onEscape = (event: KeyboardEvent) => {
+        if (event.key === 'Escape' && toggle?.classList.contains('expanded')) {
+          closeMenu();
+          toggle.focus();
+        }
+      };
+      document.addEventListener('keydown', this.onEscape);
 
       // Desktop dropdowns open on hover/`:focus-within`. When a dropdown link is
       // clicked it keeps focus, and because the header uses `transition:persist`
@@ -266,6 +289,7 @@ const persistKey = `header-${Array.from(
 
     disconnectedCallback() {
       if (this.onScroll) document.removeEventListener('scroll', this.onScroll);
+      if (this.onEscape) document.removeEventListener('keydown', this.onEscape);
       if (this.mql && this.onMqlChange) this.mql.removeEventListener('change', this.onMqlChange);
       document.removeEventListener('astro:page-load', this.onPageLoad);
     }
@@ -295,4 +319,11 @@ const persistKey = `header-${Array.from(
   if (!customElements.get('aw-header')) {
     customElements.define('aw-header', AwHeader);
   }
+</script>
+
+<script>
+  document.addEventListener('click', (event) => {
+    const link = (event.target as Element).closest<HTMLAnchorElement>('a.language-switch');
+    if (link) { try { localStorage.setItem('site-language', link.hreflang); } catch { /* Storage may be unavailable in private browsing. */ } }
+  });
 </script>

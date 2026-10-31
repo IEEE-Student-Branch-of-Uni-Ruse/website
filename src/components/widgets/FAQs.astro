@@ -59,7 +59,7 @@ const faqSchema = schema
     <div class:list={['mx-auto max-w-3xl divide-y divide-gray-200 dark:divide-slate-700', classes?.list ?? '']}>
       {items.map(({ title: itemTitle, description, icon, callToAction }, index) => (
         <details
-          class="group intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+          class="group"
           name={groupName}
           open={index === defaultOpen}
         >
@@ -86,7 +86,7 @@ const faqSchema = schema
   {items.length > 0 && !collapsible && (
     <div class:list={['grid mx-auto gap-y-6 md:gap-y-8 gap-8', columnsClass]}>
       {items.map(({ title: itemTitle, description, icon, callToAction }) => (
-        <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+        <div class="">
           <div class="flex flex-row max-w-none">
             <div class="flex justify-center">
               <Icon

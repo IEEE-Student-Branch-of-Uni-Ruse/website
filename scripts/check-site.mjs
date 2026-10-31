@@ -58,3 +58,14 @@ if (seoErrors.length) {
 } else {
   console.log('Checked social metadata, 404 indexing and sitemap exclusions.');
 }
+
+const bgHome = await readFile(path.join(root, 'bg/index.html'), 'utf8');
+const bgGallery = await readFile(path.join(root, 'bg/about/gallery/index.html'), 'utf8');
+const enGallery = await readFile(path.join(root, 'about/gallery/index.html'), 'utf8');
+const languageErrors = [];
+if (!/<html[^>]*lang="bg"/.test(bgHome)) languageErrors.push('Bulgarian homepage must use lang=bg');
+if (!bgHome.includes('hreflang="en"') || !bgHome.includes('hreflang="bg"')) languageErrors.push('Homepage language alternates are missing');
+if (!bgGallery.includes('/images/news/electroniad-2024.jpg') || !enGallery.includes('/images/news/electroniad-2024.jpg')) languageErrors.push('Gallery images are missing');
+if (!await exists(path.join(root, 'bg/bip-big-data-and-ai-for-res/index.html'))) languageErrors.push('Bulgarian BIP overview is missing');
+if (languageErrors.length) { console.error(languageErrors.join('\n')); process.exitCode = 1; }
+else console.log('Checked Bulgarian language markup, alternates and galleries.');

@@ -1,8 +1,13 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { createMarkdownProcessor } from '@astrojs/markdown-remark';
-import source from '~/data/bip.md?raw';
-import { frontmatter } from '~/data/bip.md';
+import englishSource from '~/data/bip.md?raw';
+import bulgarianSource from '~/data/bip.bg.md?raw';
+import { frontmatter as bgFrontmatter } from '~/data/bip.bg.md';
+import { frontmatter as enFrontmatter } from '~/data/bip.md';
+const bg = Astro.url.pathname.startsWith('/bg/');
+const source = bg ? bulgarianSource : englishSource;
+const frontmatter = bg ? bgFrontmatter : enFrontmatter;
 
 const processor = await createMarkdownProcessor();
 const render = async (text: string) => (await processor.render(text)).code;

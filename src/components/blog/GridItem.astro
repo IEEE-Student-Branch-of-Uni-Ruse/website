@@ -17,7 +17,7 @@ const image = await findImage(post.image);
 const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : '';
 ---
 
-<article class="mb-6 transition intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+<article class="mb-6 transition">
   {image && <div class="relative aspect-[16/9] overflow-hidden rounded shadow-lg mb-6">
     {image &&
       (link ? (

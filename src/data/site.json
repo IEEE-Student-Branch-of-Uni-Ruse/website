@@ -21,6 +21,10 @@
             "href": "/about/timeline"
           },
           {
+            "text": "Gallery",
+            "href": "/about/gallery"
+          },
+          {
             "text": "FAQ",
             "href": "/about/faq"
           }

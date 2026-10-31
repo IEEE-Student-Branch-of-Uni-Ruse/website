@@ -4,7 +4,8 @@ import { SEO } from 'astro-seo';
 
 import type { SEOProps } from 'astro-seo';
 
-import { SITE, METADATA, I18N } from '~/utils/config';
+import { SITE, METADATA } from '~/utils/config';
+import { localePaths } from '~/utils/locales';
 import type { MetaData, MetaDataOpenGraph } from '~/types';
 import { getCanonical } from '~/utils/permalinks';
 
@@ -29,7 +30,7 @@ const mergedOg: MetaDataOpenGraph = merge(
     url: canonical,
     siteName: SITE?.name,
     images: [],
-    locale: I18N?.language || 'en',
+    locale: localePaths(Astro.url.pathname).isBg ? 'bg_BG' : 'en_US',
     type: 'website',
   },
   METADATA?.openGraph,

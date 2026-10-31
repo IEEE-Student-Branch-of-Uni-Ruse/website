@@ -1,6 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
+import { Picture } from 'astro:assets';
+import communityImage from '~/assets/images/site/home-community.png';
 import events from '~/data/events.json';
 ---
 
@@ -18,7 +20,7 @@ import events from '~/data/events.json';
       </div>
       <div class="relative">
         <div class="absolute -inset-3 bg-blue-100 dark:bg-blue-950 rounded-[2.5rem] -rotate-2" aria-hidden="true"></div>
-        <img src="/images/home-community.png" alt="Illustration of students collaborating on a technology project" width="1536" height="1024" class="relative w-full aspect-[4/3] object-cover rounded-[2rem]" />
+        <Picture src={communityImage} formats={['avif', 'webp']} fallbackFormat="webp" widths={[640, 960, 1536]} sizes="(max-width: 1023px) 100vw, 50vw" loading="eager" fetchpriority="high" alt="Illustration of students collaborating on a technology project" width="1536" height="1024" class="relative w-full aspect-[4/3] object-cover rounded-[2rem]" />
         <div class="absolute -bottom-5 left-5 sm:left-8 rounded-2xl bg-white dark:bg-slate-900 px-5 py-3 shadow-lg text-sm font-semibold">Curiosity brings us together <span aria-hidden="true">✦</span></div>
       </div>
     </div>

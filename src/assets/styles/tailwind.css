@@ -4,8 +4,6 @@
 
 @variant dark (&:where(.dark, .dark *));
 
-@custom-variant intersect (&:not([no-intersect]));
-
 @theme {
   --color-primary: var(--aw-color-primary);
   --color-secondary: var(--aw-color-secondary);
@@ -21,18 +19,6 @@
   --font-serif: var(--aw-font-serif, ui-serif), ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
   --font-heading: var(--aw-font-heading, ui-sans-serif), ui-sans-serif, system-ui, sans-serif;
 
-  --animate-fade: fadeInUp 0.5s both;
-
-  @keyframes fadeInUp {
-    0% {
-      opacity: 0;
-      transform: translateY(0.75rem);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 }
 
 @utility bg-page {

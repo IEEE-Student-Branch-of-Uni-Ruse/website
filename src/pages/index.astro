@@ -1,72 +1,93 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import { Picture } from 'astro:assets';
+import communityImage from '~/assets/images/site/home-community.png';
 import Note from '~/components/widgets/Note.astro';
-import Features from '~/components/widgets/Features.astro';
+import { Icon } from 'astro-icon/components';
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import home from '~/data/home.json';
+const bg = Astro.url.pathname.startsWith('/bg');
 const metadata = { title: home.title, ignoreTitleTemplate: true };
+const text = (en: string, bulgarian: string) => bg ? bulgarian : en;
+const localizedHome = bg ? {
+  ...home,
+  intro: { eyebrow: 'IEEE · РУСЕНСКИ УНИВЕРСИТЕТ', headline: 'Любопитни хора. Идеи с приложение.', description: 'Срещни хора, които обичат технологиите, изследвай нови идеи и превърни наученото в нещо значимо. Твоята IEEE общност започва тук.', primary: 'Разгледай общността', secondary: 'Запознай се с екипа' },
+  mission: { label: 'Нашата мисия:', text: 'Основната цел на IEEE е да насърчава технологичните иновации и високите постижения в полза на човечеството.' },
+  benefitsTitle: 'Защо да се присъединиш към студентския клон на IEEE?',
+  benefits: home.benefits.map((item, i) => ({ ...item, title: ['Свържи се с други професионалисти в технологиите', 'Изгради професионален профил, който показва твоите постижения', 'Участвай в дискусии по технически теми', 'Създай общност за споделяне и съвместни проекти', 'Откривай IEEE събития и инициативи по света', 'Бъди отворен към нови идеи и приноси'][i] })),
+  blogTitle: 'Още новини от нашия блог',
+} : home;
+const local = (href: string) => bg ? `/bg${href === '/' ? '' : href}` : href;
 ---
 <Layout metadata={metadata}>
   <section class="hero max-w-7xl mx-auto px-6 pt-12 pb-16 md:pt-20 md:pb-24">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <div>
-        <p class="text-xs font-bold tracking-[.18em] text-primary uppercase mb-6">{home.intro.eyebrow}</p>
-        <h1 class="text-5xl sm:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.04] text-heading">{home.intro.headline}</h1>
-        <p class="mt-7 text-lg sm:text-xl leading-relaxed text-muted max-w-xl">{home.intro.description}</p>
+        <p class="text-xs font-bold tracking-[.18em] text-primary uppercase mb-6">{localizedHome.intro.eyebrow}</p>
+        <h1 class="text-5xl sm:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.04] text-heading">{localizedHome.intro.headline}</h1>
+        <p class="mt-7 text-lg sm:text-xl leading-relaxed text-muted max-w-xl">{localizedHome.intro.description}</p>
         <div class="flex flex-wrap gap-3 mt-9">
-          <a class="rounded-full bg-primary px-7 py-4 font-semibold text-white hover:bg-secondary transition" href="/about">{home.intro.primary} <span aria-hidden="true">↗</span></a>
-          <a class="rounded-full border border-current px-7 py-4 font-semibold hover:text-primary transition" href="/about/team">{home.intro.secondary} <span aria-hidden="true">→</span></a>
+          <a class="rounded-full bg-primary px-7 py-4 font-semibold text-white hover:bg-secondary transition" href={local("/about")}>{localizedHome.intro.primary} <span aria-hidden="true">↗</span></a>
+          <a class="rounded-full border border-current px-7 py-4 font-semibold hover:text-primary transition" href={local("/about/team")}>{localizedHome.intro.secondary} <span aria-hidden="true">→</span></a>
         </div>
         <p class="mt-8 text-sm font-medium text-muted">Learn together <span aria-hidden="true"> · </span> Build together <span aria-hidden="true"> · </span> Grow together</p>
       </div>
       <div class="relative">
         <div class="absolute -inset-3 bg-blue-100 dark:bg-blue-950 rounded-[2.5rem] rotate-2" aria-hidden="true"></div>
-        <img src="/images/home-community.png" alt="Illustration of students collaborating on technology projects" width="1536" height="1024" class="relative w-full aspect-[4/3] object-cover rounded-[2rem]" />
+        <Picture src={communityImage} formats={['avif', 'webp']} fallbackFormat="webp" widths={[640, 960, 1536]} sizes="(max-width: 1023px) 100vw, 50vw" loading="eager" fetchpriority="high" alt="Illustration of students collaborating on technology projects" width="1536" height="1024" class="relative w-full aspect-[4/3] object-cover rounded-[2rem]" />
         <div class="absolute -bottom-5 left-5 sm:left-8 rounded-2xl bg-white dark:bg-slate-900 px-5 py-3 shadow-lg text-sm font-semibold">Made for curious minds <span aria-hidden="true">✦</span></div>
       </div>
     </div>
   </section>
-  <Note {...home.mission} />
+  <Note {...localizedHome.mission} />
   <section class="max-w-7xl mx-auto px-6 pt-20 md:pt-28">
-    <p class="text-primary text-sm font-bold uppercase tracking-widest">Find your place</p>
-    <div class="mt-4 flex flex-wrap justify-between gap-4 items-end"><h2 class="text-3xl md:text-5xl font-bold tracking-tight text-heading max-w-2xl">Big ideas start with people.</h2><p class="text-muted max-w-md">There is more than one way to get involved. Find the part of IEEE that inspires you.</p></div>
+    <p class="text-primary text-sm font-bold uppercase tracking-widest">{text('Find your place', 'Намери своето място')}</p>
+    <div class="mt-4 flex flex-wrap justify-between gap-4 items-end"><h2 class="text-3xl md:text-5xl font-bold tracking-tight text-heading max-w-2xl">{text('Big ideas start with people.', 'Големите идеи започват с хората.')}</h2><p class="text-muted max-w-md">{text('There is more than one way to get involved. Find the part of IEEE that inspires you.', 'Има много начини да се включиш. Открий тази част от IEEE, която те вдъхновява.')}</p></div>
     <div class="grid md:grid-cols-3 gap-4 mt-10">
-      <a href="/about/faq" class="group rounded-3xl bg-blue-50 dark:bg-slate-800 p-7 min-h-56 flex flex-col"><span class="text-3xl text-primary">01</span><h3 class="mt-8 text-xl font-bold">Discover IEEE</h3><p class="mt-2 text-muted">Learn what membership can open up for you.</p><span class="mt-auto pt-5 font-semibold text-primary">Membership & FAQ ↗</span></a>
-      <a href="/chapters/computer-society" class="group rounded-3xl bg-sky-50 dark:bg-slate-800 p-7 min-h-56 flex flex-col"><span class="text-3xl text-primary">02</span><h3 class="mt-8 text-xl font-bold">Explore your interests</h3><p class="mt-2 text-muted">Connect with a worldwide community of computing professionals.</p><span class="mt-auto pt-5 font-semibold text-primary">Computer Society ↗</span></a>
-      <a href="/contact" class="group rounded-3xl bg-indigo-50 dark:bg-slate-800 p-7 min-h-56 flex flex-col"><span class="text-3xl text-primary">03</span><h3 class="mt-8 text-xl font-bold">Say hello</h3><p class="mt-2 text-muted">Questions, ideas, or a project in mind? Find us online.</p><span class="mt-auto pt-5 font-semibold text-primary">Get in touch ↗</span></a>
+      <a href={local("/about/faq")} class="group rounded-3xl bg-blue-50 dark:bg-slate-800 p-7 min-h-56 flex flex-col"><span class="text-3xl text-primary">01</span><h3 class="mt-8 text-xl font-bold">{text('Discover IEEE', 'Открий IEEE')}</h3><p class="mt-2 text-muted">{text('Learn what membership can open up for you.', 'Научи какви възможности предоставя членството.')}</p><span class="mt-auto pt-5 font-semibold text-primary">{text('Membership & FAQ ↗', 'Членство и въпроси ↗')}</span></a>
+      <a href={local("/chapters/computer-society")} class="group rounded-3xl bg-sky-50 dark:bg-slate-800 p-7 min-h-56 flex flex-col"><span class="text-3xl text-primary">02</span><h3 class="mt-8 text-xl font-bold">{text('Explore your interests', 'Разгледай интересите си')}</h3><p class="mt-2 text-muted">{text('Connect with a worldwide community of computing professionals.', 'Свържи се със световна общност от специалисти по компютърни науки.')}</p><span class="mt-auto pt-5 font-semibold text-primary">{text('Computer Society ↗', 'Компютърно общество ↗')}</span></a>
+      <a href={local("/contact")} class="group rounded-3xl bg-indigo-50 dark:bg-slate-800 p-7 min-h-56 flex flex-col"><span class="text-3xl text-primary">03</span><h3 class="mt-8 text-xl font-bold">{text('Say hello', 'Свържи се с нас')}</h3><p class="mt-2 text-muted">{text('Questions, ideas, or a project in mind? Find us online.', 'Имаш въпрос, идея или проект? Намери ни онлайн.')}</p><span class="mt-auto pt-5 font-semibold text-primary">{text('Get in touch ↗', 'Контакти ↗')}</span></a>
     </div>
   </section>
   <section class="max-w-7xl mx-auto px-6 py-20 md:py-28">
     <div class="grid lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-20 items-start">
       <div class="lg:sticky lg:top-28">
-        <p class="text-primary text-sm font-bold uppercase tracking-widest">From Ruse to the world</p>
-        <h2 class="mt-4 text-3xl md:text-5xl font-bold tracking-tight text-heading">A local community with a global outlook.</h2>
-        <p class="mt-6 text-lg leading-relaxed text-muted">Our student branch brings together people interested in engineering, computing and the ideas shaping tomorrow.</p>
-        <a href="/about" class="inline-block mt-7 font-semibold text-primary underline underline-offset-8">Get to know our branch →</a>
+        <p class="text-primary text-sm font-bold uppercase tracking-widest">{text('From Ruse to the world', 'От Русе към света')}</p>
+        <h2 class="mt-4 text-3xl md:text-5xl font-bold tracking-tight text-heading">{text('A local community with a global outlook.', 'Местна общност с глобален поглед.')}</h2>
+        <p class="mt-6 text-lg leading-relaxed text-muted">{text('Our student branch brings together people interested in engineering, computing and the ideas shaping tomorrow.', 'Нашият студентски клон свързва хора с интерес към инженерството, компютърните науки и идеите, които оформят бъдещето.')}</p>
+        <a href={local("/about")} class="inline-block mt-7 font-semibold text-primary underline underline-offset-8">{text('Get to know our branch →', 'Научи повече за клона →')}</a>
       </div>
       <div class="divide-y divide-blue-100 dark:divide-slate-700 border-y border-blue-100 dark:border-slate-700">
-        <div class="py-7 grid sm:grid-cols-[3rem_1fr] gap-3"><span class="text-primary font-bold">01 /</span><div><h3 class="text-xl font-bold text-heading">Meet people who share your curiosity</h3><p class="mt-2 leading-relaxed text-muted">Connect with students and technology professionals, exchange ideas and discover perspectives beyond your classroom.</p></div></div>
-        <div class="py-7 grid sm:grid-cols-[3rem_1fr] gap-3"><span class="text-primary font-bold">02 /</span><div><h3 class="text-xl font-bold text-heading">Learn by getting involved</h3><p class="mt-2 leading-relaxed text-muted">Explore workshops, lectures, hackathons and other activities where ideas and people come together.</p></div></div>
-        <div class="py-7 grid sm:grid-cols-[3rem_1fr] gap-3"><span class="text-primary font-bold">03 /</span><div><h3 class="text-xl font-bold text-heading">Make your next idea happen</h3><p class="mt-2 leading-relaxed text-muted">Find collaborators, share what you are working on and build the confidence to take your skills further.</p></div></div>
+        <div class="py-7 grid sm:grid-cols-[3rem_1fr] gap-3"><span class="text-primary font-bold">01 /</span><div><h3 class="text-xl font-bold text-heading">{text('Meet people who share your curiosity', 'Срещни хора, които споделят любопитството ти')}</h3><p class="mt-2 leading-relaxed text-muted">{text('Connect with students and technology professionals, exchange ideas and discover perspectives beyond your classroom.', 'Свържи се със студенти и специалисти, обменяй идеи и откривай нови перспективи.')}</p></div></div>
+        <div class="py-7 grid sm:grid-cols-[3rem_1fr] gap-3"><span class="text-primary font-bold">02 /</span><div><h3 class="text-xl font-bold text-heading">{text('Learn by getting involved', 'Учи чрез участие')}</h3><p class="mt-2 leading-relaxed text-muted">{text('Explore workshops, lectures, hackathons and other activities where ideas and people come together.', 'Открий обучения, лекции, хакатони и други инициативи, които събират хора и идеи.')}</p></div></div>
+        <div class="py-7 grid sm:grid-cols-[3rem_1fr] gap-3"><span class="text-primary font-bold">03 /</span><div><h3 class="text-xl font-bold text-heading">{text('Make your next idea happen', 'Дай живот на следващата си идея')}</h3><p class="mt-2 leading-relaxed text-muted">{text('Find collaborators, share what you are working on and build the confidence to take your skills further.', 'Намери съмишленици, сподели проектите си и развивай уменията си.')}</p></div></div>
       </div>
     </div>
   </section>
-  <Features title={home.benefitsTitle} items={home.benefits} />
+  <section class="max-w-7xl mx-auto px-6 py-20 md:py-28">
+    <div>
+      <div class="max-w-3xl"><p class="text-primary text-sm font-bold uppercase tracking-widest">{text('Why IEEE?', 'Защо IEEE?')}</p><h2 class="mt-4 text-3xl md:text-5xl font-bold tracking-tight leading-tight text-heading">{localizedHome.benefitsTitle}</h2><p class="mt-5 text-muted leading-relaxed text-lg">{text('Your curiosity can take you further when you have a community behind you.', 'Любопитството ти може да те отведе по-далеч, когато зад теб стои общност.')}</p></div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 mt-10">
+        {localizedHome.benefits.map((item, index) => <div class="border-t border-blue-100 dark:border-slate-700 py-6 min-h-36 flex flex-col"><div class="flex items-center justify-between"><Icon name={item.icon} class="w-7 h-7 text-primary" /><span class="font-mono text-xs text-muted">{String(index + 1).padStart(2, '0')}</span></div><h3 class="mt-auto pt-7 text-lg leading-snug font-semibold text-heading">{item.title}</h3></div>)}
+      </div>
+      <a href={local('/about/faq')} class="inline-flex mt-9 font-semibold text-primary underline underline-offset-8">{text('Explore membership', 'Повече за членството')} →</a>
+    </div>
+  </section>
   <section class="max-w-7xl mx-auto px-6 pb-20">
     <div class="rounded-[2rem] border border-blue-100 dark:border-slate-700 p-8 md:p-12">
-      <div class="flex flex-wrap justify-between items-end gap-5"><div><p class="text-primary text-sm font-bold uppercase tracking-widest">Go deeper</p><h2 class="mt-4 text-3xl md:text-4xl font-bold text-heading tracking-tight">Find your field of interest.</h2></div><p class="text-muted max-w-md">Discover the IEEE societies represented on our website and the fields that bring their communities together.</p></div>
+      <div class="flex flex-wrap justify-between items-end gap-5"><div><p class="text-primary text-sm font-bold uppercase tracking-widest">{text('Go deeper', 'Научи повече')}</p><h2 class="mt-4 text-3xl md:text-4xl font-bold text-heading tracking-tight">{text('Find your field of interest.', 'Открий своята област.')}</h2></div><p class="text-muted max-w-md">{text('Discover the IEEE societies represented on our website and the fields that bring their communities together.', 'Разгледай обществата на IEEE и областите, които обединяват техните общности.')}</p></div>
       <div class="grid md:grid-cols-2 gap-4 mt-9">
-        <a href="/chapters/computer-society" class="group rounded-2xl bg-sky-50 dark:bg-slate-800 p-7 hover:bg-blue-100 dark:hover:bg-slate-700 transition"><span class="text-primary text-sm font-bold uppercase tracking-wider">Computing</span><h3 class="mt-4 text-2xl font-bold">Computer Society <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">↗</span></h3><p class="mt-3 text-muted">A global community for computer science and engineering professionals.</p></a>
-        <a href="/chapters/electronics-packaging-society" class="group rounded-2xl bg-indigo-50 dark:bg-slate-800 p-7 hover:bg-indigo-100 dark:hover:bg-slate-700 transition"><span class="text-primary text-sm font-bold uppercase tracking-wider">Electronics</span><h3 class="mt-4 text-2xl font-bold">Electronics Packaging Society <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">↗</span></h3><p class="mt-3 text-muted">Explore the people and technologies behind electronic systems and microsystems.</p></a>
+        <a href={local("/chapters/computer-society")} class="group rounded-2xl bg-sky-50 dark:bg-slate-800 p-7 hover:bg-blue-100 dark:hover:bg-slate-700 transition"><span class="text-primary text-sm font-bold uppercase tracking-wider">{text('Computing', 'Компютърни науки')}</span><h3 class="mt-4 text-2xl font-bold">Computer Society <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">↗</span></h3><p class="mt-3 text-muted">{text('A global community for computer science and engineering professionals.', 'Световна общност от специалисти по компютърни науки и инженерство.')}</p></a>
+        <a href="/chapters/electronics-packaging-society" class="group rounded-2xl bg-indigo-50 dark:bg-slate-800 p-7 hover:bg-indigo-100 dark:hover:bg-slate-700 transition"><span class="text-primary text-sm font-bold uppercase tracking-wider">{text('Electronics', 'Електроника')}</span><h3 class="mt-4 text-2xl font-bold">Electronics Packaging Society <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">↗</span></h3><p class="mt-3 text-muted">{text('Explore the people and technologies behind electronic systems and microsystems.', 'Открий хората и технологиите зад електронните системи и микросистемите.')}</p></a>
       </div>
     </div>
   </section>
   <section class="max-w-7xl mx-auto px-6 py-12">
     <div class="rounded-[2rem] bg-[#092b50] text-white overflow-hidden grid md:grid-cols-2">
       <img src="/images/live/benjamin-jopen-2SfssudtyIA-unsplash-scaled.jpg" alt="Renewable energy landscape" class="w-full h-64 md:h-full object-cover" loading="lazy" />
-      <div class="p-8 md:p-12 lg:p-16"><p class="text-blue-200 text-sm font-bold tracking-widest uppercase">Erasmus+ · BIP 2026</p><h2 class="text-3xl md:text-4xl font-bold tracking-tight mt-5">Big data, AI and a more sustainable future.</h2><p class="mt-5 text-blue-100 leading-relaxed">Explore our programme on digital technologies for renewable energy systems, hosted by the University of Ruse.</p><a class="inline-block mt-8 font-semibold text-white underline underline-offset-8" href="/bip-big-data-and-ai-for-res">Explore the programme →</a></div>
+      <div class="p-8 md:p-12 lg:p-16"><p class="text-blue-200 text-sm font-bold tracking-widest uppercase">Erasmus+ · BIP 2026</p><h2 class="text-3xl md:text-4xl font-bold tracking-tight mt-5">{text('Big data, AI and a more sustainable future.', 'Големи данни, изкуствен интелект и по-устойчиво бъдеще.')}</h2><p class="mt-5 text-blue-100 leading-relaxed">{text('Explore our programme on digital technologies for renewable energy systems, hosted by the University of Ruse.', 'Разгледай програмата за цифрови технологии и възобновяема енергия на Русенския университет.')}</p><a class="inline-block mt-8 font-semibold text-white underline underline-offset-8" href={local("/bip-big-data-and-ai-for-res")}>{text('Explore the programme →', 'Към програмата →')}</a></div>
     </div>
   </section>
-  <BlogLatestPosts title={home.blogTitle} />
-  <section class="max-w-7xl mx-auto px-6 pb-24"><div class="rounded-3xl bg-blue-50 dark:bg-slate-800 px-8 py-12 md:p-16 flex flex-wrap items-center justify-between gap-8"><div><p class="text-sm uppercase tracking-widest text-primary font-bold">Your next step</p><h2 class="mt-3 text-3xl md:text-4xl font-bold text-heading">Have an idea? Let's connect.</h2><p class="mt-4 text-muted">Whether you're new to IEEE or ready to get involved, we'd love to hear from you.</p></div><a href="/contact" class="rounded-full bg-primary px-7 py-4 text-white font-semibold hover:bg-secondary transition">Find our community →</a></div></section>
+  <BlogLatestPosts title={localizedHome.blogTitle} linkText={bg ? "Всички публикации" : "View all posts"} linkUrl={bg ? "/bg/blog" : "/blog"} />
+  <section class="max-w-7xl mx-auto px-6 pb-24"><div class="rounded-3xl bg-blue-50 dark:bg-slate-800 px-8 py-12 md:p-16 flex flex-wrap items-center justify-between gap-8"><div><p class="text-sm uppercase tracking-widest text-primary font-bold">{text('Your next step', 'Следващата стъпка')}</p><h2 class="mt-3 text-3xl md:text-4xl font-bold text-heading">{text("Have an idea? Let's connect.", 'Имаш идея? Нека се свържем.')}</h2><p class="mt-4 text-muted">{text("Whether you're new to IEEE or ready to get involved, we'd love to hear from you.", 'Независимо дали тепърва откриваш IEEE или искаш да се включиш, пиши ни.')}</p></div><a href={local("/contact")} class="rounded-full bg-primary px-7 py-4 text-white font-semibold hover:bg-secondary transition">{text('Find our community →', 'Открий общността →')}</a></div></section>
 </Layout>

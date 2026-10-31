@@ -4,6 +4,7 @@ import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
 
 import { headerData, footerData } from '~/navigation';
+import { localePaths } from '~/utils/locales';
 
 import type { MetaData } from '~/types';
 
@@ -12,6 +13,13 @@ export interface Props {
 }
 
 const { metadata } = Astro.props;
+const locale = localePaths(Astro.url.pathname);
+const bgLinks = [
+  { text: 'Начало', href: '/bg' },
+  { text: 'За нас', links: [{ text: 'За клона', href: '/bg/about' }, { text: 'Екип', href: '/bg/about/team' }, { text: 'История', href: '/bg/about/timeline' }, { text: 'Галерия', href: '/bg/about/gallery' }, { text: 'Въпроси', href: '/bg/about/faq' }] },
+  { text: 'Общества', links: [{ text: 'Компютърно общество', href: '/bg/chapters/computer-society' }, { text: 'Електронно пакетиране', href: '/bg/chapters/electronics-packaging-society' }] },
+  { text: 'BIP', href: '/bg/bip-big-data-and-ai-for-res' }, { text: 'Събития', href: '/bg/events' }, { text: 'Новини', href: '/bg/blog' }, { text: 'Контакти', href: '/bg/contact' },
+];
 ---
 
 <Layout metadata={metadata}>
@@ -24,7 +32,7 @@ const { metadata } = Astro.props;
     goes missing on that page.
   */}
   <slot name="announcement" />
-  {Astro.slots.has('header') ? <slot name="header" /> : <Header {...headerData} isSticky showRssFeed showToggleTheme />}
+  {Astro.slots.has('header') ? <slot name="header" /> : <Header links={locale.isBg ? bgLinks : headerData.links} isSticky showRssFeed showToggleTheme />}
   <main class="flex-1">
     <slot />
   </main>
