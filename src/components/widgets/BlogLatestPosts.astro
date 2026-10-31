@@ -32,7 +32,7 @@ const {
 } = Astro.props;
 
 const latest = APP_BLOG.isEnabled ? await findLatestPosts({ count }) : [];
-const posts = Astro.url.pathname.startsWith('/bg') ? latest.filter((post) => post.slug in translations).map((post) => {
+const posts = Astro.currentLocale === 'bg' ? latest.filter((post) => post.slug in translations).map((post) => {
   const translated = translations[post.slug as keyof typeof translations];
   return { ...post, title: translated.title, excerpt: translated.excerpt, permalink: `bg/${post.slug}` };
 }) : latest;

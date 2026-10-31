@@ -9,7 +9,6 @@ import { unified } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
-import tasks from './src/utils/tasks.mjs';
 
 import { readingTimeRemarkPlugin } from './src/utils/frontmatter.mjs';
 
@@ -31,6 +30,7 @@ export default defineConfig({
 
   image: { responsiveStyles: true },
   output: 'static',
+  i18n: { defaultLocale: 'en', locales: ['en', 'bg'], routing: { prefixDefaultLocale: false } },
   redirects: {
     "/contact-us": "/contact",
     "/faq": "/about/faq",
@@ -66,7 +66,6 @@ export default defineConfig({
       })
     ),
 
-    tasks(),
   ],
 
   markdown: {

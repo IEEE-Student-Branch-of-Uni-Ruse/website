@@ -4,7 +4,6 @@ import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
 
 import { headerData, footerData } from '~/navigation';
-import { localePaths } from '~/utils/locales';
 
 import type { MetaData } from '~/types';
 
@@ -13,7 +12,6 @@ export interface Props {
 }
 
 const { metadata } = Astro.props;
-const locale = localePaths(Astro.url.pathname);
 const bgLinks = [
   { text: 'Начало', href: '/bg' },
   { text: 'За нас', links: [{ text: 'За клона', href: '/bg/about' }, { text: 'Екип', href: '/bg/about/team' }, { text: 'История', href: '/bg/about/timeline' }, { text: 'Галерия', href: '/bg/about/gallery' }, { text: 'Въпроси', href: '/bg/about/faq' }] },
@@ -31,9 +29,10 @@ const bgLinks = [
     header, for instance) were already emitted, so their SVG sprite symbol
     goes missing on that page.
   */}
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:z-[100] focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-4 focus:py-3 focus:rounded">{Astro.currentLocale === 'bg' ? 'Към основното съдържание' : 'Skip to main content'}</a>
   <slot name="announcement" />
-  {Astro.slots.has('header') ? <slot name="header" /> : <Header links={locale.isBg ? bgLinks : headerData.links} isSticky showRssFeed showToggleTheme />}
-  <main class="flex-1">
+  {Astro.slots.has('header') ? <slot name="header" /> : <Header links={Astro.currentLocale === 'bg' ? bgLinks : headerData.links} isSticky showRssFeed showToggleTheme />}
+  <main id="main-content" class="flex-1" tabindex="-1">
     <slot />
   </main>
   {Astro.slots.has('footer') ? <slot name="footer" /> : <Footer {...footerData} />}

@@ -1,9 +1,14 @@
 ---
 import { createMarkdownProcessor } from '@astrojs/markdown-remark';
+import { getImage } from 'astro:assets';
+import galleryPhoto from '~/assets/images/public/news/innovative-week-2024-2.jpg';
 import Layout from '~/layouts/PageLayout.astro';
 import SinglePost from '~/components/blog/SinglePost.astro';
 import { fetchPosts } from '~/utils/blog';
-import { findImage } from '~/utils/images';
+import { findImage, adaptOpenGraphImages } from '~/utils/images';
+import StructuredData from '~/components/common/StructuredData.astro';
+import Breadcrumbs from '~/components/common/Breadcrumbs.astro';
+import { SITE } from '~/utils/config';
 import translations from '~/data/posts-bg.json';
 export async function getStaticPaths() {
   const posts = await fetchPosts();
@@ -12,10 +17,30 @@ export async function getStaticPaths() {
 const { post, translation } = Astro.props;
 const image = await findImage(post.image);
 const processor = await createMarkdownProcessor();
-const content = (await processor.render(translation.body)).code;
+let content = (await processor.render(translation.body)).code;
+if (post.slug === 'innovative-week-technology-2024') {
+  const [avif, webp] = await Promise.all([
+    getImage({ src: galleryPhoto, width: galleryPhoto.width, format: 'avif' }),
+    getImage({ src: galleryPhoto, width: galleryPhoto.width, format: 'webp' }),
+  ]);
+  content = content.replace(/<img[^>]*src="\/images\/news\/innovative-week-2024-2\.jpg"[^>]*>/, `<picture><source type="image/avif" srcset="${avif.src}"><img src="${webp.src}" width="${galleryPhoto.width}" height="${galleryPhoto.height}" loading="lazy" alt="Материал от програмата на Иновативната седмица"></picture>`);
+}
 const url = new URL(Astro.url.pathname, Astro.site);
+const schemaImages = post.image && typeof post.image === 'string' ? await adaptOpenGraphImages({ images: [{ url: post.image }] }, Astro.site) : undefined;
+const imageUrl = schemaImages?.images?.[0]?.url;
+const articleSchema = {
+  '@context': 'https://schema.org', '@type': 'BlogPosting', headline: translation.title,
+  description: translation.excerpt, datePublished: post.publishDate.toISOString(),
+  dateModified: (post.updateDate ?? post.publishDate).toISOString(),
+  ...(post.author ? { author: { '@type': 'Person', name: post.author } } : {}),
+  publisher: { '@type': 'Organization', name: SITE.name },
+  ...(typeof imageUrl === 'string' ? { image: imageUrl } : {}), mainEntityOfPage: String(url), inLanguage: 'bg',
+};
+
 ---
 <Layout metadata={{ title: translation.title, description: translation.excerpt, openGraph: { type: 'article', ...(post.image && typeof post.image === 'string' ? { images: [{ url: post.image }] } : {}) } }}>
+  <StructuredData slot="head" schema={articleSchema} />
+  <Breadcrumbs bar hideCurrent items={[{ text: 'Начало', href: '/bg' }, { text: 'Новини', href: '/bg/blog' }, { text: translation.title }]} />
   <SinglePost post={{ ...post, title: translation.title, excerpt: translation.excerpt, image: image || undefined }} {url}>
     <Fragment set:html={content} />
   </SinglePost>

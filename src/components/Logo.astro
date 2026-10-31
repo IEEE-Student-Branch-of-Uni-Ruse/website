@@ -1,4 +1,6 @@
 ---
 import { SITE } from '~/utils/config';
+import { Picture } from 'astro:assets';
+import logo from '~/assets/images/public/brand/ieee-uni-ruse.png';
 ---
-<img src="/images/brand/ieee-uni-ruse.png" width="1200" height="166" alt={SITE.name} class="w-48 sm:w-64 h-auto dark:brightness-0 dark:invert" />
+<Picture src={logo} formats={['avif', 'webp']} fallbackFormat="webp" widths={[320, 640]} sizes="(max-width: 640px) 192px, 256px" width="1200" height="166" alt={SITE.name} class="w-48 sm:w-64 h-auto dark:brightness-0 dark:invert" />

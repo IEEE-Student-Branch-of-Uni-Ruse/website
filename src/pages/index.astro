@@ -2,12 +2,23 @@
 import Layout from '~/layouts/PageLayout.astro';
 import { Picture } from 'astro:assets';
 import communityImage from '~/assets/images/site/home-community.png';
+import renewableImage from '~/assets/images/public/live/benjamin-jopen-2SfssudtyIA-unsplash-scaled.jpg';
 import Note from '~/components/widgets/Note.astro';
 import { Icon } from 'astro-icon/components';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import home from '~/data/home.json';
-const bg = Astro.url.pathname.startsWith('/bg');
-const metadata = { title: home.title, ignoreTitleTemplate: true };
+import StructuredData from '~/components/common/StructuredData.astro';
+import logo from '~/assets/images/public/brand/ieee-uni-ruse.png';
+import { getImage } from 'astro:assets';
+import { SITE } from '~/utils/config';
+import siteData from '~/data/site.json';
+const bg = Astro.currentLocale === 'bg';
+const metadata = { title: home.title, ignoreTitleTemplate: true, ...(bg ? { description: 'Свържи се със студентския клон на IEEE в Русенския университет. Открий технологии, събития и възможности за развитие.' } : {}) };
+const optimizedLogo = await getImage({ src: logo, format: 'png' });
+const siteUrl = new URL('/', Astro.site).toString();
+const organization = { '@context': 'https://schema.org', '@type': 'Organization', name: SITE.name, url: siteUrl, logo: new URL(optimizedLogo.src, Astro.site).toString(), sameAs: siteData.contact.channels.filter(({ title }) => ['Facebook', 'LinkedIn', 'GitHub'].includes(title)).map(({ href }) => href) };
+const website = { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: siteUrl, inLanguage: ['en', 'bg'] };
 const text = (en: string, bulgarian: string) => bg ? bulgarian : en;
 const localizedHome = bg ? {
   ...home,
@@ -17,9 +28,10 @@ const localizedHome = bg ? {
   benefits: home.benefits.map((item, i) => ({ ...item, title: ['Свържи се с други професионалисти в технологиите', 'Изгради професионален профил, който показва твоите постижения', 'Участвай в дискусии по технически теми', 'Създай общност за споделяне и съвместни проекти', 'Откривай IEEE събития и инициативи по света', 'Бъди отворен към нови идеи и приноси'][i] })),
   blogTitle: 'Още новини от нашия блог',
 } : home;
-const local = (href: string) => bg ? `/bg${href === '/' ? '' : href}` : href;
+const local = (href: string) => getRelativeLocaleUrl(bg ? 'bg' : 'en', href === '/' ? undefined : href);
 ---
 <Layout metadata={metadata}>
+  <StructuredData slot="head" schema={[organization, website]} />
   <section class="hero max-w-7xl mx-auto px-6 pt-12 pb-16 md:pt-20 md:pb-24">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <div>
@@ -34,7 +46,7 @@ const local = (href: string) => bg ? `/bg${href === '/' ? '' : href}` : href;
       </div>
       <div class="relative">
         <div class="absolute -inset-3 bg-blue-100 dark:bg-blue-950 rounded-[2.5rem] rotate-2" aria-hidden="true"></div>
-        <Picture src={communityImage} formats={['avif', 'webp']} fallbackFormat="webp" widths={[640, 960, 1536]} sizes="(max-width: 1023px) 100vw, 50vw" loading="eager" fetchpriority="high" alt="Illustration of students collaborating on technology projects" width="1536" height="1024" class="relative w-full aspect-[4/3] object-cover rounded-[2rem]" />
+        <Picture src={communityImage} formats={['avif', 'webp']} fallbackFormat="webp" widths={[640, 960, 1536]} sizes="(max-width: 1023px) 100vw, 50vw" loading="eager" fetchpriority="high" alt={text('Illustration of students collaborating on technology projects', 'Илюстрация на студенти, които работят заедно по технологични проекти')} width="1536" height="1024" class="relative w-full aspect-[4/3] object-cover rounded-[2rem]" />
         <div class="absolute -bottom-5 left-5 sm:left-8 rounded-2xl bg-white dark:bg-slate-900 px-5 py-3 shadow-lg text-sm font-semibold">Made for curious minds <span aria-hidden="true">✦</span></div>
       </div>
     </div>
@@ -78,13 +90,13 @@ const local = (href: string) => bg ? `/bg${href === '/' ? '' : href}` : href;
       <div class="flex flex-wrap justify-between items-end gap-5"><div><p class="text-primary text-sm font-bold uppercase tracking-widest">{text('Go deeper', 'Научи повече')}</p><h2 class="mt-4 text-3xl md:text-4xl font-bold text-heading tracking-tight">{text('Find your field of interest.', 'Открий своята област.')}</h2></div><p class="text-muted max-w-md">{text('Discover the IEEE societies represented on our website and the fields that bring their communities together.', 'Разгледай обществата на IEEE и областите, които обединяват техните общности.')}</p></div>
       <div class="grid md:grid-cols-2 gap-4 mt-9">
         <a href={local("/chapters/computer-society")} class="group rounded-2xl bg-sky-50 dark:bg-slate-800 p-7 hover:bg-blue-100 dark:hover:bg-slate-700 transition"><span class="text-primary text-sm font-bold uppercase tracking-wider">{text('Computing', 'Компютърни науки')}</span><h3 class="mt-4 text-2xl font-bold">Computer Society <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">↗</span></h3><p class="mt-3 text-muted">{text('A global community for computer science and engineering professionals.', 'Световна общност от специалисти по компютърни науки и инженерство.')}</p></a>
-        <a href="/chapters/electronics-packaging-society" class="group rounded-2xl bg-indigo-50 dark:bg-slate-800 p-7 hover:bg-indigo-100 dark:hover:bg-slate-700 transition"><span class="text-primary text-sm font-bold uppercase tracking-wider">{text('Electronics', 'Електроника')}</span><h3 class="mt-4 text-2xl font-bold">Electronics Packaging Society <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">↗</span></h3><p class="mt-3 text-muted">{text('Explore the people and technologies behind electronic systems and microsystems.', 'Открий хората и технологиите зад електронните системи и микросистемите.')}</p></a>
+        <a href={local("/chapters/electronics-packaging-society")} class="group rounded-2xl bg-indigo-50 dark:bg-slate-800 p-7 hover:bg-indigo-100 dark:hover:bg-slate-700 transition"><span class="text-primary text-sm font-bold uppercase tracking-wider">{text('Electronics', 'Електроника')}</span><h3 class="mt-4 text-2xl font-bold">Electronics Packaging Society <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">↗</span></h3><p class="mt-3 text-muted">{text('Explore the people and technologies behind electronic systems and microsystems.', 'Открий хората и технологиите зад електронните системи и микросистемите.')}</p></a>
       </div>
     </div>
   </section>
   <section class="max-w-7xl mx-auto px-6 py-12">
     <div class="rounded-[2rem] bg-[#092b50] text-white overflow-hidden grid md:grid-cols-2">
-      <img src="/images/live/benjamin-jopen-2SfssudtyIA-unsplash-scaled.jpg" alt="Renewable energy landscape" class="w-full h-64 md:h-full object-cover" loading="lazy" />
+      <Picture src={renewableImage} formats={['avif', 'webp']} fallbackFormat="webp" widths={[480, 960, 1600]} sizes="(max-width: 767px) 100vw, 50vw" alt={text('Renewable energy landscape', 'Пейзаж с възобновяеми енергийни източници')} class="w-full h-64 md:h-full object-cover" loading="lazy" />
       <div class="p-8 md:p-12 lg:p-16"><p class="text-blue-200 text-sm font-bold tracking-widest uppercase">Erasmus+ · BIP 2026</p><h2 class="text-3xl md:text-4xl font-bold tracking-tight mt-5">{text('Big data, AI and a more sustainable future.', 'Големи данни, изкуствен интелект и по-устойчиво бъдеще.')}</h2><p class="mt-5 text-blue-100 leading-relaxed">{text('Explore our programme on digital technologies for renewable energy systems, hosted by the University of Ruse.', 'Разгледай програмата за цифрови технологии и възобновяема енергия на Русенския университет.')}</p><a class="inline-block mt-8 font-semibold text-white underline underline-offset-8" href={local("/bip-big-data-and-ai-for-res")}>{text('Explore the programme →', 'Към програмата →')}</a></div>
     </div>
   </section>

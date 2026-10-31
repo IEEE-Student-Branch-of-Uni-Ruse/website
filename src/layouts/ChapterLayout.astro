@@ -3,21 +3,23 @@ import Layout from '~/layouts/PageLayout.astro';
 export interface Props { frontmatter: { title: string; subtitle: string; theme: string; }; }
 const { frontmatter } = Astro.props;
 const computing = frontmatter.theme === 'computing';
+const bg = Astro.currentLocale === 'bg';
+const t = (en: string, bulgarian: string) => bg ? bulgarian : en;
 ---
 <Layout metadata={{ title: frontmatter.title, description: frontmatter.subtitle }}>
   <section class="max-w-7xl mx-auto px-6 pt-14 pb-16 md:pt-24 md:pb-24">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <div>
-        <a href="/about" class="text-sm font-semibold text-primary hover:underline">← Our community</a>
-        <p class="text-xs font-bold tracking-[.18em] text-primary uppercase mt-8 mb-5">IEEE · Explore your interests</p>
+        <a href={bg ? '/bg/about' : '/about'} class="text-sm font-semibold text-primary hover:underline">{t('← Our community', '← Нашата общност')}</a>
+        <p class="text-xs font-bold tracking-[.18em] text-primary uppercase mt-8 mb-5">{t('IEEE · Explore your interests', 'IEEE · Открий интересите си')}</p>
         <h1 class="text-5xl sm:text-6xl font-bold tracking-tight leading-[1.06] text-heading">{frontmatter.title}</h1>
         <p class="mt-7 text-lg sm:text-xl leading-relaxed text-muted max-w-xl">{frontmatter.subtitle}</p>
-        <div class="flex flex-wrap gap-3 mt-9"><a href="#explore" class="rounded-full bg-primary px-7 py-4 font-semibold text-white hover:bg-secondary transition">Explore the field ↓</a><a href="/contact" class="rounded-full border border-current px-7 py-4 font-semibold hover:text-primary transition">Connect with us ↗</a></div>
+        <div class="flex flex-wrap gap-3 mt-9"><a href="#explore" class="rounded-full bg-primary px-7 py-4 font-semibold text-white hover:bg-secondary transition">{t('Explore the field ↓', 'Разгледай областта ↓')}</a><a href={bg ? '/bg/contact' : '/contact'} class="rounded-full border border-current px-7 py-4 font-semibold hover:text-primary transition">{t('Connect with us ↗', 'Свържи се с нас ↗')}</a></div>
       </div>
       <figure class="technical-figure">
         {computing ? (
           <svg viewBox="0 0 560 370" role="img" aria-labelledby="diagram-title diagram-desc">
-            <title id="diagram-title">A simplified computer system</title><desc id="diagram-desc">Processor connected to memory and input and output devices through a system bus.</desc>
+            <title id="diagram-title">{t('A simplified computer system', 'Опростена компютърна система')}</title><desc id="diagram-desc">{t('Processor connected to memory and input and output devices through a system bus.', 'Процесор, свързан с паметта и входно-изходните устройства чрез системна шина.')}</desc>
             <text x="36" y="42" class="diagram-kicker">COMPUTER SYSTEMS / CONCEPTUAL DIAGRAM</text>
             <rect x="42" y="94" width="135" height="75" rx="3"/><text x="109" y="127" text-anchor="middle" class="diagram-label">PROCESSOR</text><text x="109" y="149" text-anchor="middle" class="diagram-small">compute &amp; control</text>
             <rect x="215" y="94" width="130" height="75" rx="3"/><text x="280" y="127" text-anchor="middle" class="diagram-label">MEMORY</text><text x="280" y="149" text-anchor="middle" class="diagram-small">data &amp; instructions</text>
@@ -27,7 +29,7 @@ const computing = frontmatter.theme === 'computing';
           </svg>
         ) : (
           <svg viewBox="0 0 560 370" role="img" aria-labelledby="diagram-title diagram-desc">
-            <title id="diagram-title">A simplified electronic package cross-section</title><desc id="diagram-desc">A semiconductor die connected to a package substrate and a printed circuit board, with heat flowing upward.</desc>
+            <title id="diagram-title">{t('A simplified electronic package cross-section', 'Опростено сечение на електронен корпус')}</title><desc id="diagram-desc">{t('A semiconductor die connected to a package substrate and a printed circuit board, with heat flowing upward.', 'Полупроводников кристал, свързан с подложка и печатна платка, с отвеждане на топлината нагоре.')}</desc>
             <text x="36" y="42" class="diagram-kicker">ELECTRONICS PACKAGING / CROSS-SECTION</text>
             <path d="M183 258h194v-22H183z" class="layer-board"/><path d="M214 227h132v-20H214z" class="layer-substrate"/><path d="M246 191h68v-20h-68z" class="layer-die"/>
             <path d="M225 227v9 M245 227v9 M265 227v9 M285 227v9 M305 227v9 M325 227v9 M253 191v16 M268 191v16 M283 191v16 M298 191v16"/>
@@ -36,14 +38,14 @@ const computing = frontmatter.theme === 'computing';
             <path d="M183 282h194 M183 275v14 M377 275v14"/><text x="280" y="307" text-anchor="middle" class="diagram-small">INTERCONNECTION &amp; SUPPORT</text>
           </svg>
         )}
-        <figcaption>{computing ? 'Simplified system architecture · conceptual, not to scale' : 'Simplified package cross-section · conceptual, not to scale'}</figcaption>
+        <figcaption>{computing ? t('Simplified system architecture · conceptual, not to scale', 'Опростена системна архитектура · концептуална схема, не е в мащаб') : t('Simplified package cross-section · conceptual, not to scale', 'Опростено сечение на електронен корпус · концептуална схема, не е в мащаб')}</figcaption>
       </figure>
     </div>
   </section>
   <section id="explore" class="max-w-5xl mx-auto px-6 pb-20 scroll-mt-24">
     <div class="chapter-content prose prose-lg max-w-none dark:prose-invert prose-headings:text-heading prose-a:text-primary prose-a:underline-offset-4"><slot /></div>
   </section>
-  <section class="max-w-7xl mx-auto px-6 pb-24"><div class="rounded-3xl bg-blue-50 dark:bg-slate-800 px-8 py-12 md:p-16 flex flex-wrap items-center justify-between gap-8"><div><p class="text-sm uppercase tracking-widest text-primary font-bold">Let's connect</p><h2 class="mt-3 text-3xl md:text-4xl font-bold text-heading">Interested in learning more?</h2><p class="mt-4 text-muted max-w-xl">Get in touch with our student branch to discuss your interests and find out how to get involved.</p></div><a href="/contact" class="rounded-full bg-primary px-7 py-4 text-white font-semibold hover:bg-secondary transition">Find our community →</a></div></section>
+  <section class="max-w-7xl mx-auto px-6 pb-24"><div class="rounded-3xl bg-blue-50 dark:bg-slate-800 px-8 py-12 md:p-16 flex flex-wrap items-center justify-between gap-8"><div><p class="text-sm uppercase tracking-widest text-primary font-bold">{t("Let's connect", 'Нека се свържем')}</p><h2 class="mt-3 text-3xl md:text-4xl font-bold text-heading">{t('Interested in learning more?', 'Искаш да научиш повече?')}</h2><p class="mt-4 text-muted max-w-xl">{t('Get in touch with our student branch to discuss your interests and find out how to get involved.', 'Свържи се със студентския клон, сподели интересите си и научи как да се включиш.')}</p></div><a href={bg ? '/bg/contact' : '/contact'} class="rounded-full bg-primary px-7 py-4 text-white font-semibold hover:bg-secondary transition">{t('Find our community →', 'Открий общността →')}</a></div></section>
 </Layout>
 <style>
  .technical-figure{margin:0;padding:1.5rem;border:1px solid #cbdbe5;border-radius:1rem;background:#f5f9fb;color:#123a55}

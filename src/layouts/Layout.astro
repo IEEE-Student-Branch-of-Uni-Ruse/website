@@ -29,7 +29,7 @@ const locale = localePaths(Astro.url.pathname);
 ---
 
 <!doctype html>
-<html lang={locale.isBg ? 'bg' : language} dir={textDirection} class="2xl:text-[20px]">
+<html lang={Astro.currentLocale === 'bg' ? 'bg' : language} dir={textDirection} class="2xl:text-[20px]">
   <head>
     <CommonMeta />
     {locale.bg && <>

@@ -14,7 +14,7 @@ import {
   isBlogListRouteEnabled,
   isBlogCategoryRouteEnabled,
 } from '~/utils/blog';
-import { findImage } from '~/utils/images';
+import { findImage, adaptOpenGraphImages } from '~/utils/images';
 import { truncateAtWord } from '~/utils/utils';
 import type { MetaData } from '~/types';
 import RelatedPosts from '~/components/blog/RelatedPosts.astro';
@@ -61,7 +61,9 @@ const metadata = merge(
   { ...(post?.metadata ? { ...post.metadata, canonical: post.metadata?.canonical || url } : {}) }
 ) as MetaData;
 
-const imageUrl = typeof image === 'string' ? image : image?.src;
+const schemaImages = post.image && typeof post.image === 'string' ? await adaptOpenGraphImages({ images: [{ url: post.image }] }, Astro.site) : undefined;
+const imageUrl = schemaImages?.images?.[0]?.url;
+const schemaImageUrl = typeof imageUrl === 'string' ? imageUrl : undefined;
 
 // Article structured data. The breadcrumb trail below carries its own BreadcrumbList.
 const articleSchema = {
@@ -73,7 +75,7 @@ const articleSchema = {
   dateModified: (post.updateDate ?? post.publishDate).toISOString(),
   ...(post.author ? { author: { '@type': 'Person', name: post.author } } : {}),
   publisher: { '@type': 'Organization', name: SITE?.name },
-  ...(imageUrl ? { image: imageUrl.startsWith('http') ? imageUrl : new URL(imageUrl, Astro.site).toString() } : {}),
+  ...(schemaImageUrl ? { image: schemaImageUrl } : {}),
   ...(post.category ? { articleSection: post.category.title } : {}),
   ...(post.tags?.length ? { keywords: post.tags.map((tag) => tag.title).join(', ') } : {}),
   mainEntityOfPage: String(url),

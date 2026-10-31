@@ -1,11 +1,12 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import Image from '~/components/common/Image.astro';
 import { createMarkdownProcessor } from '@astrojs/markdown-remark';
 import englishSource from '~/data/bip.md?raw';
 import bulgarianSource from '~/data/bip.bg.md?raw';
 import { frontmatter as bgFrontmatter } from '~/data/bip.bg.md';
 import { frontmatter as enFrontmatter } from '~/data/bip.md';
-const bg = Astro.url.pathname.startsWith('/bg/');
+const bg = Astro.currentLocale === 'bg';
 const source = bg ? bulgarianSource : englishSource;
 const frontmatter = bg ? bgFrontmatter : enFrontmatter;
 
@@ -33,7 +34,7 @@ const [hero, objectives, outcomes, organizer, partners, ...remaining] = sections
 <Layout metadata={{ title: frontmatter.title, description: frontmatter.description }}>
   <article class="bip">
     <section class="bip-hero">
-      {firstImage && <img class="hero-photo" src={firstImage[2]} alt="Renewable energy landscape" width="1707" height="2560" fetchpriority="high" />}
+      {firstImage && <Image class="hero-photo" src={firstImage[2]} alt="Renewable energy landscape" width={1707} height={2560} widths={[480, 960, 1600]} sizes="(max-width: 767px) 100vw, 55vw" fetchpriority="high" />}
       <div class="hero-copy">
         <h1>{hero.title}</h1>
         <div class="copy" set:html={hero.intro} />
@@ -45,7 +46,7 @@ const [hero, objectives, outcomes, organizer, partners, ...remaining] = sections
         <h2>{objectives.title}</h2>
         <div class="copy" set:html={objectives.intro} />
       </div>
-      {objectives.picture && <img class="square-photo" src={objectives.picture.src} alt="Renewable energy installation" width="1707" height="2560" loading="lazy" />}
+      {objectives.picture && <Image class="square-photo" src={objectives.picture.src} alt="Renewable energy installation" width={1707} height={2560} widths={[480, 960, 1600]} sizes="(max-width: 767px) 100vw, 50vw" loading="lazy" />}
     </section>
 
     <section class="section ruled">

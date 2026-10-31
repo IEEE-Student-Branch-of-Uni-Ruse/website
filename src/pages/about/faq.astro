@@ -2,14 +2,23 @@
 import Layout from '~/layouts/PageLayout.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import faq from '~/data/faq.json';
+const bg = Astro.currentLocale === 'bg';
+const translated = [
+  ['Какво е студентски клон на IEEE?', 'Студентският клон е организация, ръководена от студенти и част от IEEE. Той предоставя ресурси, подкрепа и възможности на студенти с интерес към електротехника, компютърно инженерство, компютърни науки и сродни области.'],
+  ['Как мога да стана член?', 'Посети сайта на IEEE и следвай стъпките за студентско членство. След това избери нашия клон като своя принадлежност.'],
+  ['Какви са предимствата на членството?', 'Членството предоставя възможности за създаване на контакти, професионално развитие, достъп до технически публикации и отстъпки за конференции и обучения.'],
+  ['Какви събития и дейности организира клонът?', 'Организираме гост-лекции, обучения, хакатони, състезания и социални събития, чрез които участниците учат, създават контакти и развиват уменията си.'],
+  ['Как мога да стана доброволец?', 'Свържи се с нас чрез Discord общността и ще ти предоставим информация за възможностите.'],
+  ['Как мога да допринасям за IEEE като студент и след това?', 'Можеш да участваш като доброволец, да се включиш в технически общества и да изпращаш изследвания и статии за публикациите на IEEE. След завършване можеш да продължиш като професионален член, ментор или участник в комитети и публикации.'],
+].map(([title, description]) => ({ title, description }));
 ---
 
-<Layout metadata={{ title: faq.title, description: "Find answers about IEEE Student Branch membership, activities and volunteering at the University of Ruse." }}>
+<Layout metadata={{ title: bg ? 'Често задавани въпроси' : faq.title, description: bg ? 'Отговори за членството, дейностите и доброволчеството в студентския клон на IEEE към Русенския университет.' : 'Find answers about IEEE Student Branch membership, activities and volunteering at the University of Ruse.' }}>
   <FAQs
-    title={faq.heading}
-    subtitle={faq.subtitle}
-    tagline={faq.tagline}
+    title={bg ? 'Често задавани въпроси' : faq.heading}
+    subtitle={bg ? 'Ако имаш друг въпрос, свържи се с нас.' : faq.subtitle}
+    tagline={bg ? 'Въпроси и отговори' : faq.tagline}
     classes={{ container: 'max-w-6xl' }}
-    items={faq.items}
+    items={bg ? translated : faq.items}
   />
 </Layout>

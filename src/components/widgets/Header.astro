@@ -90,32 +90,31 @@ const persistKey = `header-${Array.from(
       ]}
     >
       <div class:list={[{ 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }, 'flex justify-between']}>
-        <a class="flex items-center" href={locale.isBg ? "/bg" : getHomePermalink()}>
+        <a class="flex items-center" href={Astro.currentLocale === 'bg' ? "/bg" : getHomePermalink()}>
           <Logo />
         </a>
         <div class="flex items-center lg:hidden">
-          <a href={locale.isBg ? locale.english : (locale.bg || '/bg')} hreflang={locale.isBg ? 'en' : 'bg'} class="px-3 py-2 text-sm font-bold language-switch">{locale.isBg ? 'EN' : 'BG'}</a>
-          <ToggleMenu />
+          <a href={Astro.currentLocale === 'bg' ? locale.english : (locale.bg || '/bg')} hreflang={Astro.currentLocale === 'bg' ? 'en' : 'bg'} aria-label={locale.isBg ? 'Switch to English' : 'Превключи на български'} lang={locale.isBg ? 'en' : 'bg'} class="px-3 py-2 text-sm font-bold language-switch">{Astro.currentLocale === 'bg' ? 'EN' : 'BG'}</a>
+          <ToggleMenu label={locale.isBg ? 'Отвори или затвори менюто' : 'Open or close menu'} />
         </div>
       </div>
       <nav
         id="primary-navigation"
         class="items-center w-full lg:w-auto hidden lg:flex lg:mx-5 text-default overflow-y-auto overflow-x-hidden lg:overflow-visible lg:justify-self-center"
-        aria-label="Main navigation"
+        aria-label={locale.isBg ? 'Основна навигация' : 'Main navigation'}
       >
         <ul class="flex flex-col lg:flex-row lg:self-center w-full lg:w-auto text-xl lg:text-[0.9375rem] tracking-[0.01rem] font-medium lg:justify-center">
           {links.map(({ text, href, links }) => (
             <li class={links?.length ? 'dropdown' : ''}>
               {links?.length ? (
-                <>
-                  <button
-                    type="button"
-                    class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap"
+                <details>
+                  <summary
+                    class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap cursor-pointer"
                   >
                     {text}{' '}
                     <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden lg:inline" />
-                  </button>
-                  <ul class="dropdown-menu lg:backdrop-blur-md dark:lg:bg-slate-900 dark:lg:border dark:lg:border-slate-700/50 rounded lg:absolute pl-4 lg:pl-0 lg:hidden font-medium lg:bg-white/90 lg:min-w-[200px] drop-shadow-xl">
+                  </summary>
+                  <ul class="dropdown-menu lg:backdrop-blur-md dark:lg:bg-slate-900 dark:lg:border dark:lg:border-slate-700/50 rounded lg:absolute pl-4 lg:pl-0 font-medium lg:bg-white lg:min-w-[200px] drop-shadow-xl">
                     {links.map(({ text: text2, href: href2 }) => (
                       <li>
                         <a
@@ -130,7 +129,7 @@ const persistKey = `header-${Array.from(
                       </li>
                     ))}
                   </ul>
-                </>
+                </details>
               ) : (
                 <a
                   class:list={[
@@ -154,8 +153,8 @@ const persistKey = `header-${Array.from(
       >
         <div class="items-center flex justify-between w-full lg:w-auto">
           <div class="flex">
-            <a href={locale.isBg ? locale.english : (locale.bg || '/bg')} hreflang={locale.isBg ? 'en' : 'bg'} class="px-3 py-2 text-sm font-bold language-switch">{locale.isBg ? 'EN' : 'BG'}</a>
-            {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 lg:w-5 lg:h-5 lg:inline-block" />}
+            <a href={Astro.currentLocale === 'bg' ? locale.english : (locale.bg || '/bg')} hreflang={Astro.currentLocale === 'bg' ? 'en' : 'bg'} aria-label={locale.isBg ? 'Switch to English' : 'Превключи на български'} lang={locale.isBg ? 'en' : 'bg'} class="px-3 py-2 text-sm font-bold language-switch">{Astro.currentLocale === 'bg' ? 'EN' : 'BG'}</a>
+            {showToggleTheme && <ToggleTheme label={locale.isBg ? 'Смени светлата или тъмната тема' : 'Toggle light or dark theme'} iconClass="w-6 h-6 lg:w-5 lg:h-5 lg:inline-block" />}
             {showRssFeed && (
               <a
                 class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
@@ -183,13 +182,14 @@ const persistKey = `header-${Array.from(
 
 <style>
   aw-header { display: contents; }
+  summary::-webkit-details-marker { display: none; }
   @media (max-width: 1023px) {
     #header.expanded { height: 100dvh; background: var(--aw-color-bg-page); }
     #header.expanded nav { position: fixed; top: 5rem; left: 0; right: 0; bottom: 5rem !important; padding: 0 1.25rem 2rem; overflow-y: auto; align-items: flex-start; }
     #header.expanded nav > ul { padding: 0.5rem 0; gap: 0.25rem; }
     #header.expanded nav > ul > li { border-bottom: 1px solid color-mix(in srgb, currentColor 10%, transparent); }
-    #header.expanded nav > ul > li > a, #header.expanded nav > ul > li > button { padding: 0.9rem 0.75rem; font-size: 1.125rem; font-weight: 700; }
-    #header.expanded .dropdown-menu { display: block; position: static; padding: 0 0 0.75rem 0.75rem; filter: none; }
+    #header.expanded nav > ul > li > a, #header.expanded nav > ul > li > details > summary { padding: 0.9rem 0.75rem; font-size: 1.125rem; font-weight: 700; }
+    #header.expanded .dropdown-menu { position: static; padding: 0 0 0.75rem 0.75rem; filter: none; }
     #header.expanded .dropdown-menu a { padding: 0.5rem 1rem; font-size: 0.95rem; color: var(--aw-color-text-muted); white-space: normal; }
     #header.expanded > div:last-child > div:last-child { background: var(--aw-color-bg-page); border-top: 1px solid color-mix(in srgb, currentColor 10%, transparent); }
   }
@@ -225,6 +225,7 @@ const persistKey = `header-${Array.from(
         header?.classList.remove('h-screen', 'expanded', 'bg-page');
         nav?.classList.add('hidden');
         lastChild?.classList.add('hidden');
+        this.querySelectorAll<HTMLDetailsElement>('nav details[open]').forEach((details) => { details.open = false; });
       };
 
       // Mobile menu toggle.
@@ -244,10 +245,10 @@ const persistKey = `header-${Array.from(
         if ((event.target as HTMLElement).closest('a')) closeMenu();
       });
       this.onEscape = (event: KeyboardEvent) => {
-        if (event.key === 'Escape' && toggle?.classList.contains('expanded')) {
-          closeMenu();
-          toggle.focus();
-        }
+        if (event.key !== 'Escape') return;
+        const openDetails = this.querySelector<HTMLDetailsElement>('nav details[open]');
+        if (openDetails) { openDetails.open = false; openDetails.querySelector<HTMLElement>('summary')?.focus(); }
+        else if (toggle?.classList.contains('expanded')) { closeMenu(); toggle.focus(); }
       };
       document.addEventListener('keydown', this.onEscape);
 
@@ -299,6 +300,7 @@ const persistKey = `header-${Array.from(
     // would stay open on the next page. Drop the focus so the CSS closes it.
     private closeOpenDropdown() {
       const active = document.activeElement as HTMLElement | null;
+      this.querySelectorAll<HTMLDetailsElement>('nav details[open]').forEach((details) => { details.open = false; });
       if (active && this.contains(active) && active.closest('.dropdown')) active.blur();
     }
 
@@ -311,7 +313,9 @@ const persistKey = `header-${Array.from(
         // would light up everywhere; only path links can be "the current page".
         const isPathLink =
           url.origin === window.location.origin && !url.hash && !a.getAttribute('href')?.startsWith('#');
-        a.classList.toggle('aw-link-active', isPathLink && norm(url.pathname) === current);
+        const isCurrent = isPathLink && norm(url.pathname) === current;
+        a.classList.toggle('aw-link-active', isCurrent);
+        if (isCurrent) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
       });
     }
   }

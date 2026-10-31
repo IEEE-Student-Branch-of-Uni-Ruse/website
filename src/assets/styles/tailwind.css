@@ -78,12 +78,6 @@
   padding: 0 5px;
 }
 
-.dropdown:focus .dropdown-menu,
-.dropdown:focus-within .dropdown-menu,
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
 [astro-icon].icon-light > * {
   stroke-width: 1.2;
 }
@@ -136,4 +130,10 @@
 
 @theme {
   --color-ieeecolor: #0a70a3;
+}
+
+/* Keep keyboard focus visible and respect reduced motion across the site. */
+:focus-visible { outline: 3px solid #0072b1; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }

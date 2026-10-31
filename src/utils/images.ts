@@ -29,6 +29,15 @@ export const findImage = async (
   imagePath?: string | ImageMetadata | null
 ): Promise<string | ImageMetadata | undefined | null> => {
   if (typeof imagePath !== 'string') return imagePath;
+  // Existing CMS and external URLs remain valid. Known public photographs are
+  // mirrored in src so Astro can optimize them without changing those URLs.
+  if (imagePath.startsWith('/images/') || imagePath === '/no-avatar.jpg') {
+    const localKey = imagePath === '/no-avatar.jpg'
+      ? '/src/assets/images/public/no-avatar.jpg'
+      : imagePath.replace(/^\/images\//, '/src/assets/images/public/');
+    const loader = loadLocalImages()[localKey];
+    return loader ? ((await loader()) as { default: ImageMetadata }).default : imagePath;
+  }
   if (imagePath.startsWith('http://') || imagePath.startsWith('https://') || imagePath.startsWith('/'))
     return imagePath;
   if (!imagePath.startsWith('~/assets/images')) return imagePath;

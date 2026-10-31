@@ -16,4 +16,4 @@ The programme included **Electroniad on 25 June**, the **first Balkan Summit of 
 
 ## Programme gallery
 
-![Innovative Week of Technology programme detail](/images/news/innovative-week-2024-2.jpg)
+![Innovative Week of Technology programme detail](../../assets/images/public/news/innovative-week-2024-2.jpg)
