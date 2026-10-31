@@ -4,31 +4,48 @@ import Layout from '~/layouts/PageLayout.astro';
 import events from '~/data/events.json';
 ---
 
-<Layout metadata={{ title: events.title }}>
-  <section class="relative w-full py-12 overflow-hidden md:py-20 xl:pt-32 xl:pb-40">
-    <div class="container relative flex flex-col justify-between h-full max-w-6xl px-10 mx-auto xl:px-0">
-      <h1 class="mb-1 text-3xl font-extrabold leading-tight">{events.title}</h1>
-      <p class="mb-12 text-lg text-muted">{events.subtitle}</p>
-      <div class="flex w-full h-full gap-10">
-        <div class="w-full lg:w-2/3">
-          {events.items.map((event, index) => (
-            <div class="relative mb-10 sm:mr-10">
-              <span class:list={['absolute inset-0 mt-1 ml-1 rounded-lg', index % 2 ? 'bg-blue-400' : 'bg-indigo-500']} />
-              <article class:list={['relative h-full p-5 bg-page border-2 rounded-lg', index % 2 ? 'border-blue-400' : 'border-indigo-500']}>
-                <div class="flex items-center -mt-1">
-                  <Icon name={event.icon} class:list={['w-8 h-8', index % 2 ? 'text-blue-400' : 'text-indigo-500']} />
-                  <h2 class="my-2 ml-3 text-lg font-bold">{event.title}</h2>
-                </div>
-                <p class:list={['mt-3 mb-1 text-xs font-medium uppercase', index % 2 ? 'text-blue-400' : 'text-indigo-500']}>{events.dateLabel} {event.date}</p>
-                <p class="mb-2 text-muted">{event.description}</p>
-              </article>
-            </div>
-          ))}
+<Layout metadata={{ title: events.title, description: 'Explore activities and programmes from the IEEE Student Branch of the University of Ruse.' }}>
+  <section class="max-w-7xl mx-auto px-6 pt-14 pb-16 md:pt-24 md:pb-24">
+    <div class="grid lg:grid-cols-[1fr_0.9fr] gap-12 lg:gap-20 items-center">
+      <div>
+        <p class="text-xs font-bold tracking-[.18em] text-primary uppercase mb-6">Meet · Learn · Create</p>
+        <h1 class="text-5xl sm:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.04] text-heading">Ideas are better<br /><span class="text-primary">together.</span></h1>
+        <p class="mt-7 text-lg sm:text-xl leading-relaxed text-muted max-w-xl">Discover opportunities to connect, explore technology and share ideas with our community at the University of Ruse.</p>
+        <div class="flex flex-wrap gap-3 mt-9">
+          <a href="#activities" class="rounded-full bg-primary px-7 py-4 font-semibold text-white hover:bg-secondary transition">Explore activities <span aria-hidden="true">↓</span></a>
+          <a href="/contact" class="rounded-full border border-current px-7 py-4 font-semibold hover:text-primary transition">Get in touch <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="hidden w-1/3 lg:block">
-          <img src={events.image.src} alt={events.image.alt} class="object-cover w-full rounded-2xl border-2 border-black" loading="lazy" />
-        </div>
+      </div>
+      <div class="relative">
+        <div class="absolute -inset-3 bg-blue-100 dark:bg-blue-950 rounded-[2.5rem] -rotate-2" aria-hidden="true"></div>
+        <img src="/images/home-community.png" alt="Illustration of students collaborating on a technology project" width="1536" height="1024" class="relative w-full aspect-[4/3] object-cover rounded-[2rem]" />
+        <div class="absolute -bottom-5 left-5 sm:left-8 rounded-2xl bg-white dark:bg-slate-900 px-5 py-3 shadow-lg text-sm font-semibold">Curiosity brings us together <span aria-hidden="true">✦</span></div>
       </div>
     </div>
   </section>
+
+  <section id="activities" class="max-w-7xl mx-auto px-6 py-16 md:py-24 scroll-mt-24">
+    <div class="flex flex-wrap justify-between gap-5 items-end">
+      <div><p class="text-primary text-sm font-bold uppercase tracking-widest">Explore together</p><h2 class="mt-4 text-3xl md:text-5xl font-bold tracking-tight text-heading">Find something that sparks an idea.</h2></div>
+      <p class="text-muted max-w-md leading-relaxed">Our activities are still being planned. Dates will be shared when confirmed.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 mt-10">
+      {events.items.map((event, index) => (
+        <article class:list={['rounded-[2rem] p-8 md:p-10 min-h-72 flex flex-col', index % 2 === 0 ? 'bg-blue-50 dark:bg-slate-800' : 'bg-indigo-50 dark:bg-slate-800']}>
+          <div class="flex items-start justify-between gap-4"><span class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white dark:bg-slate-900 text-primary"><Icon name={event.icon} class="w-7 h-7" /></span><span class="rounded-full border border-primary/20 px-3 py-1 text-xs font-semibold text-primary uppercase tracking-wide">{event.date.toLowerCase() === 'tbd' ? 'Date to be announced' : `${events.dateLabel} ${event.date}`}</span></div>
+          <h3 class="mt-8 text-2xl font-bold text-heading">{event.title}</h3>
+          <p class="mt-3 text-muted leading-relaxed max-w-lg">{event.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-6 pb-16 md:pb-24">
+    <div class="rounded-[2rem] bg-[#092b50] text-white overflow-hidden grid md:grid-cols-2">
+      <img src="/images/live/benjamin-jopen-2SfssudtyIA-unsplash-scaled.jpg" alt="Renewable energy landscape" class="w-full h-64 md:h-full object-cover" loading="lazy" />
+      <div class="p-8 md:p-12 lg:p-16"><p class="text-blue-200 text-sm font-bold tracking-widest uppercase">Featured programme · 2026</p><h2 class="text-3xl md:text-4xl font-bold tracking-tight mt-5">Big data, AI and renewable energy.</h2><p class="mt-5 text-blue-100 leading-relaxed">Explore the Erasmus+ blended intensive programme hosted by the University of Ruse, with online and onsite activities held in March and April 2026.</p><a class="inline-block mt-8 font-semibold text-white underline underline-offset-8" href="/bip-big-data-and-ai-for-res">Explore the programme →</a></div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-6 pb-24"><div class="rounded-3xl bg-blue-50 dark:bg-slate-800 px-8 py-12 md:p-16 flex flex-wrap items-center justify-between gap-8"><div><p class="text-sm uppercase tracking-widest text-primary font-bold">Stay connected</p><h2 class="mt-3 text-3xl md:text-4xl font-bold text-heading">Have an idea for an activity?</h2><p class="mt-4 text-muted max-w-xl">Questions, collaborations or something you'd love to explore together? Find us through our community channels.</p></div><a href="/contact" class="rounded-full bg-primary px-7 py-4 text-white font-semibold hover:bg-secondary transition">Find our community →</a></div></section>
 </Layout>

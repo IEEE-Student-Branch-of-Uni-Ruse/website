@@ -2,9 +2,6 @@
 
 @plugin "@tailwindcss/typography";
 
-/* shadcn/ui-compatible tokens derived from the --aw-* variables. */
-@import './shadcn.css';
-
 @variant dark (&:where(.dark, .dark *));
 
 @custom-variant intersect (&:not([no-intersect]));

@@ -1,18 +1,33 @@
 ---
-title: 'Electronics Packaging Society'
-layout: '~/layouts/MarkdownLayout.astro'
+title: Electronics Packaging Society
+subtitle: Discover the engineering that connects, protects and powers electronic systems.
+theme: electronics
+layout: '~/layouts/ChapterLayout.astro'
 ---
 
-<p>The IEEE Electronics Packaging Society is the leading international forum for scientists and engineers engaged in the research, design and development of revolutionary advances in microsystems packaging and manufacturing.</p>
+## Behind every electronic device
 
+The IEEE Electronics Packaging Society (EPS) connects scientists and engineers working on the design, integration and manufacturing of electronic components and microsystems. The society shares knowledge through conferences, technical publications, education and collaboration.
 
+Electronic packaging brings components together into systems that can deliver signals and power, manage heat and keep working reliably in their intended environment.
 
-<p>Its objectives are scientific, literary, and educational in character. The Society strives for the advancement of the theory and practice of electrical and electronics engineering and of the allied arts and sciences, and the maintenance of a high professional standing among its members and others and with special attention of such aims within the field of interest of the Society.</p>
+## Explore the field
 
+- **Integration and interconnection** — connecting components to work together as a system.
+- **Materials and manufacturing** — choosing materials and processes for electronic assemblies.
+- **Thermal design** — understanding and managing the heat produced by electronics.
+- **Reliability and testing** — studying how systems perform throughout their working life.
+- **Signal and power delivery** — designing the paths that carry information and energy.
+- **Microsystems and sensors** — packaging electronic and sensing components for real applications.
 
+## Learn, share and connect
 
-<p>The EPS promotes close cooperation and exchange of technical information among its members and others through technical conferences and workshops, peer-reviewed publications, and collaboration with other organizations.</p>
+EPS supports technical exchange through publications, conferences, workshops and local chapters. These resources are a starting point for students interested in the physical side of electronics, from component design to manufacturing and testing.
 
+Contact our branch to share your interests and find out about opportunities to connect with the community.
 
+### Explore official resources
 
-<p>It is one of 38 technical Societies within the&nbsp;<a href="http://www.ieee.org/about/index.html">IEEE</a>.</p>
+- [About the Electronics Packaging Society](https://eps.ieee.org/about/)
+- [EPS technology and technical committees](https://eps.ieee.org/technology/)
+- [Membership information](https://eps.ieee.org/membership/)

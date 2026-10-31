@@ -2,7 +2,7 @@
 
 ## What updates automatically
 
-`.github/dependabot.yml` requests dependency update PRs. `.github/workflows/check.yml` installs the exact pnpm lockfile, checks Astro types, builds every static route, and validates local links and preserved public routes. A green build is not a visual comparison: preview major framework/style changes before merging.
+`.github/dependabot.yml` groups npm and GitHub Actions version updates into one quarterly PR (including major updates). Security updates can still be opened separately and outside that schedule. `.github/workflows/check.yml` installs the exact pnpm lockfile, checks Astro types, builds every static route, and validates local links and preserved public routes. A green build is not a visual comparison: preview major framework/style changes before merging.
 
 The repository does not enable automatic merges or change hosting settings. Publishing still follows the repository's existing deployment integration.
 

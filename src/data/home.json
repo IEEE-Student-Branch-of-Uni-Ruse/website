@@ -56,5 +56,12 @@
       "title": "STUDENT BRANCHES & CHAPTERS",
       "amount": "3000+"
     }
-  ]
+  ],
+  "intro": {
+    "eyebrow": "IEEE STUDENT BRANCH \u00b7 UNIVERSITY OF RUSE",
+    "headline": "Curious minds. Real-world ideas.",
+    "description": "Meet people who love technology, explore new ideas, and turn what you learn into something that matters. Your IEEE community starts here.",
+    "primary": "Explore our community",
+    "secondary": "Meet the team"
+  }
 }

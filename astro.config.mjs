@@ -41,6 +41,7 @@ export default defineConfig({
     "/feed": "/rss.xml"
 },
   compressHTML: true,
+  prefetch: { prefetchAll: true, defaultStrategy: 'hover' },
 
   integrations: [
     sitemap(),
@@ -48,17 +49,6 @@ export default defineConfig({
     icon({
       include: {
         tabler: ['*'],
-        'flat-color-icons': [
-          'template',
-          'gallery',
-          'approval',
-          'document',
-          'advertising',
-          'currency-exchange',
-          'voice-presentation',
-          'business-contact',
-          'database',
-        ],
       },
     }),
 

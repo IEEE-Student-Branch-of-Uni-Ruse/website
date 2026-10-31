@@ -1,14 +1,31 @@
 ---
-title: 'Computer Society'
-layout: '~/layouts/MarkdownLayout.astro'
+title: Computer Society
+subtitle: Explore the people, ideas and technologies shaping the future of computing.
+theme: computing
+layout: '~/layouts/ChapterLayout.astro'
 ---
 
-<h3 class="wp-block-heading" id="about-the-ieee-computer-society">About the IEEE Computer Society</h3>
+## Computing connects us
 
+The IEEE Computer Society brings together engineers, researchers, students and industry professionals working across computing. Through publications, conferences, education and technical communities, it supports the exchange of knowledge and ideas at every stage of a career.
 
+## Explore the field
 
-<h4 class="wp-block-heading" id="empowering-computer-science-and-engineering-professionals-to-fuel-continued-advancement">Empowering Computer Science and Engineering Professionals to Fuel Continued Advancement</h4>
+- **Software engineering** — how we design, build and test reliable software.
+- **Artificial intelligence and data** — methods for learning from data and building intelligent systems.
+- **Computer systems** — the hardware, architecture and infrastructure behind computing.
+- **Security and privacy** — protecting systems, information and the people who use them.
+- **Human-centred technology** — making computing more useful and accessible to people.
+- **Emerging technologies** — exploring new ideas at the intersection of disciplines.
 
+## Learn, share and connect
 
+IEEE Computer Society offers ways to discover research, attend conferences, take part in technical communities and connect with other computing professionals. Its publications and learning resources can help students explore topics beyond their courses.
 
-<p>Engaging computer engineers, scientists, academia, and industry professionals from all areas of computing, the IEEE Computer Society (CS) sets the standard for the education and engagement that fuels continued global technological advancement. Through conferences, publications, and programs, and by bringing together computer science and engineering leaders at every phase of their career for dialogue, debate, and collaboration, IEEE CS empowers, shapes, and guides the future of not only its members, but the greater industry, enabling new opportunities to better serve our world.</p>
+Whether you're curious about your first project or already have an area of interest, contact our branch to meet others and learn about opportunities to participate.
+
+### Explore official resources
+
+- [About IEEE Computer Society](https://www.computer.org/about)
+- [Technical communities](https://www.computer.org/volunteering/boards-and-committees/technical-activities/about)
+- [Membership and student options](https://www.computer.org/membership/join)

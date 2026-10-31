@@ -55,10 +55,16 @@ The canonical site URL is set in `src/config.yaml`; preview deployments should n
 
 ## Maintenance
 
-GitHub Actions checks pull requests and builds the website. Dependabot is configured for weekly dependency updates and monthly GitHub Actions updates. Compatible dependency updates are grouped; major upgrades remain separate for review. These workflows become active when committed and pushed to GitHub with Actions/Dependabot available.
+GitHub Actions checks pull requests and builds the website. Dependabot groups npm dependencies and GitHub Actions into one version-update PR every quarter, including major updates. Security updates may still arrive separately and sooner. These workflows become active when committed and pushed to GitHub with Actions/Dependabot available.
 
 The design originated from [AstroWind](https://github.com/onwidget/astrowind), under MIT. It is a local, reduced set of components, not an installed AstroWind package. See [maintenance notes](docs/maintenance.md) for the distinction between dependency updates and upstream template changes.
 
 ## License
 
 MIT; see [LICENSE.md](LICENSE.md). Preserve the original template attribution when reusing its code.
+
+## Navigation and future languages
+
+Astro's `ClientRouter` in `src/layouts/Layout.astro` enables view transitions. Internal links are prefetched on hover or focus (`astro.config.mjs`); Astro respects slow connections and data-saving preferences. Test menu, theme and page scripts after changes to navigation.
+
+The website currently has English content only. `src/utils/language.ts` provides `getBrowserLanguage(supported, fallback)` for future translated pages, using `navigator.languages` in preference order and falling back from regional tags to their base language. It does not redirect, store a preference, or change the page's `lang` attribute. When translations are added, pass only languages with real routes and let an explicit visitor choice take precedence. Until then, HTML remains `lang="en"`. Run `pnpm test` for language resolution tests.

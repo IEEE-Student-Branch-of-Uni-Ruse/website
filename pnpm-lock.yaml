@@ -209,9 +209,6 @@ importers:
       '@eslint/js':
         specifier: ^10.0.1
         version: 10.0.1(eslint@10.14.0(jiti@2.7.0))
-      '@iconify-json/flat-color-icons':
-        specifier: ^1.2.3
-        version: 1.2.3
       '@iconify-json/tabler':
         specifier: ^1.2.43
         version: 1.2.43
@@ -595,9 +592,6 @@ packages:
   '@humanwhocodes/retry@0.4.3':
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
-
-  '@iconify-json/flat-color-icons@1.2.3':
-    resolution: {integrity: sha512-KcmJ7CY0TKFv5GuBjiS4/v++jEcNXna1jfY+yq014tnw/MN/jMI2oYpoMHGuIpYtUqDu7eove+WySnOYO8nS3w==}
 
   '@iconify-json/tabler@1.2.43':
     resolution: {integrity: sha512-EKhyOj6nASi25ZjuRpEhPL1fwiKVtg/e/VX6v6X3FPKpjG9og26ypW8ItnWYSTn6fdNuQe3VPeyuThWlP6QuWw==}
@@ -3360,10 +3354,6 @@ snapshots:
   '@humanwhocodes/module-importer@1.0.1': {}
 
   '@humanwhocodes/retry@0.4.3': {}
-
-  '@iconify-json/flat-color-icons@1.2.3':
-    dependencies:
-      '@iconify/types': 2.0.0
 
   '@iconify-json/tabler@1.2.43':
     dependencies:

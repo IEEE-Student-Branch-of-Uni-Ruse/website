@@ -1,17 +1,16 @@
 version: 2
+multi-ecosystem-groups:
+  quarterly-dependencies:
+    schedule:
+      interval: quarterly
+      time: '09:00'
+      timezone: Europe/Sofia
 updates:
   - package-ecosystem: npm
     directory: /
-    schedule:
-      interval: weekly
-    open-pull-requests-limit: 5
-    groups:
-      compatible-updates:
-        update-types: [minor, patch]
+    patterns: ['*']
+    multi-ecosystem-group: quarterly-dependencies
   - package-ecosystem: github-actions
     directory: /
-    schedule:
-      interval: monthly
-    groups:
-      actions:
-        patterns: ['*']
+    patterns: ['*']
+    multi-ecosystem-group: quarterly-dependencies
