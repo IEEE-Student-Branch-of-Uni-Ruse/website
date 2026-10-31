@@ -10,4 +10,4 @@ export interface Props {
 const { schema } = Astro.props;
 ---
 
-<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema).replaceAll('<', '\\u003c')} />

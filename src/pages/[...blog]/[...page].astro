@@ -36,11 +36,11 @@ const metadata = {
   title: `Blog${currentPage > 1 ? ` — Page ${currentPage}` : ''}`,
   description: 'News and activities from the IEEE Student Branch of University of Ruse.',
   robots: {
-    index: blogListRobots?.index && currentPage === 1,
+    index: blogListRobots?.index,
     follow: blogListRobots?.follow,
   },
   openGraph: {
-    type: 'blog',
+    type: 'website',
   },
 };
 ---

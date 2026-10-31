@@ -40,3 +40,21 @@ if (errors.length) {
 } else {
   console.log(`Checked ${files.length} HTML pages, local links/assets, and ${required.length} preserved routes.`);
 }
+
+// Check representative search/social metadata and ensure the sitemap contains only indexable pages.
+const home = await readFile(path.join(root, 'index.html'), 'utf8');
+const post = await readFile(path.join(root, 'ieee-distinguished-lecture-2025/index.html'), 'utf8');
+const notFound = await readFile(path.join(root, '404.html'), 'utf8');
+const sitemap = await readFile(path.join(root, 'sitemap-0.xml'), 'utf8');
+const seoErrors = [];
+if (!home.includes('social-card.')) seoErrors.push('Home page is missing the IEEE social card');
+if (!home.includes('name="twitter:image"')) seoErrors.push('Home page is missing twitter:image');
+if (!post.includes('og:image') || !post.includes('/images/news/lecture-2025.jpg')) seoErrors.push('Post social image is missing');
+if (!/name="robots" content="noindex, follow"/.test(notFound)) seoErrors.push('404 page must be noindex');
+if (sitemap.includes('/tag/')) seoErrors.push('Noindex tag pages must not be in the sitemap');
+if (seoErrors.length) {
+  console.error(seoErrors.join('\n'));
+  process.exitCode = 1;
+} else {
+  console.log('Checked social metadata, 404 indexing and sitemap exclusions.');
+}

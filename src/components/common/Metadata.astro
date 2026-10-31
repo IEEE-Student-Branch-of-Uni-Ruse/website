@@ -36,6 +36,8 @@ const mergedOg: MetaDataOpenGraph = merge(
   { url: canonical, ...openGraph }
 );
 
+// lodash.merge merges arrays by index; a post image must replace the site image.
+if (openGraph.images) mergedOg.images = openGraph.images;
 const adaptedOg = await adaptOpenGraphImages(mergedOg, Astro.site);
 
 const firstImage = adaptedOg?.images?.[0];
@@ -112,3 +114,4 @@ const seoProps: SEOProps = {
 ---
 
 <SEO {...seoProps} />
+{firstImage?.url && <meta name="twitter:image" content={firstImage.url} />}

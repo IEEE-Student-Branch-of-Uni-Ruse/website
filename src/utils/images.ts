@@ -42,7 +42,7 @@ export const findImage = async (
 };
 
 const OG_WIDTH = 1200;
-const OG_HEIGHT = 626;
+const OG_HEIGHT = 630;
 
 /**
  * Adapt OpenGraph images to absolute, optimized URLs.
@@ -60,6 +60,10 @@ export const adaptOpenGraphImages = async (
 
       const resolved = await findImage(image.url);
       if (!resolved) return { url: '' };
+
+      // Files in public/ and external URLs are not transformed by Astro. Do not
+      // advertise dimensions that may not match the original image.
+      if (typeof resolved === 'string') return { url: String(new URL(resolved, astroSite)) };
 
       // Generate an optimized JPG via Astro's image service (Sharp by default).
       const optimized = await getImage({

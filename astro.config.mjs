@@ -13,7 +13,7 @@ import tasks from './src/utils/tasks.mjs';
 
 import { readingTimeRemarkPlugin } from './src/utils/frontmatter.mjs';
 
-import { ANALYTICS, SITE } from './src/utils/config.ts';
+import { ANALYTICS, SITE, APP_BLOG } from './src/utils/config.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -44,7 +44,15 @@ export default defineConfig({
   prefetch: { prefetchAll: true, defaultStrategy: 'hover' },
 
   integrations: [
-    sitemap(),
+    sitemap({
+      filter: (page) => {
+        const pathname = new URL(page).pathname;
+        const matches = (segment) => pathname === `/${segment}` || pathname.startsWith(`/${segment}/`);
+        return !((!APP_BLOG.tag.robots.index && matches(APP_BLOG.tag.pathname)) ||
+          (!APP_BLOG.category.robots.index && matches(APP_BLOG.category.pathname)) ||
+          (!APP_BLOG.list.robots.index && matches(APP_BLOG.list.pathname)));
+      },
+    }),
     mdx(),
     icon({
       include: {

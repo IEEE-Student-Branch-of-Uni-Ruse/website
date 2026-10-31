@@ -3,7 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import timeline from '~/data/timeline.json';
 ---
 
-<Layout metadata={{ title: timeline.title }}>
+<Layout metadata={{ title: timeline.title, description: "Explore the history and milestones of the IEEE Student Branch at the University of Ruse." }}>
   <section class="container mx-auto p-8 md:p-16 max-w-6xl">
     <h1 class="text-3xl font-bold mb-10">{timeline.title}</h1>
     <ol class="relative border-l border-gray-200 dark:border-gray-700">
