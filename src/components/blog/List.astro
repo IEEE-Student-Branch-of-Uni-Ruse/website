@@ -1,6 +1,7 @@
 ---
 import Item from '~/components/blog/ListItem.astro';
 import type { Post } from '~/types';
+import { postTopic } from '~/utils/topics';
 
 export interface Props {
   posts: Array<Post>;
@@ -9,9 +10,9 @@ export interface Props {
 const { posts } = Astro.props;
 ---
 
-<ul>
+<ul id="news-items">
   {posts.map((post, index) => (
-    <li class="mb-12 md:mb-20">
+    <li data-filter-item data-year={String(post.publishDate.getUTCFullYear())} data-topic={postTopic(post.slug)} class="mb-12 md:mb-20">
       <Item post={post} eager={index < 3} />
     </li>
   ))}

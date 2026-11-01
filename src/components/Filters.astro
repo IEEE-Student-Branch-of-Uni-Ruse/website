@@ -1,0 +1,31 @@
+---
+import { topics } from '~/utils/topics';
+const { years, id } = Astro.props as { years: string[], id: string };
+const bg = Astro.currentLocale === 'bg';
+---
+<div data-filter-controls={id} hidden class="mb-8 flex flex-wrap gap-4 items-end">
+  <div><label for={`${id}-year`} class="block mb-2 font-semibold text-sm">{bg ? 'Година' : 'Year'}</label><select id={`${id}-year`} data-filter-year class="rounded-xl border border-slate-400 bg-page px-4 py-3 text-default"><option value="">{bg ? 'Всички години' : 'All years'}</option>{years.map((year) => <option value={year}>{year}</option>)}</select></div>
+  <div><label for={`${id}-topic`} class="block mb-2 font-semibold text-sm">{bg ? 'Тема' : 'Topic'}</label><select id={`${id}-topic`} data-filter-topic class="rounded-xl border border-slate-400 bg-page px-4 py-3 text-default"><option value="">{bg ? 'Всички теми' : 'All topics'}</option>{Object.entries(topics).map(([key, label]) => <option value={key}>{bg ? label.bg : label.en}</option>)}</select></div>
+  <p class="text-sm text-muted pb-3" role="status" aria-live="polite" data-filter-count data-singular={bg ? 'резултат' : 'result'} data-plural={bg ? 'резултата' : 'results'}></p>
+</div>
+<script>
+  function initFilters() {
+    document.querySelectorAll<HTMLElement>('[data-filter-controls]').forEach((controls) => {
+      const list = document.getElementById(controls.dataset.filterControls || '');
+      const year = controls.querySelector<HTMLSelectElement>('[data-filter-year]');
+      const topic = controls.querySelector<HTMLSelectElement>('[data-filter-topic]');
+      const count = controls.querySelector<HTMLElement>('[data-filter-count]');
+      if (!list || !year || !topic || !count || controls.dataset.ready) return;
+      controls.dataset.ready = 'true';
+      const items = [...list.querySelectorAll<HTMLElement>('[data-filter-item]')];
+      const update = () => {
+        let visible = 0;
+        items.forEach((item) => { const match = (!year.value || item.dataset.year === year.value) && (!topic.value || item.dataset.topic === topic.value); item.hidden = !match; if (match) visible++; });
+        count.textContent = `${visible} ${visible === 1 ? count.dataset.singular : count.dataset.plural}`;
+      };
+      year.addEventListener('change', update); topic.addEventListener('change', update);
+      controls.hidden = false; update();
+    });
+  }
+  document.addEventListener('astro:page-load', initFilters);
+</script>

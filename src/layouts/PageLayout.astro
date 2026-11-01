@@ -2,6 +2,7 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
+import SearchDialog from '~/components/SearchDialog.astro';
 
 import { headerData, footerData } from '~/navigation';
 
@@ -32,6 +33,7 @@ const bgLinks = [
   <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:z-[100] focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-4 focus:py-3 focus:rounded">{Astro.currentLocale === 'bg' ? 'Към основното съдържание' : 'Skip to main content'}</a>
   <slot name="announcement" />
   {Astro.slots.has('header') ? <slot name="header" /> : <Header links={Astro.currentLocale === 'bg' ? bgLinks : headerData.links} isSticky showRssFeed showToggleTheme />}
+  <SearchDialog />
   <main id="main-content" class="flex-1">
     <slot />
   </main>

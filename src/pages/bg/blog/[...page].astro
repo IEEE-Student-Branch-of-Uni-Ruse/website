@@ -2,6 +2,7 @@
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 import Layout from '~/layouts/PageLayout.astro';
 import BlogList from '~/components/blog/List.astro';
+import Filters from '~/components/Filters.astro';
 import Headline from '~/components/blog/Headline.astro';
 import Pagination from '~/components/blog/Pagination.astro';
 import Breadcrumbs from '~/components/common/Breadcrumbs.astro';
@@ -16,14 +17,17 @@ export const getStaticPaths = (async ({ paginate }) => {
 }) satisfies GetStaticPaths;
 const { page } = Astro.props as InferGetStaticPropsType<typeof getStaticPaths>;
 const currentPage = page.currentPage ?? 1;
+const allPosts = currentPage === 1 ? (await fetchPosts()).filter((post) => post.slug in translations).map((post) => { const translated = translations[post.slug as keyof typeof translations]; return { ...post, title: translated.title, excerpt: translated.excerpt, permalink: `bg/${post.slug}` }; }) : page.data;
+const years = [...new Set(allPosts.map((post) => String(post.publishDate.getUTCFullYear())))].sort().reverse();
 const breadcrumbs = [{ text: 'Начало', href: '/bg' }, ...(currentPage > 1 ? [{ text: 'Новини', href: '/bg/blog' }, { text: `Страница ${currentPage}` }] : [{ text: 'Новини' }])];
 ---
 <Layout metadata={{ title: `Новини${currentPage > 1 ? ` — Страница ${currentPage}` : ''}`, description: 'Новини, проекти и инициативи на студентския клон на IEEE към Русенския университет.' }}>
-  <Fragment slot="head">{page.url.prev && <link rel="prev" href={page.url.prev} />}{page.url.next && <link rel="next" href={page.url.next} />}</Fragment>
+  <Fragment slot="head">{page.url.prev && <link rel="prev" href={page.url.prev} />}{currentPage > 1 && page.url.next && <link rel="next" href={page.url.next} />}</Fragment>
   <Breadcrumbs bar items={breadcrumbs} />
   <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
     <Headline subtitle="Новини, проекти и инициативи на студентския клон.">Новини</Headline>
-    <BlogList posts={page.data} />
-    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} prevText="По-нови публикации" nextText="По-стари публикации" />
+    <Filters {years} id="news-items" />
+    <BlogList posts={allPosts} />
+    {currentPage > 1 && <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} prevText="По-нови публикации" nextText="По-стари публикации" />}
   </section>
 </Layout>

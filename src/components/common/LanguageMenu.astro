@@ -1,0 +1,30 @@
+---
+import { Icon } from 'astro-icon/components';
+import { localePaths } from '~/utils/locales';
+const locale = localePaths(Astro.url.pathname);
+---
+<details class="language-menu relative">
+  <summary aria-label={locale.isBg ? 'Избор на език' : 'Choose language'} title={locale.isBg ? 'Избор на език' : 'Choose language'} class="list-none cursor-pointer text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg p-2.5 inline-flex items-center justify-center"><Icon name="tabler:language" class="w-5 h-5" /></summary>
+  <div class="absolute right-0 top-full mt-2 min-w-44 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-1.5 shadow-xl z-50">
+    <a href={locale.bg || '/bg'} hreflang="bg" lang="bg" aria-current={locale.isBg ? 'true' : undefined} class="language-switch flex items-center justify-between gap-5 rounded-lg px-3 py-2.5 text-sm hover:bg-gray-100 dark:hover:bg-slate-800">Български {locale.isBg && <span aria-hidden="true" class="text-primary">✓</span>}</a>
+    <a href={locale.english} hreflang="en" lang="en" aria-current={!locale.isBg ? 'true' : undefined} class="language-switch flex items-center justify-between gap-5 rounded-lg px-3 py-2.5 text-sm hover:bg-gray-100 dark:hover:bg-slate-800">English {!locale.isBg && <span aria-hidden="true" class="text-primary">✓</span>}</a>
+  </div>
+</details>
+<script>
+  document.addEventListener('click', (event) => {
+    const target = event.target as Element;
+    document.querySelectorAll<HTMLDetailsElement>('.language-menu[open]').forEach((menu) => {
+      if (!menu.contains(target)) menu.open = false;
+    });
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    document.querySelectorAll<HTMLDetailsElement>('.language-menu[open]').forEach((menu) => {
+      menu.open = false;
+      menu.querySelector<HTMLElement>('summary')?.focus();
+    });
+  });
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll<HTMLDetailsElement>('.language-menu[open]').forEach((menu) => { menu.open = false; });
+  });
+</script>

@@ -1,0 +1,76 @@
+---
+import { Icon } from 'astro-icon/components';
+const bg = Astro.currentLocale === 'bg';
+---
+<section id="site-search-panel" data-search-dialog data-index={bg ? '/search-index/bg.json' : '/search-index/en.json'} aria-labelledby="search-dialog-title" hidden class="relative z-30 w-full border-b border-gray-200 dark:border-slate-700 bg-page text-default shadow-lg">
+  <div class="max-w-4xl mx-auto px-6 py-6 sm:py-8">
+    <div class="flex justify-between items-center gap-4"><h2 id="search-dialog-title" class="text-2xl font-bold text-heading">{bg ? 'Търсене в сайта' : 'Search the site'}</h2><button type="button" data-search-close aria-label={bg ? 'Затвори търсенето' : 'Close search'} class="text-muted hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg p-2.5"><Icon name="tabler:x" class="w-5 h-5" /></button></div>
+    <form role="search" data-dialog-search class="mt-6"><label for="dialog-search-input" class="block font-semibold text-sm mb-2">{bg ? 'Какво търсиш?' : 'What are you looking for?'}</label><input id="dialog-search-input" type="search" autocomplete="off" class="w-full rounded-xl border border-slate-400 bg-page text-default px-4 py-3" placeholder={bg ? 'Търси в страниците и новините' : 'Search pages and news'} /></form>
+    <p data-dialog-status role="status" aria-live="polite" class="mt-5 text-sm text-muted" data-prompt={bg ? 'Въведи дума за търсене.' : 'Enter a search term.'} data-loading={bg ? 'Зареждане…' : 'Loading…'} data-error={bg ? 'Търсенето не се зареди. Опитай отново.' : 'Search could not be loaded. Please try again.'} data-one={bg ? 'резултат' : 'result'} data-many={bg ? 'резултата' : 'results'}></p>
+    <ul data-dialog-results class="mt-4 space-y-2 max-h-[45vh] overflow-y-auto"></ul>
+  </div>
+</section>
+<script>
+  function setupSearch() {
+    const dialog = document.querySelector<HTMLElement>('[data-search-dialog]');
+    if (!dialog || dialog.dataset.ready) return;
+    dialog.dataset.ready = 'true';
+    const input = dialog.querySelector<HTMLInputElement>('#dialog-search-input');
+    const form = dialog.querySelector<HTMLFormElement>('[data-dialog-search]');
+    const close = dialog.querySelector<HTMLButtonElement>('[data-search-close]');
+    const status = dialog.querySelector<HTMLElement>('[data-dialog-status]');
+    const results = dialog.querySelector<HTMLUListElement>('[data-dialog-results]');
+    if (!input || !form || !close || !status || !results) return;
+    let entries: Array<{ text: string; href: string; title: string; description: string }> | null = null;
+    let previousFocus: HTMLElement | null = null;
+    const render = () => {
+      const terms = input.value.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
+      results.replaceChildren();
+      if (!terms.length) { status.textContent = status.dataset.prompt || ''; return; }
+      if (!entries) return;
+      const matches = entries.filter((entry) => terms.every((term) => entry.text.includes(term)));
+      status.textContent = `${matches.length} ${matches.length === 1 ? status.dataset.one : status.dataset.many}`;
+      matches.forEach((entry) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        const title = document.createElement('span');
+        const description = document.createElement('span');
+        a.href = entry.href; a.className = 'block rounded-xl border border-blue-100 dark:border-slate-700 p-4 hover:border-primary';
+        title.className = 'block font-bold text-heading'; title.textContent = entry.title;
+        description.className = 'block mt-1 text-sm text-muted'; description.textContent = entry.description;
+        a.append(title, description); li.append(a); results.append(li);
+      });
+    };
+    const controller = new AbortController();
+    document.addEventListener('astro:before-swap', () => controller.abort(), { once: true });
+    const setExpanded = (expanded: boolean) => {
+      dialog.hidden = !expanded;
+      document.querySelectorAll('[data-search-open]').forEach((trigger) => trigger.setAttribute('aria-expanded', String(expanded)));
+    };
+    const closePanel = () => { setExpanded(false); if (previousFocus?.isConnected) previousFocus.focus(); };
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !dialog.hidden) { event.preventDefault(); closePanel(); } }, { signal: controller.signal });
+    document.addEventListener('click', async (event) => {
+      const trigger = (event.target as Element).closest<HTMLButtonElement>('[data-search-open]');
+      if (!trigger || !dialog.isConnected) return;
+      event.preventDefault();
+      if (!dialog.hidden) { closePanel(); return; }
+      previousFocus = trigger;
+      const menu = document.querySelector<HTMLButtonElement>('[data-aw-toggle-menu][aria-expanded="true"]');
+      menu?.click();
+      setExpanded(true); input.focus();
+      if (!entries) {
+        status.textContent = status.dataset.loading || '';
+        try {
+          const response = await fetch(dialog.dataset.index || '');
+          if (!response.ok) throw new Error('Search index unavailable');
+          entries = await response.json();
+          render();
+        } catch { status.textContent = status.dataset.error || ''; }
+      } else render();
+    }, { signal: controller.signal });
+    form.addEventListener('submit', (event) => event.preventDefault());
+    input.addEventListener('input', render);
+    close.addEventListener('click', closePanel);
+  }
+  document.addEventListener('astro:page-load', setupSearch);
+</script>

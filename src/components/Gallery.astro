@@ -1,8 +1,12 @@
 ---
 import gallery from '~/data/gallery.json';
 import Image from '~/components/common/Image.astro';
+import Filters from '~/components/Filters.astro';
+import { postTopic } from '~/utils/topics';
+const years = [...new Set(gallery.map((item) => item.date.match(/\d{4}/)?.[0] || ''))].filter(Boolean).sort().reverse();
 const { bg = false } = Astro.props;
 ---
-<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-  {gallery.map((item, index) => <article class="rounded-2xl overflow-hidden border border-blue-100 dark:border-slate-700 bg-white dark:bg-slate-900"><a href={item.src} target="_blank" rel="noopener" aria-label={`${bg ? 'Отвори изображение' : 'Open image'}: ${bg ? item.titleBg : item.title}`}><Image src={item.src} alt={bg ? item.titleBg : item.alt} width={900} height={675} widths={[400, 900]} sizes="(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw" layout="cover" class="w-full aspect-[4/3] object-cover" loading={index < 3 ? "eager" : "lazy"} /></a><div class="p-5"><p class="text-sm text-muted">{bg ? item.dateBg : item.date}</p><h2 class="font-bold text-xl mt-2">{bg ? item.titleBg : item.title}</h2><a href={bg ? `/bg${item.href}` : item.href} class="inline-block mt-3 text-primary font-semibold">{bg ? 'Прочети новината' : 'Read the story'} →</a></div></article>)}
+<Filters {years} id="gallery-items" />
+<div id="gallery-items" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {gallery.map((item, index) => <article data-filter-item data-year={item.date.match(/\d{4}/)?.[0]} data-topic={postTopic(item.href.slice(1))} class="rounded-2xl overflow-hidden border border-blue-100 dark:border-slate-700 bg-white dark:bg-slate-900"><a href={item.src} target="_blank" rel="noopener" aria-label={`${bg ? 'Отвори изображение' : 'Open image'}: ${bg ? item.titleBg : item.title}`}><Image src={item.src} alt={bg ? item.titleBg : item.alt} width={900} height={675} widths={[400, 900]} sizes="(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 33vw" layout="cover" class="w-full aspect-[4/3] object-cover" loading={index < 3 ? "eager" : "lazy"} /></a><div class="p-5"><p class="text-sm text-muted">{bg ? item.dateBg : item.date}</p><h2 class="font-bold text-xl mt-2">{bg ? item.titleBg : item.title}</h2><a href={bg ? `/bg${item.href}` : item.href} class="inline-block mt-3 text-primary font-semibold">{bg ? 'Прочети новината' : 'Read the story'} →</a></div></article>)}
 </div>

@@ -4,6 +4,7 @@ import { localePaths } from '~/utils/locales';
 import Logo from '~/components/Logo.astro';
 import ToggleTheme from '~/components/common/ToggleTheme.astro';
 import ToggleMenu from '~/components/common/ToggleMenu.astro';
+import LanguageMenu from '~/components/common/LanguageMenu.astro';
 import Button from '~/components/ui/Button.astro';
 
 import { getHomePermalink } from '~/utils/permalinks';
@@ -94,7 +95,8 @@ const persistKey = `header-${Array.from(
           <Logo />
         </a>
         <div class="flex items-center lg:hidden">
-          <a href={Astro.currentLocale === 'bg' ? locale.english : (locale.bg || '/bg')} hreflang={Astro.currentLocale === 'bg' ? 'en' : 'bg'} aria-label={locale.isBg ? 'Switch to English' : 'Превключи на български'} lang={locale.isBg ? 'en' : 'bg'} class="px-3 py-2 text-sm font-bold language-switch">{Astro.currentLocale === 'bg' ? 'EN' : 'BG'}</a>
+          <button type="button" data-search-open aria-controls="site-search-panel" aria-expanded="false" aria-label={locale.isBg ? 'Търсене' : 'Search'} class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg p-2.5 inline-flex items-center justify-center"><Icon name="tabler:search" class="w-5 h-5" /></button>
+          <LanguageMenu />
           <ToggleMenu label={locale.isBg ? 'Отвори или затвори менюто' : 'Open or close menu'} />
         </div>
       </div>
@@ -153,7 +155,8 @@ const persistKey = `header-${Array.from(
       >
         <div class="items-center flex justify-between w-full lg:w-auto">
           <div class="flex">
-            <a href={Astro.currentLocale === 'bg' ? locale.english : (locale.bg || '/bg')} hreflang={Astro.currentLocale === 'bg' ? 'en' : 'bg'} aria-label={locale.isBg ? 'Switch to English' : 'Превключи на български'} lang={locale.isBg ? 'en' : 'bg'} class="px-3 py-2 text-sm font-bold language-switch">{Astro.currentLocale === 'bg' ? 'EN' : 'BG'}</a>
+            <button type="button" data-search-open aria-controls="site-search-panel" aria-expanded="false" aria-label={locale.isBg ? 'Търсене' : 'Search'} class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg p-2.5 inline-flex items-center justify-center"><Icon name="tabler:search" class="w-5 h-5" /></button>
+            <LanguageMenu />
             {showToggleTheme && <ToggleTheme label={locale.isBg ? 'Смени светлата или тъмната тема' : 'Toggle light or dark theme'} iconClass="w-6 h-6 lg:w-5 lg:h-5 lg:inline-block" />}
             {showRssFeed && (
               <a
