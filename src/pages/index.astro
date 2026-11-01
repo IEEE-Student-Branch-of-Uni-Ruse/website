@@ -33,7 +33,7 @@ const local = (href: string) => getRelativeLocaleUrl(bg ? 'bg' : 'en', href === 
 <Layout metadata={metadata}>
   <StructuredData slot="head" schema={[organization, website]} />
   <section class="hero max-w-7xl mx-auto px-6 pt-12 pb-16 md:pt-20 md:pb-24">
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
       <div>
         <p class="text-xs font-bold tracking-[.18em] text-primary uppercase mb-6">{localizedHome.intro.eyebrow}</p>
         <h1 class="text-5xl sm:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.04] text-heading">{localizedHome.intro.headline}</h1>

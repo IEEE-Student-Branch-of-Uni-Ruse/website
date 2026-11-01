@@ -109,7 +109,7 @@
           },
           {
             "text": "Accessibility",
-            "href": "https://www.ieee.org/accessibility_statement.html"
+            "href": "/accessibility"
           },
           {
             "text": "Nondiscrimination Policy",
@@ -133,7 +133,11 @@
         "title": "Support",
         "links": [
           {
-            "text": "Community Forum",
+            "text": "IEEE Support Center",
+            "href": "https://supportcenter.ieee.org/"
+          },
+          {
+            "text": "Discord community",
             "href": "https://discord.gg/Q3Bxtrg9wW"
           }
         ]

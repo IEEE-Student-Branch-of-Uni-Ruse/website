@@ -1,5 +1,6 @@
 ---
 import { APP_BLOG } from '~/utils/config';
+import translations from '~/data/posts-bg.json';
 
 import Grid from '~/components/blog/Grid.astro';
 
@@ -29,7 +30,11 @@ const {
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
 
-const posts = APP_BLOG.isEnabled ? await findPostsByIds(postIds) : [];
+const found = APP_BLOG.isEnabled ? await findPostsByIds(postIds) : [];
+const posts = Astro.currentLocale === 'bg' ? found.filter((post) => post.slug in translations).map((post) => {
+  const translated = translations[post.slug as keyof typeof translations];
+  return { ...post, title: translated.title, excerpt: translated.excerpt, permalink: `bg/${post.slug}` };
+}) : found;
 ---
 
 {APP_BLOG.isEnabled ? (

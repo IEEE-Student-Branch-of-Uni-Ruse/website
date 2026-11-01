@@ -10,9 +10,9 @@ const { posts } = Astro.props;
 ---
 
 <ul>
-  {posts.map((post) => (
+  {posts.map((post, index) => (
     <li class="mb-12 md:mb-20">
-      <Item post={post} />
+      <Item post={post} eager={index < 3} />
     </li>
   ))}
 </ul>

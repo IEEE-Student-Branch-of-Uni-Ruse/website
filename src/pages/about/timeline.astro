@@ -1,21 +1,9 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import timeline from '~/data/timeline.json';
+import TimelineList from '~/components/TimelineList.astro';
+const bg = Astro.currentLocale === 'bg';
+const t = (en: string, value: string) => bg ? value : en;
 ---
-
-<Layout metadata={{ title: timeline.title, description: "Explore the history and milestones of the IEEE Student Branch at the University of Ruse." }}>
-  <section class="container mx-auto p-8 md:p-16 max-w-6xl">
-    <h1 class="text-3xl font-bold mb-10">{timeline.title}</h1>
-    <ol class="relative border-l border-gray-200 dark:border-gray-700">
-      {timeline.items.map((item) => (
-        <li class="mb-10 ml-4 last:mb-0">
-          <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700" />
-          <span class="mb-1 text-sm font-normal leading-none">{item.date}</span>
-          <h2 class="text-lg font-semibold">{item.title}</h2>
-          <p class="text-base font-normal">{item.description}</p>
-          {item.href && <a href={item.href} class="btn btn-secondary mt-3">{timeline.linkLabel} →</a>}
-        </li>
-      ))}
-    </ol>
-  </section>
+<Layout metadata={{ title: t('History', 'История'), description: t('Explore the history and milestones of the IEEE Student Branch at the University of Ruse.', 'Разгледай историята на студентския клон на IEEE към Русенския университет.') }}>
+  <section class="max-w-5xl mx-auto px-6 pt-16 pb-24 md:pt-24"><div class="max-w-3xl mb-12 md:mb-16"><p class="text-primary text-sm font-bold uppercase tracking-widest">{t('Our journey', 'Нашият път')}</p><h1 class="mt-5 text-5xl md:text-6xl font-bold tracking-tight text-heading">{t('A history of ideas in motion.', 'История на идеи в движение.')}</h1><p class="mt-6 text-xl leading-relaxed text-muted">{t('From our first steps to the events and people that shaped our community, explore the milestones along the way.', 'От първите стъпки до събитията и хората, които изградиха нашата общност — разгледай важните моменти по пътя.')}</p></div><TimelineList {bg} /></section>
 </Layout>

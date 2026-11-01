@@ -1,0 +1,15 @@
+---
+import team from '~/data/team.json';
+const { bg = false } = Astro.props;
+const roles: Record<string, string> = { Chair: 'Председател', 'Vice-Chair': 'Заместник-председател', Treasurer: 'Касиер', Secretary: 'Секретар', Member: 'Член', Counsellor: 'Консултант' };
+---
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+  {team.members.map((member, index) => {
+    const Tag = member.href ? 'a' : 'div';
+    const initials = member.name.split(' ').map((part) => part[0]).join('');
+    return <Tag href={member.href || undefined} class="group flex items-center gap-5 rounded-3xl border border-blue-100 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 transition hover:border-primary/40 hover:shadow-lg">
+      <span aria-hidden="true" class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-blue-50 dark:bg-slate-800 text-lg font-bold text-primary">{initials}</span>
+      <span class="min-w-0"><span class="block text-lg font-bold text-heading">{member.name}{member.href && <span aria-hidden="true" class="ml-2 text-primary">↗</span>}</span><span class="mt-1 block text-sm text-muted">{bg ? roles[member.role] || member.role : member.role}</span></span>
+    </Tag>;
+  })}
+</div>

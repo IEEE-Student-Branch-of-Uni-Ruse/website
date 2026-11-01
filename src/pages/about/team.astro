@@ -1,22 +1,13 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import TeamMember from '~/components/TeamMember.astro';
-import team from '~/data/team.json';
+import TeamGrid from '~/components/TeamGrid.astro';
+const bg = Astro.currentLocale === 'bg';
+const t = (en: string, value: string) => bg ? value : en;
 ---
-
-<Layout metadata={{ title: team.title, description: "Meet the students and counsellor of the IEEE Student Branch at the University of Ruse." }}>
-  <section class="relative w-full">
-    <div class="relative w-full px-8 pt-16 pb-16 ml-auto mr-auto bg-top bg-cover sm:max-w-xl md:max-w-full md:px-24 lg:px-8 lg:py-24 lg:pb-32">
-        <div class="max-w-xl mb-10 ml-auto mr-auto bg-top bg-cover md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-          <div class="max-w-2xl mb-6 ml-auto mr-auto  tracking-tight  bg-top bg-cover sm:text-4xl md:mx-auto">
-                <h1 class="inline max-w-lg  text-3xl font-bold leading-none tracking-tight  sm:text-4xl md:mx-auto">{team.heading}</h1>
-            </div>
-        </div>
-        <div class="grid gap-10 row-gap-8 ml-auto mr-auto sm:row-gap-10 lg:max-w-screen-lg sm:grid-cols-2 lg:grid-cols-3"> 
-            {team.members.map((member) => (
-                <TeamMember {...member} />
-            ))}
-        </div>
-    </div>
-</section>
+<Layout metadata={{ title: t('Team', 'Екип'), description: t('Meet the students and counsellor of the IEEE Student Branch at the University of Ruse.', 'Запознай се с екипа на студентския клон на IEEE към Русенския университет.') }}>
+  <section class="max-w-7xl mx-auto px-6 pt-16 pb-24 md:pt-24">
+    <div class="max-w-3xl mb-12 md:mb-16"><p class="text-primary text-sm font-bold uppercase tracking-widest">{t('The people behind the branch', 'Хората зад клона')}</p><h1 class="mt-5 text-5xl md:text-6xl font-bold tracking-tight text-heading">{t('Meet our team.', 'Запознай се с екипа.')}</h1><p class="mt-6 text-xl leading-relaxed text-muted">{t('Students and mentors brought together by curiosity, technology and a desire to make things happen.', 'Студенти и ментори, обединени от любопитство, технологии и желание да превръщат идеите в реалност.')}</p></div>
+    <TeamGrid {bg} />
+    <div class="mt-16 rounded-3xl bg-blue-50 dark:bg-slate-800 p-8 md:p-12 flex flex-wrap items-center justify-between gap-6"><div><h2 class="text-2xl md:text-3xl font-bold text-heading">{t('Want to be part of the community?', 'Искаш да станеш част от общността?')}</h2><p class="mt-3 text-muted">{t('Come meet us, share an idea or find out how to get involved.', 'Запознай се с нас, сподели идея или научи как да се включиш.')}</p></div><a href={bg ? '/bg/contact' : '/contact'} class="rounded-full bg-primary px-7 py-4 font-semibold text-white hover:bg-secondary transition">{t('Get in touch →', 'Свържи се с нас →')}</a></div>
+  </section>
 </Layout>

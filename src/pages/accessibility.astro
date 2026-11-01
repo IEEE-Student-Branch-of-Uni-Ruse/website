@@ -1,0 +1,15 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+const bg = Astro.currentLocale === 'bg';
+---
+<Layout metadata={{ title: bg ? 'Достъпност' : 'Accessibility', description: bg ? 'Информация за достъпността на сайта на студентския клон на IEEE.' : 'Accessibility information for the IEEE Student Branch website.' }}>
+  <section class="max-w-4xl mx-auto px-6 pt-16 pb-24 md:pt-24">
+    <p class="text-primary text-sm font-bold uppercase tracking-widest">IEEE · {bg ? 'Русенски университет' : 'University of Ruse'}</p>
+    <h1 class="mt-5 text-4xl md:text-6xl font-bold tracking-tight text-heading">{bg ? 'Достъпност' : 'Accessibility'}</h1>
+    <p class="mt-6 text-xl leading-relaxed text-muted">{bg ? 'IEEE се стреми да осигури достъпно уеб присъствие за всички хора, независимо от техните увреждания. В подкрепа на този ангажимент IEEE прие Насоките за достъпност на уеб съдържанието (WCAG) 2.0 на W3C, ниво A, като обща цел за уеб достъпност. Публикуващите съдържание в сайтовете на IEEE обаче се насърчават да го предоставят на по-високи нива на достъпност (AA или AAA), когато това е възможно.' : "IEEE strives to provide an accessible web presence to all people, regardless of disabilities. To support this commitment, IEEE has adopted the W3C's Web Content Accessibility Guidelines (WCAG) 2.0 Level A as the enterprise Web Accessibility objective. However, IEEE web publishers are encouraged to deliver content at higher accessibility levels (Level AA or Level AAA) whenever possible."}</p>
+    <div class="mt-12 space-y-8 text-muted leading-relaxed">
+      <section class="rounded-3xl bg-blue-50 dark:bg-slate-800 p-8 md:p-10"><h2 class="text-2xl font-bold text-heading">{bg ? 'Помогни ни да подобрим сайта' : 'Help us improve'}</h2><p class="mt-4">{bg ? 'Ако срещнеш затруднения при достъпа до информация или услуги на този сайт на IEEE, свържи се с нас чрез страницата за контакти.' : 'If you have any trouble accessing information or services on this IEEE website, please contact us through our contact page.'}</p><a href={bg ? '/bg/contact' : '/contact'} class="inline-block mt-6 font-semibold text-primary underline underline-offset-4">{bg ? 'Към контактите →' : 'Contact the branch →'}</a></section>
+      <section><h2 class="text-2xl font-bold text-heading">{bg ? 'Достъпност на сайта на IEEE' : 'Accessibility on IEEE.org'}</h2><p class="mt-4">{bg ? 'За информация относно основния сайт на IEEE разгледай неговата декларация за достъпност.' : 'For information about the main IEEE website, see its accessibility statement.'}</p><a href="https://www.ieee.org/accessibility-statement" class="inline-block mt-4 font-semibold text-primary underline underline-offset-4">{bg ? 'Декларация за достъпност на IEEE ↗' : 'IEEE accessibility statement ↗'}</a></section>
+    </div>
+  </section>
+</Layout>

@@ -4,6 +4,8 @@ import { getImage } from 'astro:assets';
 import galleryPhoto from '~/assets/images/public/news/innovative-week-2024-2.jpg';
 import Layout from '~/layouts/PageLayout.astro';
 import SinglePost from '~/components/blog/SinglePost.astro';
+import ToBlogLink from '~/components/blog/ToBlogLink.astro';
+import RelatedPosts from '~/components/blog/RelatedPosts.astro';
 import { fetchPosts } from '~/utils/blog';
 import { findImage, adaptOpenGraphImages } from '~/utils/images';
 import StructuredData from '~/components/common/StructuredData.astro';
@@ -44,5 +46,6 @@ const articleSchema = {
   <SinglePost post={{ ...post, title: translation.title, excerpt: translation.excerpt, image: image || undefined }} {url}>
     <Fragment set:html={content} />
   </SinglePost>
-  <div class="max-w-3xl mx-auto px-6 pb-16"><a href="/bg/blog" class="text-primary font-semibold">← Към новините</a></div>
+  <ToBlogLink />
+  <RelatedPosts post={post} />
 </Layout>

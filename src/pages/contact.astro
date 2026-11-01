@@ -5,23 +5,25 @@ import Features2 from '~/components/widgets/Features2.astro';
 import site from '~/data/site.json';
 import { getPermalink } from '~/utils/permalinks';
 
+const bg = Astro.currentLocale === 'bg';
 const { contact } = site;
-const metadata = { title: contact.tagline, description: contact.description };
+const t = (en: string, bgText: string) => bg ? bgText : en;
+const metadata = { title: t(contact.tagline, 'Контакти'), description: t(contact.description, 'Свържи се със студентския клон на IEEE чрез каналите на общността.') };
 ---
 
 <Layout metadata={metadata}>
   <HeroText
-    tagline={contact.tagline}
-    title={contact.title}
-    subtitle={contact.description}
-    callToAction={{ text: contact.faqText, href: getPermalink('/about/faq') }}
+    tagline={t(contact.tagline, 'Контакти')}
+    title={t(contact.title, 'Нека се свържем!')}
+    subtitle={t(contact.description, 'Свържи се със студентския клон на IEEE към Русенския университет чрез каналите на общността. За въпроси относно членството и доброволчеството започни от нашата Discord общност.')}
+    callToAction={{ text: t(contact.faqText, 'Често задавани въпроси'), href: bg ? '/bg/about/faq' : getPermalink('/about/faq') }}
   />
   <Features2
-    title={contact.channelsTitle}
+    title={t(contact.channelsTitle, 'Открий нашата общност')}
     columns={2}
     items={contact.channels.map(({ href, linkText, ...channel }) => ({
       ...channel,
-      callToAction: { text: linkText, href },
+      callToAction: { text: bg ? `Посети ${channel.title}` : linkText, href },
     }))}
   />
 </Layout>

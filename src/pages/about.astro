@@ -5,18 +5,25 @@ import Features2 from '~/components/widgets/Features2.astro';
 import site from '~/data/site.json';
 import { getPermalink } from '~/utils/permalinks';
 
+const bg = Astro.currentLocale === 'bg';
 const { about } = site;
-const metadata = { title: about.title, description: about.description };
+const t = (en: string, value: string) => bg ? value : en;
+const titles = ['Нашият екип', 'Нашата история', 'Събития и дейности', 'Често задавани въпроси'];
+const descriptions = ['Запознай се със студентите и консултанта зад нашия клон.', 'Разгледай важните моменти от историята на клона в Русенския университет.', 'Организираме гост-лекции, обучения, хакатони, състезания и социални събития.', 'Научи повече за членството, доброволчеството и участието в IEEE.'];
+const labels = ['Запознай се с екипа', 'Виж историята', 'Разгледай събитията', 'Виж въпросите'];
+const metadata = { title: t(about.title, 'За клона'), description: t(about.description, 'Научи повече за студентския клон на IEEE към Русенския университет.') };
 ---
 
 <Layout metadata={metadata}>
-  <HeroText title={about.title} tagline={about.subtitle} subtitle={about.description} />
+  <HeroText title={t(about.title, 'За клона')} tagline={t(about.subtitle, 'IEEE студентски клон към Русенския университет')} subtitle={t(about.description, 'Студентският клон на IEEE е организация, ръководена от студенти, която предоставя ресурси, подкрепа и възможности за студенти с интерес към електротехниката, компютърното инженерство и сродни области.')} />
   <Features2
-    title={about.sectionsTitle}
+    title={t(about.sectionsTitle, 'Разгледай нашия клон')}
     columns={2}
-    items={about.sections.map(({ href, linkText, ...section }) => ({
+    items={about.sections.map(({ href, linkText, ...section }, index) => ({
       ...section,
-      callToAction: { text: linkText, href: getPermalink(href) },
+      title: t(section.title, titles[index]),
+      description: t(section.description, descriptions[index]),
+      callToAction: { text: t(linkText, labels[index]), href: bg ? `/bg${href}` : getPermalink(href) },
     }))}
   />
 </Layout>

@@ -8,7 +8,7 @@ const t = (en: string, bulgarian: string) => bg ? bulgarian : en;
 ---
 <Layout metadata={{ title: frontmatter.title, description: frontmatter.subtitle }}>
   <section class="max-w-7xl mx-auto px-6 pt-14 pb-16 md:pt-24 md:pb-24">
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
       <div>
         <a href={bg ? '/bg/about' : '/about'} class="text-sm font-semibold text-primary hover:underline">{t('← Our community', '← Нашата общност')}</a>
         <p class="text-xs font-bold tracking-[.18em] text-primary uppercase mt-8 mb-5">{t('IEEE · Explore your interests', 'IEEE · Открий интересите си')}</p>
